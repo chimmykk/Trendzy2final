@@ -84,7 +84,7 @@ export function Sidebar() {
         <h1 className='text-xl font-bold '>CATEGORIES</h1>
         <div className=' text-base font-semibold flex flex-col '>
           <Link href={'./'} className='bg-bgGray rounded-lg px-2 py-2  block w-44'>
-            <h1>Men's Fashion</h1>
+            <h1>Men&apos;s Fashion</h1>
           </Link>
           <Link href={'./'} className='hover:bg-bgGray rounded-lg px-2 py-2  block w-44'>
             <h1>Arts & Handmade</h1>
