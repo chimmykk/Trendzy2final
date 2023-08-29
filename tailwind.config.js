@@ -10,14 +10,18 @@ module.exports = {
         gridTemplateColumns: {
         fluid: "repeat(auto-fit, minmax(300px, 1fr))",
       },    
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      backgroundColor: {
+        bgGreen: "#25FF79",
+        bgGray: "#f1eeee"
       },
       textColor: {
-        grayText: "#575353",
-      }
+        grayText: "#f1eeee",
+        bgGreen: "#25FF79"
+      },
+      borderColor: {
+        borderC: "#25FF79"
+      } 
+      
     },
   },
   plugins: [],
