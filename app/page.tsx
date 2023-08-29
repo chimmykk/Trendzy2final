@@ -14,32 +14,32 @@ export default function Home() {
   }
 
   return (
-    <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit ">
-      <div className="flex justify-center fade-container">
-        <ResponsiveCarousel />        
-      </div>
+  <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit">
+  <div className="flex justify-center fade-container">
+    <ResponsiveCarousel />        
+  </div>
 
-      <div className="mt-12 mx-auto text-center">
-        <h1 className="text-4xl my-4  font-extrabold">
-          Watch, <span className='text-bgGreen '>Interact</span>, <span className='stroke-black'>Shop</span> – Live Marketplace  
-        </h1>
-        <div className="flex mt-7 items-center content-center gap-4 text-lg font-semibold justify-center">
-          <Link
-            href={'/livestream'}
-            className="px-4 py-3 bg-[#fff] hover:bg-[#f0ecec] transition-hover duration-300 border rounded-lg border-black"
-          >
-            Join the Stream
-          </Link>
-          <Link
-            href={'/register'}
-            className="px-4 py-3 bg-bgGreen hover:bg-[#5dfd9a] transition-hover duration-300 text-black border rounded-lg border-transparent"
-          >
-            Become a seller
-          </Link>
-          
-        </div>
-      </div>
-    </main>
+  <div className="mt-12 mx-auto text-center">
+    <h1 className="text-4xl my-4 font-extrabold">
+      Watch, <span className='text-bgGreen'>&apos;Interact&apos;</span>, <span className='stroke-black'>&apos;Shop&apos;</span> – Live Marketplace
+    </h1>
+    <div className="flex mt-7 items-center content-center gap-4 text-lg font-semibold justify-center">
+      <Link
+        href={'/livestream'}
+        className="px-4 py-3 bg-[#fff] hover:bg-[#f0ecec] transition-hover duration-300 border rounded-lg border-black"
+      >
+        Join the Stream
+      </Link>
+      <Link
+        href={'/register'}
+        className="px-4 py-3 bg-bgGreen hover:bg-[#5dfd9a] transition-hover duration-300 text-black border rounded-lg border-transparent"
+      >
+        Become a seller
+      </Link>
+    </div>
+  </div>
+</main>
+
   );
 }
 

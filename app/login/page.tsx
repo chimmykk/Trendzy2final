@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,8 +24,10 @@ const LoginForm = () => {
           <button
             className="px-4 py-4 border flex gap-2 border-slate-400 rounded-lg text-slate-700 hover:border-borderC hover:text-slate-900 hover:shadow transition duration-150"
           >
-            <img
+            <Image
               className="w-6 h-6"
+              width={1000}
+              height={1000}
               src="https://www.svgrepo.com/show/475656/google-color.svg"
               loading="lazy"
               alt="google logo"

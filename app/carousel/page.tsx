@@ -8,6 +8,7 @@ import {
 import Fab from '@mui/material/Fab';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Image from "next/image";
 
 export const data = [
   {
@@ -128,13 +129,16 @@ export const Card = React.memo(function (props: CardProps) {
       }}
       className="my-slide-component"
     >
-      <img
+      <Image
         style={{
           height: "100%",
           width: "100%",
           objectFit: "cover",
           borderRadius: 0,
         }}
+        width={1000}
+        height={1000}
+        alt="img"
         draggable={false}
         src={cover}
       />
