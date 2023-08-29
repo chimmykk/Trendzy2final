@@ -91,7 +91,7 @@ const LoginForm = () => {
         </form>
 
 
-        <p className="mt-4 text-center text-gray-600">Don't have an account?  <Link href="#" className=' text-[#25FF79] font-semibold'>Sign up</Link></p>
+        <p className="mt-4 text-center text-gray-600">Don&apos;t have an account?  <Link href="#" className=' text-[#25FF79] font-semibold'>Sign up</Link></p>
       </div>
     </div>
   );

@@ -117,7 +117,7 @@ interface CardProps {
   dataIndex: number;
 }
 
-export const Card = React.memo(function (props: CardProps) {
+export const Card = React.memo(function card(props: CardProps) {
   const { data, dataIndex } = props;
   const { cover } = data[dataIndex];
   return (
@@ -138,7 +138,7 @@ export const Card = React.memo(function (props: CardProps) {
         }}
         width={1000}
         height={1000}
-        alt="img"
+        alt=""
         draggable={false}
         src={cover}
       />
