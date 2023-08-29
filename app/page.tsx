@@ -43,7 +43,7 @@ export default function Home() {
   );
 }
 
-export function Lives() {
+function Lives() {
   return(
     <div className='px-5 sm:px-6 h-[1000px] lg:px-4 '>
       <Sidebar />
@@ -78,7 +78,7 @@ export function Lives() {
   )
 }
 
-export function Sidebar() {
+ function Sidebar() {
   return(
       <div className='fixed min-h-screen flex flex-col gap-6 py-4 h-[1000px] pr-4 overflow-y-scroll col-span-1'>
         <h1 className='text-xl font-bold '>CATEGORIES</h1>
