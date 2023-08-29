@@ -10,7 +10,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from "next/image";
 
-export const data = [
+const data = [
   {
     cover: "https://images6.alphacoders.com/679/thumb-1920-679459.jpg",
     title: "Interstaller",
