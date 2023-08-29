@@ -25,12 +25,12 @@ const LoginForm = () => {
             className="px-4 py-4 border flex gap-2 border-slate-400 rounded-lg text-slate-700 hover:border-borderC hover:text-slate-900 hover:shadow transition duration-150"
           >
             <Image
-              className="w-6 h-6"
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
               width={1000}
               height={1000}
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              alt="google-logo"
+              className="w-6 h-6"
               loading="lazy"
-              alt="google logo"
             />
             <span>Continue with Google</span>
           </button>

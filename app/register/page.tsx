@@ -25,12 +25,12 @@ const SignUpForm = () => {
             className="px-4 py-4 border flex gap-2 border-slate-400 rounded-lg text-slate-700 hover:border-borderC hover:text-slate-900 hover:shadow transition duration-150"
           >
             <Image
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
               width={1000}
               height={1000}
+              alt="google-logo"
               className="w-6 h-6"
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
               loading="lazy"
-              alt="google logo"
             />
             <span>Continue with Google</span>
           </button>
@@ -90,7 +90,7 @@ const SignUpForm = () => {
           <div className="">
             <label className=" mb-2">
               <input type="checkbox" className="mr-2" />
-              I agree with Trendzy's <Link href="#" className=' text-bgGreen font-semibold'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-semibold'>Privacy policy</Link>
+              I agree with Trendzy&apos;s <Link href="#" className=' text-bgGreen font-semibold'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-semibold'>Privacy policy</Link>
             </label>
           </div>
           <button

@@ -130,18 +130,20 @@ export const Card = React.memo(function card(props: CardProps) {
       className="my-slide-component"
     >
       <Image
+        src={cover}
+        width={1000}
+        height={1000}
+        alt="picture"
         style={{
           height: "100%",
           width: "100%",
           objectFit: "cover",
           borderRadius: 0,
         }}
-        width={1000}
-        height={1000}
-        alt=""
         draggable={false}
-        src={cover}
       />
     </div>
   );
 });
+
+Card.displayName = 'Card'
