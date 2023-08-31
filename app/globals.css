@@ -28,6 +28,6 @@ font-size: 18px
 }
 
 .input:focus ~ .user-label {
-    color: #25FF79 ; /* Change to your desired blue color */
+    color: #404EED ; /* Change to your desired blue color */
     font-size: 18px;
 }

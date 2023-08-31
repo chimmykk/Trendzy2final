@@ -4,14 +4,27 @@ import Link from "next/link"
 import { useEffect, useState } from "react" 
 import { usePathname } from "next/navigation"
 import Image from "next/image"
-import { gsap } from "gsap"
+import SignUp from "../register/SignUp"
+import Login from "../Login"
+// import { gsap } from "gsap"
+ 
 
 
 export default  function Navbar() {
 
     const [showMenu, setShowMenu] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
 
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+
+    const toggleModalLogin = () => {
+        setIsModalOpenLogin(!isModalOpenLogin);
+    };
     const pathname = usePathname();
 
     // useEffect(() => {
@@ -29,16 +42,18 @@ export default  function Navbar() {
                     </Link>     
                         <div className=" overflow-hidden rounded-lg flex items-center">
                             <input placeholder="Search ..." className=" border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-blue-500 " name="text" type="text" />
-                            <button className=" bg-bgGreen hover:bg-[#5dfd9a] h-full px-4">
+                            <button className=" bg-bgBlue hover:bg-hoverBlue h-full px-4">
                                 <Image src={'./search.svg'} width={25} height={25} alt="search" className=""/>
                             </button>
                         </div>
                 <div className="flex lg:gap-20 xl:gap-25 justify-end col-span-1">
-                    <div className="flex items-center text-black gap-3">
-                        <Link href={'/login'} className="bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">Log In</Link>
-                        <Link href={'/register'} className="rounded-lg bg-bgGreen hover:bg-[#5dfd9a] transition-hover duration-300 text-black py-2 px-4">Sign Up</Link>
+                    <div className="flex items-center text-black gap-3 font-bold">
+                        <div  onClick={toggleModalLogin} className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">Log In</div>
+                        <div onClick={toggleModal} className=" cursor-pointer rounded-lg bg-bgBlue hover:bg-hoverBlue text-white transition-hover duration-300  py-2 px-4">Sign Up</div>
                     </div>
                 </div>
+                {isModalOpen && <SignUp setIsModalOpen={setIsModalOpen} />}
+                {isModalOpenLogin && <Login setIsModalOpenLogin={setIsModalOpenLogin} />}
             </div>
                 :
                 <LoggedInNav />

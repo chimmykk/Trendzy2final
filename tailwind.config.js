@@ -11,16 +11,25 @@ module.exports = {
         fluid: "repeat(auto-fit, minmax(300px, 1fr))",
       },    
       backgroundColor: {
-        bgGreen: "#25FF79",
-        bgGray: "#f1eeee"
+        bgBlue: "#404EED",
+        hoverBlue: "#2E39A6",
+        bgGray: "#f1eeee",
+        bgDark: "#313338",
+        darkLint: "#1E1F22"
       },
       textColor: {
         grayText: "#f1eeee",
-        bgGreen: "#25FF79"
+        hoverBlue: "#2E39A6.",
+        bgBlue: "#404EED",
+        bgDark: "#313338",
       },
       borderColor: {
-        borderC: "#25FF79"
-      } 
+        borderC: "#404EED",
+        bgDark: "#313338"
+      },
+      boxShadowColor: {
+        bgBlue: "#404EED"
+      }
       
     },
   },

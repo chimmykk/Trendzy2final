@@ -21,7 +21,7 @@ export default function Home() {
 
   <div className="mt-12 mx-auto text-center">
     <h1 className="text-4xl my-4 font-extrabold">
-      Watch, <span className='text-bgGreen'>&apos;Interact&apos;</span>, <span className='stroke-black'>&apos;Shop&apos;</span> – Live Marketplace
+      Watch, <span className='text-bgBlue'>&apos;Interact&apos;</span>, <span className='stroke-black'>&apos;Shop&apos;</span> – Live Marketplace
     </h1>
     <div className="flex mt-7 items-center content-center gap-4 text-lg font-semibold justify-center">
       <Link
@@ -32,7 +32,7 @@ export default function Home() {
       </Link>
       <Link
         href={'/register'}
-        className="px-4 py-3 bg-bgGreen hover:bg-[#5dfd9a] transition-hover duration-300 text-black border rounded-lg border-transparent"
+        className="px-4 py-3 bg-bgBlue hover:bg-hoverBlue transition-hover duration-300 text-white border rounded-lg border-transparent"
       >
         Become a seller
       </Link>
