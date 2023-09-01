@@ -84,7 +84,7 @@ export default function SignUp({setIsModalOpen} : props){
     )
 }
 
-const SignUpWithEmailForm = ({ onClose }) => {
+const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
   // Add your signup form JSX and logic here
 
    const [showPassword, setShowPassword] = useState(false);
