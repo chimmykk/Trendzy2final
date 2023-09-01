@@ -94,7 +94,7 @@ interface props {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
-            <Link href="#" className=" w-fit text-gray-500">
+            <Link href="#" className=" text-sm w-fit text-gray-500">
               Forgot Password?
             </Link>       
           </div>
@@ -107,7 +107,7 @@ interface props {
         </form>
 
 
-        <p className="mt-4 text-center text-gray-600">Don&apos;t have an account?  <Link href="#" className=' text-bgBlue font-semibold'>Sign up</Link></p>
+        <p className="mt-4 text-center text-sm text-gray-600">Don&apos;t have an account?  <Link href="#" className=' text-bgBlue font-semibold'>Sign up</Link></p>
       </div>
         </div>
     )
