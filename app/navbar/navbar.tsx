@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import SignUp from "../register/SignUp"
-import Login from "../Login"
+import Login from "../login/Login"
 // import { gsap } from "gsap"
  
 
