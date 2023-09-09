@@ -87,6 +87,63 @@ export default function SignUp({setIsModalOpen} : props){
 const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
   // Add your signup form JSX and logic here
 
+    const [username, setusername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSignup = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    
+    if (!username || !email || !password) {
+      setError('All fields are necessary.');
+      return;
+    }
+
+    // To Check if email or username already exists
+    const userExistsResponse = await fetch('/api/userExists/route', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, username }),
+    });
+
+    const userExistsData = await userExistsResponse.json();
+
+    if (userExistsData.user) {
+      setError('Email or username already exists.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/register/route', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.message === 'User registered successfully.') {
+          alert('User registered successfully.');
+          // You can also navigate the user to another page or perform other actions here.
+        } else {
+          alert('Registration failed: ' + data.message);
+        }
+      } else {
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error('An error occurred while registering the user:', error);
+      alert('An error occurred while registering the user.');
+    }
+  };
+
    const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -102,8 +159,9 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
           <div className="relative ">
             <input
               required
-              type="text"
-              name="text"
+                      type="text"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
               className="input rounded-md border border-slate-400  p-4 text-base w-full text-black focus:border-borderC"
             />
                 <label className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
@@ -115,8 +173,9 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
           <div className="relative ">
             <input
               required
-              type="email"
-              id='email'
+                      type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />
                 <label htmlFor='email' className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
@@ -128,6 +187,8 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
             <input
               required
               type={showPassword ? 'text' : 'password'}
+                      value={password}
+        onChange={(e) => setPassword(e.target.value)}
               id='password'
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />
@@ -152,6 +213,7 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
           <button
             type="submit"
             className="w-full bg-bgBlue hover:bg-hoverBlue transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
+            onClick={handleSignup}
           >
             Create Account
           </button>

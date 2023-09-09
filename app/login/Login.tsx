@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import {  FaEye, FaEyeSlash } from 'react-icons/fa';import Link from "next/link";
-
-
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react"
 
 interface props {
     setIsModalOpenLogin: (isOpen: boolean) => void;
@@ -13,6 +13,32 @@ interface props {
   export default function Login({setIsModalOpenLogin} : props){
   
   const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    try {
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false, 
+      });
+
+      if (result?.error) {
+        // Handle login error, e.g., show an error message
+        console.error('Login failed:', result.error);
+      } else {
+        // Redirect to a different page after successful login
+        console.log('login succesuful kekwkwk')
+        alert("login succesful")
+        // router.push('/'); // Change this to your desired redirect path
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -63,6 +89,8 @@ interface props {
             <input
               required
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="login-email"
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />
@@ -77,6 +105,8 @@ interface props {
           <div className="relative flex flex-col gap-4">
             <input
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type={showPassword ? "text" : "password"}
               id="login-password"
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
@@ -84,7 +114,7 @@ interface props {
             <label
               htmlFor="login-password"
               className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-[#25FF79]"
-            >
+              >
               Password
             </label>
             <button
@@ -100,6 +130,7 @@ interface props {
           </div>
           <button
             type="submit"
+            onClick={handleLogin}
             className="w-full bg-bgBlue hover:bg-hoverBlue transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
           >
             Log In

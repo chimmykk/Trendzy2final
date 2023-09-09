@@ -36,7 +36,7 @@ export default  function Navbar() {
         <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             {  isLoggedIn === false ?
-            <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
+            <div className="py-3 hidden md:grid grid-cols-3 text-base  font-medium text-grayText">
                     <Link href={'/'} className=" col-span-1 text-2xl text-black font-extrabold">
                         <h1>Trendzy</h1>
                     </Link>     
@@ -59,7 +59,7 @@ export default  function Navbar() {
                 <LoggedInNav />
             } 
 
-            {/* for screen lower than md */}
+            {/* for screen lower than md
             <div className="lg:hidden py-5 flex justify-between items-center">
                     <Link href={'/'} className="flex items-center gap-2 text-3xl font-extrabold">
                         <Image src={'/LOGO4.jpg'} width={30} height={30} alt="pic" />
@@ -79,7 +79,7 @@ export default  function Navbar() {
                         <Link className="border-b" onClick={() => setShowMenu(false)} href={'/pricing'}>Pricing</Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </nav>
     )
   }

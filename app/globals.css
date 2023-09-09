@@ -20,14 +20,14 @@
  /* border: 1.5px solid #1a73e8; */
 }
 
-.input:focus ~ label, input:valid ~ label {
- transform: translateY(-50%) scale(0.8);
- background-color: white;
- padding: 0 .2em;
-font-size: 18px
-}
+.input:focus + .user-label, .input:valid + .user-label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: white;
+    padding: 0 .2em;
+    font-size: 18px;
+  }
 
-.input:focus ~ .user-label {
+.input:focus + .user-label {
     color: #404EED ; /* Change to your desired blue color */
     font-size: 18px;
 }
