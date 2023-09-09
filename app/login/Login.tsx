@@ -30,9 +30,9 @@ interface props {
         console.error('Login failed:', result.error);
       } else {
         // Redirect to a different page after successful login
-        console.log('login succesuful kekwkwk')
-        alert("login succesful")
-        // router.push('/'); // Change this to your desired redirect path
+        alert("login succesful kekeke")
+        setIsModalOpenLogin(false)       
+        router.push('/'); // Change this to your desired redirect path
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -91,7 +91,6 @@ interface props {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              id="login-email"
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />
             <label
@@ -108,7 +107,6 @@ interface props {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type={showPassword ? "text" : "password"}
-              id="login-password"
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />
             <label
@@ -129,8 +127,8 @@ interface props {
             </Link>       
           </div>
           <button
-            type="submit"
             onClick={handleLogin}
+            type="button"
             className="w-full bg-bgBlue hover:bg-hoverBlue transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
           >
             Log In

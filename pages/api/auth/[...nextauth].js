@@ -27,6 +27,11 @@ const authOptions = {
             return null;
           }
 
+          // Check if the user has verified his email or not
+          if (!user.verified) {
+            return null;
+          }
+
           return user;
         } catch (error) {
           console.log("Error: ", error);

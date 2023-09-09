@@ -14,6 +14,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    verification_token: {
+      type: String,
+      required: true,
+    },
+    verified: {
+      type: Boolean, // Change the data type to Boolean
+      required: true,
+    }
   },
   { timestamps: true }
 );

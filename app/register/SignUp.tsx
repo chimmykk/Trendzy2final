@@ -2,12 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useRouter } from "next/navigation";
 
 
 interface props {
     setIsModalOpen: (isOpen: boolean) => void;
   }
 
+  interface SignUpWithEmailFormProps {
+  onClose: () => void;
+  setIsModalOpen: (isOpen: boolean) => void;
+}
 export default function SignUp({setIsModalOpen} : props){
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
@@ -34,7 +39,7 @@ export default function SignUp({setIsModalOpen} : props){
         <div className="  w-full max-w-md px-6 py-8 bg-white rounded-md " 
         >
            {showSignUpWithEmailForm ? (
-          <SignUpWithEmailForm onClose={toggleSignUpWithEmailForm} />
+          <SignUpWithEmailForm onClose={toggleSignUpWithEmailForm} setIsModalOpen={setIsModalOpen}/>
         ) : (
           <>
             
@@ -84,7 +89,7 @@ export default function SignUp({setIsModalOpen} : props){
     )
 }
 
-const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
+const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormProps) => {
   // Add your signup form JSX and logic here
 
     const [username, setusername] = useState('');
@@ -92,27 +97,13 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const router = useRouter()
+
   const handleSignup = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    
+
     if (!username || !email || !password) {
       setError('All fields are necessary.');
-      return;
-    }
-
-    // To Check if email or username already exists
-    const userExistsResponse = await fetch('/api/userExists/route', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, username }),
-    });
-
-    const userExistsData = await userExistsResponse.json();
-
-    if (userExistsData.user) {
-      setError('Email or username already exists.');
       return;
     }
 
@@ -129,8 +120,21 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
         const data = await response.json();
 
         if (data.message === 'User registered successfully.') {
-          alert('User registered successfully.');
-          // You can also navigate the user to another page or perform other actions here.
+          // Send the verification email
+          const verificationEmailResponse = await fetch('/api/send/route', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, verification_token: data.verification_token }),
+          });
+
+          if (verificationEmailResponse.ok) {
+            alert('User registered successfully. Verification email sent.');
+            // You can also navigate the user to another page or perform other actions here.
+          } else {
+            alert('User registered successfully, but failed to send verification email.');
+          }
         } else {
           alert('Registration failed: ' + data.message);
         }
@@ -188,7 +192,7 @@ const SignUpWithEmailForm = ({ onClose }: {onClose: () => void}) => {
               required
               type={showPassword ? 'text' : 'password'}
                       value={password}
-        onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
               id='password'
               className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
             />

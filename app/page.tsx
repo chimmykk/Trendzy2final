@@ -1,16 +1,16 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import Image from 'next/image';
 import Link from 'next/link';
 import ResponsiveCarousel from './carousel/page';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  if(isLoggedIn === true) {
-    return <Lives/>
+    const { status } = useSession();
+
+  if (status === "authenticated") {
+    return < Lives/>
   }
 
   return (
