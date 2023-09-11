@@ -13,7 +13,6 @@ import { useSession, signOut } from "next-auth/react"
 
 export default  function Navbar() {
 
-    const [showMenu, setShowMenu] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
 
@@ -34,28 +33,40 @@ export default  function Navbar() {
         <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             <div className="py-3 hidden md:grid grid-cols-3 text-base  font-medium text-grayText">
-                    <Link href={'/'} className=" col-span-1 text-2xl text-black font-extrabold">
-                        <h1>Trendzy</h1>
+                    <Link href={'/'} className=" col-span-1 text-black font-bold">
+                        <h1 className=" text-5xl">trendzy</h1>
                     </Link>     
-                        <div className=" overflow-hidden rounded-lg flex items-center">
-                            <input placeholder="Search ..." className=" border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-blue-500 " name="text" type="text" />
-                            <button className=" bg-bgBlue hover:bg-hoverBlue h-full px-4">
-                                <Image src={'./search.svg'} width={25} height={25} alt="search" className=""/>
-                            </button>
-                        </div>
+                    <div className=" overflow-hidden rounded-lg flex">
+                        <input placeholder="Search . . ." className="font-medium border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-borderC " name="text" type="text" />
+                        <button className=" bg-bgGreen hover:bg-hoverGreen h-full px-4">
+                            <Image src={'./search.svg'} width={25} height={25} alt="search" className=""/>
+                        </button>
+                    </div>
                 <div className="flex lg:gap-20 xl:gap-25 justify-end col-span-1">
                     <div className="flex items-center text-black gap-3 font-bold">
                      {/* Conditionally render the buttons based on session status */}
-    {session ? (
-      <div onClick={() => signOut()} className="cursor-pointer rounded-lg bg-bgBlue hover:bg-hoverBlue text-white transition-hover duration-300 py-2 px-4">
-        Sign Out
-      </div>
-    ) : (
-    <div className="flex items-center text-black gap-3 font-bold">
-                        <div  onClick={toggleModalLogin} className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">Log In</div>
-                        <div onClick={toggleModal} className=" cursor-pointer rounded-lg bg-bgBlue hover:bg-hoverBlue text-white transition-hover duration-300  py-2 px-4">Sign Up</div>
+                {session ? 
+                (
+                <div className="flex gap-1">
+                    <div className="text-xs">hi, <br /> {session.user?.name}</div>  
+                    <div onClick={() => signOut()} className="cursor-pointer rounded-lg bg-bgGreen hover:bg-hoverGreen text-white transition-hover duration-300 py-2 px-4">
+                        Sign Out
                     </div>
-    )}
+                </div>
+                ) : (
+                <div className="flex items-center text-black gap-3 text-lg font-medium ">
+                    <div 
+                        onClick={toggleModalLogin} 
+                        className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">
+                        Log In
+                    </div>
+                    <div 
+                        onClick={toggleModal} 
+                        className=" cursor-pointer rounded-lg bg-bgGreen hover:bg-hoverGreen text-white transition-hover duration-300  py-2 px-4">
+                        Start Selling
+                    </div>
+                </div>
+                )}
                     </div>
                 </div>
                 {isModalOpen && <SignUp setIsModalOpen={setIsModalOpen} />}

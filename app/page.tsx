@@ -21,18 +21,18 @@ export default function Home() {
 
   <div className="mt-12 mx-auto text-center">
     <h1 className="text-4xl my-4 font-extrabold">
-      Watch, <span className='text-bgBlue'>&apos;Interact&apos;</span>, <span className='stroke-black'>&apos;Shop&apos;</span> – Live Marketplace
+      Watch, <span className='text-bgGreen'>&apos;Interact&apos;</span>, <span className='stroke-black'>&apos;Shop&apos;</span> – Live Marketplace
     </h1>
     <div className="flex mt-7 items-center content-center gap-4 text-lg font-semibold justify-center">
       <Link
         href={'/livestream'}
-        className="px-4 py-3 bg-[#fff] hover:bg-[#f0ecec] transition-hover duration-300 border rounded-lg border-black"
+        className=" button px-4 py-3 bg-[#fff] transition-hover duration-300 border rounded-lg border-black"
       >
         Join the Stream
       </Link>
       <Link
         href={'/register'}
-        className="px-4 py-3 bg-bgBlue hover:bg-hoverBlue transition-hover duration-300 text-white border rounded-lg border-transparent"
+        className=" button bg-bgGreen hover:bg-hoverGreen transition-hover duration-300 text-white border rounded-lg border-transparent"
       >
         Become a seller
       </Link>

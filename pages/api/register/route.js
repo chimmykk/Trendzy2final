@@ -12,13 +12,13 @@ function generateVerificationToken() {
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { username, email, password } = req.body;
+      const { name, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const verificationToken = generateVerificationToken();
 
       await connectMongoDB();
       await User.create({
-        username,
+        name,
         email,
         password: hashedPassword,
         verification_token: verificationToken,

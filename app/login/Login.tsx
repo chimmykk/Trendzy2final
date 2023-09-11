@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {  FaEye, FaEyeSlash } from 'react-icons/fa';import Link from "next/link";
+import {  FaEye, FaEyeSlash } from 'react-icons/fa';
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react"
+import { signIn, useSession, getSession } from "next-auth/react"
+// import User from '../../models/user'
 
 interface props {
     setIsModalOpenLogin: (isOpen: boolean) => void;
@@ -13,9 +15,11 @@ interface props {
   export default function Login({setIsModalOpenLogin} : props){
   
   const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+
+  const { data: session } = useSession();
 
   const handleLogin = async () => {
     try {
@@ -31,6 +35,8 @@ interface props {
       } else {
         // Redirect to a different page after successful login
         alert("login succesful kekeke")
+        const updatedSession = await getSession();
+        console.log(updatedSession);
         setIsModalOpenLogin(false)       
         router.push('/'); // Change this to your desired redirect path
       }
@@ -64,7 +70,7 @@ interface props {
         <div className="text-center flex flex-col gap-6 mt-8 relative">
           {/* continue with google btn */}
                       <button
-                className="w-full text-center py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-bgBlue border rounded-lg text-slate-700 hover:shadow-md transition duration-150"
+                className="w-full text-center py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-bgGreen border rounded-lg text-slate-700 hover:shadow-md transition duration-150"
             >
             <Image
               src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -120,7 +126,7 @@ interface props {
               onClick={togglePasswordVisibility}
               className="absolute top-5 right-2"
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              {showPassword ? <FaEyeSlash className=" text-[#5a5858]" /> : <FaEye className="text-[#5a5858]"/>}
             </button>
             <Link href="#" className=" text-sm w-fit text-gray-500">
               Forgot Password?
@@ -129,14 +135,14 @@ interface props {
           <button
             onClick={handleLogin}
             type="button"
-            className="w-full bg-bgBlue hover:bg-hoverBlue transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
+            className="w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
           >
             Log In
           </button>
         </form>
 
 
-        <p className="mt-4 text-center text-sm text-gray-600">Don&apos;t have an account?  <Link href="#" className=' text-bgBlue font-semibold'>Sign up</Link></p>
+        <p className="mt-4 text-center text-sm text-gray-600">Don&apos;t have an account?  <Link href="#" className=' text-bgGreen font-semibold'>Sign up</Link></p>
       </div>
         </div>
     )

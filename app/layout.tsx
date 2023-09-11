@@ -1,10 +1,17 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+// import { Lobster } from 'next/font/google'
+import { Baloo_2 } from 'next/font/google'
 import Navbar from './navbar/navbar'
 import Providers from './providers'
 
-const inter = Inter({ subsets: ['latin'] })
+// const lobster = Lobster({
+//   weight: '400',
+//   subsets: ['latin'],
+//   display: 'swap',
+// })
+
+const baloo = Baloo_2({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className }>
+      <body className={baloo.className }>
         <Providers>
         <Navbar />
         {children}

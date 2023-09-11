@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useRouter } from "next/navigation";
-
+import { AiOutlineLeft } from "react-icons/ai"
 
 interface props {
     setIsModalOpen: (isOpen: boolean) => void;
@@ -47,7 +47,7 @@ export default function SignUp({setIsModalOpen} : props){
         <div className="text-center flex flex-col gap-4  items-center">
           {/* continue with google btn */}
             <button
-                className="w-full text-center py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-bgBlue border rounded-lg text-slate-700 hover:shadow-md transition duration-150"
+                className="w-full text-center py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-bgGreen border rounded-lg text-slate-700 hover:shadow-md transition duration-150"
             >
             <Image
               src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -81,7 +81,7 @@ export default function SignUp({setIsModalOpen} : props){
           </button>
         </div>
 
-        <p className="mt-4 text-sm text-center text-gray-600">Already have an account? <Link href="#" className=' text-bgBlue font-semibold'>Log in</Link></p>
+        <p className="mt-4 text-sm text-center text-gray-600">Already have an account? <Link href="#" className=' text-bgGreen font-semibold'>Log in</Link></p>
           </>
         )}
       </div>
@@ -92,7 +92,7 @@ export default function SignUp({setIsModalOpen} : props){
 const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormProps) => {
   // Add your signup form JSX and logic here
 
-    const [username, setusername] = useState('');
+    const [name, setname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -102,7 +102,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
   const handleSignup = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
       setError('All fields are necessary.');
       return;
     }
@@ -113,7 +113,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       if (response.ok) {
@@ -155,21 +155,21 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
   };
 
   return (
-    <div >
+    <div  >
       {/* Your signup form content goes here */}
-      <button onClick={onClose} className="text-black mb-6">Back</button>
+        <AiOutlineLeft className='text-black w-[45px] h-[45px] px-3 border hover:border-borderC transition-all ease-in-out duration-300 font-bold text-xl cursor-pointer rounded-full'  onClick={onClose} />
        {/* sign up form */}
-        <form className='flex flex-col gap-4'>
+        <form className='flex flex-col gap-4 pt-8'>
           <div className="relative ">
             <input
               required
                       type="text"
-              value={username}
-              onChange={(e) => setusername(e.target.value)}
+              value={name}
+              onChange={(e) => setname(e.target.value)}
               className="input rounded-md border border-slate-400  p-4 text-base w-full text-black focus:border-borderC"
             />
                 <label className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
-              Username
+              name
             </label>
           </div>
 
@@ -205,18 +205,18 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
               onClick={togglePasswordVisibility}
               className="absolute h-full  right-2 "
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              {showPassword ? <FaEyeSlash className=" text-[#5a5858]" /> : <FaEye className="text-[#5a5858]"/>}
             </button>
           </div>
           <div className="">
             <label className=" mb-2 text-black">
               <input type="checkbox" className="mr-2 text-black" />
-              I agree with Trendzy&apos;s <Link href="#" className=' text-bgBlue font-medium'>Terms of service</Link> and <Link href="#" className='text-bgBlue font-medium'>Privacy policy</Link>
+              I agree with Trendzy&apos;s <Link href="#" className=' text-bgGreen font-medium'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-medium'>Privacy policy</Link>
             </label>
           </div>
           <button
             type="submit"
-            className="w-full bg-bgBlue hover:bg-hoverBlue transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
+            className="w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
             onClick={handleSignup}
           >
             Create Account
