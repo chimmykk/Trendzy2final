@@ -1,18 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useRouter } from "next/navigation";
-import { AiOutlineLeft } from "react-icons/ai"
+import SignUpWithEmailForm from "./form_verify";
 
 interface props {
     setIsModalOpen: (isOpen: boolean) => void;
   }
 
-  interface SignUpWithEmailFormProps {
-  onClose: () => void;
-  setIsModalOpen: (isOpen: boolean) => void;
-}
 export default function SignUp({setIsModalOpen} : props){
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
@@ -88,140 +82,3 @@ export default function SignUp({setIsModalOpen} : props){
         </div>
     )
 }
-
-const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormProps) => {
-  // Add your signup form JSX and logic here
-
-    const [name, setname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const router = useRouter()
-
-  const handleSignup = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-
-    if (!name || !email || !password) {
-      setError('All fields are necessary.');
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/register/route', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        if (data.message === 'User registered successfully.') {
-          // Send the verification email
-          const verificationEmailResponse = await fetch('/api/send/route', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, verification_token: data.verification_token }),
-          });
-
-          if (verificationEmailResponse.ok) {
-            alert('User registered successfully. Verification email sent.');
-            // You can also navigate the user to another page or perform other actions here.
-          } else {
-            alert('User registered successfully, but failed to send verification email.');
-          }
-        } else {
-          alert('Registration failed: ' + data.message);
-        }
-      } else {
-        const data = await response.json();
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error('An error occurred while registering the user:', error);
-      alert('An error occurred while registering the user.');
-    }
-  };
-
-   const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  return (
-    <div  >
-      {/* Your signup form content goes here */}
-        <AiOutlineLeft className='text-black w-[45px] h-[45px] px-3 border hover:border-borderC transition-all ease-in-out duration-300 font-bold text-xl cursor-pointer rounded-full'  onClick={onClose} />
-       {/* sign up form */}
-        <form className='flex flex-col gap-4 pt-8'>
-          <div className="relative ">
-            <input
-              required
-                      type="text"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-              className="input rounded-md border border-slate-400  p-4 text-base w-full text-black focus:border-borderC"
-            />
-                <label className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
-              name
-            </label>
-          </div>
-
-
-          <div className="relative ">
-            <input
-              required
-                      type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
-            />
-                <label htmlFor='email' className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
-              Email
-            </label>
-          </div>
-
-          <div className="relative">
-            <input
-              required
-              type={showPassword ? 'text' : 'password'}
-                      value={password}
-            onChange={(e) => setPassword(e.target.value)}
-              id='password'
-              className="input rounded-md border border-slate-400 p-4 text-base w-full text-black focus:border-borderC"
-            />
-            <label htmlFor='password' className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
-              Password
-            </label>
-            
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute h-full  right-2 "
-            >
-              {showPassword ? <FaEyeSlash className=" text-[#5a5858]" /> : <FaEye className="text-[#5a5858]"/>}
-            </button>
-          </div>
-          <div className="">
-            <label className=" mb-2 text-black">
-              <input type="checkbox" className="mr-2 text-black" />
-              I agree with Trendzy&apos;s <Link href="#" className=' text-bgGreen font-medium'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-medium'>Privacy policy</Link>
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
-            onClick={handleSignup}
-          >
-            Create Account
-          </button>
-        </form>
-    </div>
-  );
-};

@@ -1,14 +1,11 @@
-// pages/api/verify.js
 import { connectMongoDB } from '../../lib/mongodb';
 import User from '../../models/user';
-
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const { verification_token } = req.query;
       await connectMongoDB();
       const user = await User.findOne({ verification_token });
-
       if (!user) {
         return res.status(404).json({ message: 'User not found or already verified.' });
       }
@@ -17,8 +14,6 @@ export default async function handler(req, res) {
       }
       user.verified = true;
       await user.save();
-
-      // Respond with a success message
       return res.status(200).json({ message: 'Email verified successfully.' });
     } catch (error) {
       console.error('An error occurred while verifying the email:', error);

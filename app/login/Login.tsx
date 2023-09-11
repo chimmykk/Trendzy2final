@@ -34,9 +34,7 @@ interface props {
         console.error('Login failed:', result.error);
       } else {
         // Redirect to a different page after successful login
-        alert("login succesful kekeke")
-        const updatedSession = await getSession();
-        console.log(updatedSession);
+        // alert("login succesful kekeke")
         setIsModalOpenLogin(false)       
         router.push('/'); // Change this to your desired redirect path
       }

@@ -18,6 +18,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    verification_code: {
+      type: String,
+      required: true,
+    },
     verified: {
       type: Boolean, // Change the data type to Boolean
       required: true,
