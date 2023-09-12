@@ -7,11 +7,11 @@ import SignUpWithEmailForm from "./form_verify";
 import Login from "../login/Login";
 import { usePathname } from "next/navigation";
 
-interface props {
+interface SignUpProps {
     setIsModalOpen: (isOpen: boolean) => void;
   }
 
-export default function SignUp({setIsModalOpen} : props){
+export default function SignUp({setIsModalOpen} : SignUpProps){
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
    const [openLogin, setOpenLogin] = useState(false)
