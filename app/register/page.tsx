@@ -7,7 +7,7 @@ import SignUpWithEmailForm from "./form_verify";
 import Login from "../login/Login";
 import { usePathname } from "next/navigation";
 
-function SignUp({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) {
+const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) => {
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
    const [openLogin, setOpenLogin] = useState(false)
