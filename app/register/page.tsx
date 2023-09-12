@@ -7,11 +7,7 @@ import SignUpWithEmailForm from "./form_verify";
 import Login from "../login/Login";
 import { usePathname } from "next/navigation";
 
-interface SignUpProps {
-    setIsModalOpen: (isOpen: boolean) => void;
-  }
-
-export default function SignUp({setIsModalOpen} : SignUpProps){
+export default function SignUp({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) {
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
    const [openLogin, setOpenLogin] = useState(false)
@@ -39,7 +35,7 @@ export default function SignUp({setIsModalOpen} : SignUpProps){
 
 
     return(
-            <div className={`fixed inset-0 flex items-center top-0 w-full min-h-screen left-0 justify-center z-50 ${openLogin === true ? " bg-transparent" : "bg-[#000000]"}  bg-opacity-80 modal-overlay`}
+      <div className={`fixed inset-0 flex items-center top-0 w-full min-h-screen left-0 justify-center z-50 ${openLogin === true ? " bg-transparent" : "bg-[#000000]"}  bg-opacity-80 modal-overlay`}
                 onClick={pathname === '/register' ? undefined : closeModal}
 
             >
