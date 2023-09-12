@@ -16,7 +16,7 @@ export default  function Navbar() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
 
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -28,9 +28,15 @@ export default  function Navbar() {
     };
     const pathname = usePathname();
 
+    // if (status === "loading") {
+    //     return  <div className={`h-screen fixed z-50 top-10 w-screen bg-white flex items-center justify-center`}>
+    //             <p>LOGGIN IN...</p>
+    //             </div>
+    //   }
+
 
     return (
-        <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
+        <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-40 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             <div className="py-3 hidden md:grid grid-cols-3 text-base  font-medium text-grayText">
                     <Link href={'/'} className=" col-span-1 text-black font-bold">

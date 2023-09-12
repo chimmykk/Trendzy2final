@@ -126,7 +126,7 @@ interface props {
             >
               {showPassword ? <FaEyeSlash className=" text-[#5a5858]" /> : <FaEye className="text-[#5a5858]"/>}
             </button>
-            <Link href="#" className=" text-sm w-fit text-gray-500">
+            <Link href="./resetpassword" className=" text-sm w-fit text-gray-500">
               Forgot Password?
             </Link>       
           </div>

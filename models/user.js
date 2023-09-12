@@ -2,7 +2,7 @@ import mongoose, { Schema, models } from "mongoose";
 
 const userSchema = new Schema(
   {
-    name: { 
+    name: {
       type: String,
       required: true,
     },
@@ -23,9 +23,17 @@ const userSchema = new Schema(
       required: true,
     },
     verified: {
-      type: Boolean, // Change the data type to Boolean
+      type: Boolean,
       required: true,
-    }
+    },
+    passwordResetToken: { 
+      type: String,
+      default: null, 
+    },
+    passwordResetTokenExpiration: { 
+      type: Date,
+      default: null, 
+    },
   },
   { timestamps: true }
 );
