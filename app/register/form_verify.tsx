@@ -140,7 +140,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
               className="input rounded-md border border-slate-400  p-4 text-base w-full text-black focus:border-borderC"
             />
                 <label className="user-label absolute left-4 text-gray-500 pointer-events-none transform translate-y-4 transition-transform focus:text-blue-500">
-              name
+              Name
             </label>
           </div>
 
@@ -187,7 +187,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
           </div>
           <button
             type="submit"
-            className="w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold py-2 px-4 rounded-md"
+            className=" button w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold rounded-md"
             onClick={handleSignup}
           >
             Create Account

@@ -1,28 +1,27 @@
-import bcrypt from 'bcryptjs';
 import User from '../../../models/user';
 import { connectMongoDB } from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { code, newPassword } = req.body;
+      const { code, email } = req.body;
       await connectMongoDB();
-      const user = await User.findOne({ passwordResetToken: code });
+
+      // Find the user with both email and passwordResetToken
+      const user = await User.findOne({ email, passwordResetToken: code });
 
       if (!user) {
-        return res.status(400).json({ message: 'Invalid password reset token.' });
+        return res.status(400).json({ message: 'Invalid email or password reset token.' });
       }
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      await User.updateOne({ _id: user._id }, { $set: { password: hashedPassword } });
 
       const successResponse = {
-        message: 'Password updated successfully.',
+        message: 'Verification successful.',
       };
       res.status(200).json(successResponse);
     } catch (error) {
-      console.error('An error occurred while changing the password:', error);
+      console.error('An error occurred while verifying the code:', error);
       const errorResponse = {
-        message: 'An error occurred while changing the password.',
+        message: 'An error occurred while verifying the code.',
       };
       res.status(500).json(errorResponse);
     }

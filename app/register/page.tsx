@@ -1,7 +1,11 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import SignUpWithEmailForm from "./form_verify";
+import Login from "../login/Login";
+import { usePathname } from "next/navigation";
 
 interface props {
     setIsModalOpen: (isOpen: boolean) => void;
@@ -10,6 +14,9 @@ interface props {
 export default function SignUp({setIsModalOpen} : props){
 
    const [showSignUpWithEmailForm, setShowSignUpWithEmailForm] = useState(false);
+   const [openLogin, setOpenLogin] = useState(false)
+
+   const pathname = usePathname();
 
   const toggleSignUpWithEmailForm = () => {
     setShowSignUpWithEmailForm(!showSignUpWithEmailForm);
@@ -26,9 +33,15 @@ export default function SignUp({setIsModalOpen} : props){
     }
   };
 
+   const handleLoginClick = () => {
+    setOpenLogin(true); // Open the Login component
+  };
+
+
     return(
-            <div className="fixed inset-0 flex items-center top-0 w-full min-h-screen left-0 justify-center z-50 bg-[#000000] bg-opacity-80 modal-overlay"
-                onClick={closeModal}
+            <div className={`fixed inset-0 flex items-center top-0 w-full min-h-screen left-0 justify-center z-50 ${openLogin === true ? " bg-transparent" : "bg-[#000000]"}  bg-opacity-80 modal-overlay`}
+                onClick={pathname === '/register' ? undefined : closeModal}
+
             >
         <div className="  w-full max-w-md px-6 py-8 bg-white rounded-md " 
         >
@@ -41,7 +54,7 @@ export default function SignUp({setIsModalOpen} : props){
         <div className="text-center flex flex-col gap-4  items-center">
           {/* continue with google btn */}
             <button
-                className="w-full text-center py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-bgGreen border rounded-lg text-slate-700 hover:shadow-md transition duration-150"
+                className=" button w-full text-center py-4 flex items-center justify-center gap-2 border rounded-lg text-slate-700 hover:border-black transition duration-150"
             >
             <Image
               src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -60,7 +73,7 @@ export default function SignUp({setIsModalOpen} : props){
           </div>
             
           <button
-                className="w-full text-center py-4 flex items-center justify-center bg-bgDark text-white gap-2 shadow-md border rounded-lg  hover:shadow-xl hover:bg-darkLint transition duration-150"
+                className=" button w-full text-center py-4 flex items-center justify-center bg-bgDark text-white gap-2 border hover:border-bgDark rounded-lg   hover:bg-darkLint transition duration-150"
               onClick={toggleSignUpWithEmailForm}
             >
             <Image
@@ -75,7 +88,16 @@ export default function SignUp({setIsModalOpen} : props){
           </button>
         </div>
 
-        <p className="mt-4 text-sm text-center text-gray-600">Already have an account? <Link href="#" className=' text-bgGreen font-semibold'>Log in</Link></p>
+        <p className="mt-4 text-sm text-center text-gray-600">
+          Already have an account? 
+          <p 
+            className=' text-bgGreen cursor-pointer font-semibold' 
+            onClick={handleLoginClick}
+            >
+            Log in
+          </p>
+        </p>
+        {openLogin && <Login setIsModalOpenLogin={toggleModal} />}
           </>
         )}
       </div>
