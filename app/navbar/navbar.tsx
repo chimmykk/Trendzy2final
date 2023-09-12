@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react" 
 import { usePathname } from "next/navigation"
 import Image from "next/image"
-import SignUp from "../register/page"
+import SignUp from "../register/signUp"
 import Login from "../login/Login"
 
 //next-auth sessions
