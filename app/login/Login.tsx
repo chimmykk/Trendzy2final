@@ -6,7 +6,7 @@ import {  FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useRouter } from "next/navigation";
 import { signIn, useSession, getSession } from "next-auth/react"
 import ResetPw from "./resetPassword";
-import SignUp from "../register/signUp";
+import SignUp from "../register/signUpModal";
 import { usePathname } from "next/navigation";
 
 interface props {
