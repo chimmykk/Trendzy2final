@@ -90,6 +90,8 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
       if (result?.error) {
         // Handle login error, e.g., show an error message
         console.error('Login failed:', result.error);
+        alert('invalid credential or wrong password')
+        setLoggingIn(false)
       } else {
         // Redirect to a different page after successful login
         // alert("login succesful kekeke")
