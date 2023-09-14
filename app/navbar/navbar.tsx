@@ -145,11 +145,13 @@ export default  function Navbar() {
                 {
                     !session ?
                     (
-                    <div 
-                        onClick={toggleModalLogin} 
-                        className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">
-                        Log In
-                    </div>
+                     <div
+          onClick={toggleModalLogin}
+          className="cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4 flex items-center"
+        >
+          <RiUser3Line className="text-xl mr-2" /> {/* Add the login icon */}
+          Log In
+        </div>
                     ) 
                     :
                     (
