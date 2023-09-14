@@ -1,15 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
-// import { Lobster } from 'next/font/google'
 import { Baloo_2 } from 'next/font/google'
 import Navbar from './navbar/navbar'
 import Providers from './providers'
 
-// const lobster = Lobster({
-//   weight: '400',
-//   subsets: ['latin'],
-//   display: 'swap',
-// })
 
 const baloo = Baloo_2({ subsets: ['latin'] })
 
@@ -20,13 +14,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  session: any
 }) {
   return (
     <html lang="en">
       <body className={baloo.className }>
-        <Providers>
+        <Providers session={session}>
         <Navbar />
         {children}
         </Providers>

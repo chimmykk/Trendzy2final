@@ -1,21 +1,11 @@
-"use client"
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ResponsiveCarousel from './Carousel';
-import { useSession } from 'next-auth/react';
-import Dashboard from './Dashboard/Dashboard';
 
-export default function Home() {
-
-
-    const { status } = useSession();
-
-  if (status === "authenticated") {
-    return < Dashboard/>
-  }
-
-  return (
-  <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit">
+export default function LandingPage() {
+    return(
+          <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit">
   <div className="flex justify-center fade-container">
     <ResponsiveCarousel />        
   </div>
@@ -40,7 +30,5 @@ export default function Home() {
     </div>
   </div>
 </main>
-
-  );
+    )
 }
-

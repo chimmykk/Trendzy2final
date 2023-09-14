@@ -44,6 +44,7 @@ export default  function Navbar() {
       }
 
 
+
     return (
         <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-40 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
