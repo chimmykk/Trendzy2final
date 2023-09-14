@@ -140,7 +140,7 @@ export default  function Navbar() {
          {/* for screen lower than md */}
             <div className="lg:hidden w-full py-5 flex justify-between items-center">
                 <div>
-                    <h1 className=" text-2xl font-bold">trendzy</h1>
+                    <Link href={'/'} className=" text-2xl font-bold">trendzy</Link>
                 </div>
                 {
                     !session ?
