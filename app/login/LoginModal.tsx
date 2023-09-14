@@ -72,11 +72,14 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggingIn, setLoggingIn] = useState(false);
   const router = useRouter();
 
 
   const { data: session } = useSession();
+  
   const handleLogin = async () => {
+    setLoggingIn(true)
     try {
       const result = await signIn('credentials', {
         email,
@@ -175,7 +178,7 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
                     type="button"
                     className=" button w-full bg-bgGreen border border-bgDark transition-all duration-300 text-white text-lg font-semibold rounded-md"
                   >
-                    Log In
+                          {loggingIn ? 'Loggin in...' : 'Login'}
                   </button>
                 </form>
                 <div className="mt-4 text-center text-sm text-gray-600">
