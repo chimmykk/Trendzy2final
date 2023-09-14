@@ -9,6 +9,7 @@ export default function Home() {
 
 
     const { status } = useSession();
+    
 
   if (status === "authenticated") {
     return < Dashboard/>
@@ -33,9 +34,9 @@ export default function Home() {
       </Link>
       <Link
         href={'/register'}
-        className=" button bg-bgGreen transition-hover duration-300 text-white border rounded-lg border-transparent hover:border-black"
+        className=" button bg-bgGreen transition-hover duration-300 text-white border rounded-lg border-bgDark hover:border-black"
       >
-        Become a seller
+        Sell Live
       </Link>
     </div>
   </div>

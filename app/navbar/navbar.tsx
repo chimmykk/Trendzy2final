@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import SignUp from "../register/signUpModal"
-import Login from "../login/Login"
+import Login from "../login/LoginModal"
 
 //next-auth sessions
 import { useSession, signOut } from "next-auth/react"
@@ -22,17 +22,26 @@ export default  function Navbar() {
         setIsModalOpen(!isModalOpen);
     };
 
+    useEffect(() => {
+        console.log(session)
+    })
+
 
     const toggleModalLogin = () => {
         setIsModalOpenLogin(!isModalOpenLogin);
     };
     const pathname = usePathname();
 
-    // if (status === "loading") {
-    //     return  <div className={`h-screen fixed z-50 top-10 w-screen bg-white flex items-center justify-center`}>
-    //             <p>LOGGIN IN...</p>
-    //             </div>
-    //   }
+    if (status === "loading" ) {
+        return(
+        <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
+            <div className="container ">
+                <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
+                <div className="loader"></div>
+            </div>
+        </div>
+        ) 
+      }
 
 
     return (
@@ -43,7 +52,12 @@ export default  function Navbar() {
                         <h1 className=" text-5xl">trendzy</h1>
                     </Link>     
                     <div className=" overflow-hidden rounded-lg flex">
-                        <input placeholder="Search . . ." className="font-medium border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-borderC " name="text" type="text" />
+                        <input 
+                            placeholder="Search . . ." 
+                            className=" font-medium border  hover:border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-2 focus:border-borderC input-with-shadow " 
+                            name="text" 
+                            type="text" 
+                        />
                         <button className=" bg-bgGreen hover:bg-hoverGreen h-full px-4">
                             <Image src={'./search.svg'} width={25} height={25} alt="search" className=""/>
                         </button>
@@ -69,7 +83,7 @@ export default  function Navbar() {
                     <div 
                         onClick={toggleModal} 
                         className=" cursor-pointer rounded-lg bg-bgGreen hover:bg-hoverGreen text-white transition-hover duration-300  py-2 px-4">
-                        Start Selling
+                        Sell Live
                     </div>
                 </div>
                 )}

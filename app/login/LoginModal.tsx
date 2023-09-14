@@ -27,6 +27,8 @@ interface props {
 
   const pathname = usePathname();
 
+      const { data: session } = useSession();
+
     const toggleModal = () => {
         setIsModalOpenLogin(false);
       };
@@ -107,7 +109,7 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
                 <div className="text-center flex flex-col gap-6 mt-8 relative">
                   {/* continue with google btn */}
                     <button
-                      className="w-full button text-center py-4 flex items-center justify-center gap-2 border rounded-lg text-slate-700 hover:border-black transition duration-150"
+                      className="w-full button text-center py-4 flex items-center justify-center gap-2 border border-bgDark rounded-lg text-slate-700 hover:border-black transition duration-150"
                     >
                     <Image
                       src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -171,19 +173,21 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
                   <button
                     onClick={handleLogin}
                     type="button"
-                    className=" button w-full bg-bgGreen border hover:border-black transition-all duration-300 text-white text-lg font-semibold rounded-md"
+                    className=" button w-full bg-bgGreen border border-bgDark transition-all duration-300 text-white text-lg font-semibold rounded-md"
                   >
                     Log In
                   </button>
                 </form>
-                <p className="mt-4 text-center text-sm text-gray-600">
-                  Don&apos;t have an account?  
-                  <p 
+                <div className="mt-4 text-center text-sm text-gray-600">
+                  <p>
+                    Don&apos;t have an account?  
+                  </p>
+                  <h1 
                   onClick={handleSignUpClick} 
                   className=' text-bgGreen font-semibold cursor-pointer'>
                     Sign up
-                    </p>
-                </p>
+                    </h1>
+                </div>
                         {openSignUp && <SignUp setIsModalOpen={setIsModalOpenLogin} />}
                </>   
   )

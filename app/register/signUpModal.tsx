@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import SignUpWithEmailForm from "./form_verify";
-import Login from "../login/Login";
+import Login from "../login/LoginModal";
 import { usePathname } from "next/navigation";
 
 const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) => {
@@ -50,7 +50,7 @@ const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) =
         <div className="text-center flex flex-col gap-4  items-center">
           {/* continue with google btn */}
             <button
-                className=" button w-full text-center py-4 flex items-center justify-center gap-2 border rounded-lg text-slate-700 hover:border-black transition duration-150"
+                className=" button w-full text-center py-4 flex items-center justify-center gap-2 border border-bgDark rounded-lg text-slate-700 transition duration-150"
             >
             <Image
               src="https://www.svgrepo.com/show/475656/google-color.svg"

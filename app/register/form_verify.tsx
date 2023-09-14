@@ -187,7 +187,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
           </div>
           <button
             type="submit"
-            className=" button w-full bg-bgGreen hover:bg-hoverGreen transition-all duration-300 text-white text-lg font-semibold rounded-md"
+            className=" button w-full bg-bgGreen transition-all duration-300 text-white text-lg font-semibold rounded-md border border-bgDark"
             onClick={handleSignup}
           >
             Create Account

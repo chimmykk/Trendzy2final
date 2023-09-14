@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Login from "./Login";
+import Login from "./LoginModal";
 
 export default function ResetPw({ backToLogin }: { backToLogin: () => void }) {
   const [step, setStep] = useState(1);
