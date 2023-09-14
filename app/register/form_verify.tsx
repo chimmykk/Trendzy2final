@@ -179,12 +179,27 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
               {showPassword ? <FaEyeSlash className=" text-[#5a5858]" /> : <FaEye className="text-[#5a5858]"/>}
             </button>
           </div>
-          <div className="">
-            <label className=" mb-2 text-black">
-              <input type="checkbox" className="mr-2 text-black" />
-              I agree with Trendzy&apos;s <Link href="#" className=' text-bgGreen font-medium'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-medium'>Privacy policy</Link>
-            </label>
-          </div>
+            <div className="checkbox-wrapper-12 flex gap-2 items-end">
+              <div className="cbx flex">
+                <input id="cbx-12" type="checkbox"/>
+                <label htmlFor="cbx-12"></label>
+                <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                  <path d="M2 8.36364L6.23077 12L13 2"></path>
+                </svg>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                  <filter id="goo-12">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"></feGaussianBlur>
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></feColorMatrix>
+                    <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+                  </filter>
+                </defs>
+              </svg>
+                <div className='text-black '>
+                  I agree with Trendzy&apos;s <Link href="#" className=' text-bgGreen font-medium'>Terms of service</Link> and <Link href="#" className='text-bgGreen font-medium'>Privacy policy</Link>
+                </div>
+            </div>
           <button
             type="submit"
             className=" button w-full bg-bgGreen transition-all duration-300 text-white text-lg font-semibold rounded-md border border-bgDark"
