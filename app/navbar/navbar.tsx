@@ -138,7 +138,7 @@ export default  function Navbar() {
             </div>
 
          {/* for screen lower than md */}
-            <div className="lg:hidden py-5 flex justify-between items-center">
+            <div className="lg:hidden w-full py-5 flex justify-between items-center">
                 <div>
                     <h1 className=" text-2xl font-bold">trendzy</h1>
                 </div>
@@ -154,9 +154,9 @@ export default  function Navbar() {
                     :
                     (
                         <button onClick={() =>  setShowMenu(true)} className="  flex flex-col gap-1.5">
-                    <div className="w-[20px]  border"></div>
-                    <div className="w-[15px]  border"></div>
-                    <div className="w-[20px]  border"></div>
+                    <div className="w-[20px]  border border-black"></div>
+                    <div className="w-[15px]  border border-black"></div>
+                    <div className="w-[20px]  border border-black"></div>
                 </button>
                     )
 
@@ -164,7 +164,7 @@ export default  function Navbar() {
                 <div className={`${showMenu ? "  left-0" : " -left-[100%]"} fixed top-0 min-h-screen w-full`}>
                     <div onClick={() => setShowMenu(false)} className="absolute  overflow-y-hidden z-50 w-full min-h-screen bg-black opacity-50">
                     </div>
-                    <div  className={`${showMenu ? "left-0 " : "-left-[100%]"} flex flex-col py-20 transition-all duration-500 min-h-screen max-h-screen ease-in-out px-10 w-1/2 gap-8 fixed top-0 z-50 bg-white  overflow-y-auto overflow-x-hidden `}>
+                    <div  className={`${showMenu ? "left-0 " : "-left-[100%]"} flex flex-col py-20 transition-all duration-500 min-h-screen max-h-screen ease-in-out px-5 w-3/4 gap-8 fixed top-0 z-50 bg-white  overflow-y-auto overflow-x-hidden `}>
                         <button onClick={() => setShowMenu(false)}  className="absolute top-5 right-5">X</button>
                         {/* List of user menu items */}
                         <ul>
