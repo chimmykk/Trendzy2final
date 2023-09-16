@@ -13,7 +13,7 @@ module.exports = {
       backgroundColor: {
         bgGreen: "#25D366",
         hoverGreen: "#1EAC4F",
-        bgGray: "#f1eeee",
+        bgGray: "#F7F7F8",
         bgDark: "#313338",
         darkLint: "#1E1F22"
       },

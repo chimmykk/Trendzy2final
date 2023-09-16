@@ -13,7 +13,7 @@ FiShoppingCart,
 FiHelpCircle,
 FiDownload,
 FiLogOut,
-FiDollarSign } from "react-icons/fi"
+FiDollarSign, FiHeart, FiSettings } from "react-icons/fi"
 
 //next-auth sessions
 import { useSession, signOut } from "next-auth/react"
@@ -56,9 +56,11 @@ export default  function Navbar() {
       }
 
   const userMenuItems = [
-    { text: 'Profile', icon: <FiUser /> },
+    { text: 'My Profile', icon: <FiUser /> },
     { text: 'My Orders', icon: <FiShoppingCart /> },
-    { text: 'Start Selling', icon: <FiDollarSign /> }, // New menu item
+    { text: 'Start Selling', icon: <FiDollarSign />, linkTo: '/seller' }, // New menu item
+    { text: 'Saved', icon: <FiHeart /> }, // New menu item with a heart icon
+    { text: 'Settings', icon: <FiSettings />, linkTo: '/settings' }, // New menu item with a settings icon and a link
     { text: 'Help Center', icon: <FiHelpCircle /> },
     { text: 'Get the App', icon: <FiDownload /> },
     { text: 'Logout', icon: <FiLogOut />, onClick: signOut }, // Include onClick to trigger sign-out
@@ -68,7 +70,7 @@ export default  function Navbar() {
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
                     <Link href={'/'} className=" col-span-1 text-black font-bold">
-                        <h1 className=" text-5xl">trendzy</h1>
+                        <h1 className=" text-4xl">trendzy</h1>
                     </Link>     
                     <div className=" overflow-hidden rounded-lg flex">
                         <input 
@@ -78,7 +80,7 @@ export default  function Navbar() {
                             type="text" 
                         />
                         <button className=" bg-bgGreen hover:bg-hoverGreen h-full px-4">
-                            <FaSearch size={25} className="text-white" />
+                            <FaSearch size={23} className="text-white" />
                         </button>
                     </div>
                 <div className="flex lg:gap-20 xl:gap-25 justify-end col-span-1">
@@ -88,7 +90,7 @@ export default  function Navbar() {
                 (
                 <div className="flex gap-1">
                     <div onClick={toggleDropdown}> 
-                        <RiUser3Line className="text-3xl w-10 cursor-pointer h-12" />
+                        <RiUser3Line size={30} className=" cursor-pointer" />
                     </div>
                 </div>
                 ) : (
@@ -111,28 +113,45 @@ export default  function Navbar() {
                 {isModalOpen && <SignUp setIsModalOpen={setIsModalOpen} />}
                 {isModalOpenLogin && <Login setIsModalOpenLogin={setIsModalOpenLogin} />}
                 {isDropdownOpen && (
-                    <div className="absolute right-0 top-16 text-bgDark bg-white border rounded-lg shadow-lg p-4">
+                    <div className="absolute right-4 top-16 text-bgDark bg-white border rounded-lg shadow-lg p-4">
                         <div className="text-lg mb-4">Hi, {session?.user?.name}</div> {/* Increase font size */}
                         <ul>
                         {userMenuItems.map((item, index) => (
-                            <li
-                            key={index}
-                            className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
-                            onClick={() => {
-                                if (item.onClick) {
-                                item.onClick();
-                                }
-                                toggleDropdown();
-                            }}
-                            >
-                            {item.icon && (
-                                <div className="mr-4 text-xl"> {/* Increase icon size */}
-                                {item.icon}
-                                </div>
-                            )}
-                            {item.text}
-                            </li>
-                        ))}
+  <div key={index}>
+    {item.linkTo ? (
+      <Link href={item.linkTo}>
+        <h1>
+          <div className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center" onClick={toggleDropdown}>
+            {item.icon && (
+              <div className="mr-4 text-xl">
+                {item.icon}
+              </div>
+            )}
+            {item.text}
+          </div>
+        </h1>
+      </Link>
+    ) : (
+      <div
+        className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
+        onClick={() => {
+          if (item.onClick) {
+            item.onClick();
+          }
+          toggleDropdown();
+        }}
+      >
+        {item.icon && (
+          <div className="mr-4 text-xl">
+            {item.icon}
+          </div>
+        )}
+        {item.text}
+      </div>
+    )}
+  </div>
+))}
+
                         </ul>
                     </div>
                     )}
