@@ -3,7 +3,7 @@ import User from "../../../models/user";
 
 export default async function handler(req, res) {
   try {
-    await connectMongoDB();
+    await connectMongoDB('email');
     const { email, name } = await req.body;
 
     // Check if either email or name already exists

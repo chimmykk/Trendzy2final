@@ -113,7 +113,7 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
                 <h2 className="text-2xl font-semibold text-black text-center">Log In</h2>
                 <div className="text-center flex flex-col gap-6 mt-8 relative">
                   {/* continue with google btn */}
-                    <button
+                    <div
                       className="w-full button text-center py-4 flex items-center justify-center gap-2 border border-bgDark rounded-lg text-slate-700 hover:border-black transition duration-150"
                     >
                     <Image
@@ -124,8 +124,8 @@ function LoginForm({setIsModalOpenLogin, setResetPassword, openSignUp, handleSig
                       className="w-6 h-6"
                       loading="lazy"
                     />
-                    <span>Continue with Google</span>
-                  </button>
+                      <button onClick={() => signIn('google')}>Sign in with Google</button>
+                  </div>
                   <div className="flex items-center justify-center mb-6">
                     <div className="border-t border-slate-300 w-full mx-2"></div>
                     <span className="bg-white px-2 text-gray-500 relative text-sm">OR</span>

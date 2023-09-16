@@ -7,6 +7,7 @@ import Image from "next/image"
 import SignUp from "../register/signUpModal"
 import Login from "../login/LoginModal"
 import { RiUser3Line } from "react-icons/ri"
+import { FaSearch } from 'react-icons/fa';
 import{ FiUser,
 FiShoppingCart,
 FiHelpCircle,
@@ -77,7 +78,7 @@ export default  function Navbar() {
                             type="text" 
                         />
                         <button className=" bg-bgGreen hover:bg-hoverGreen h-full px-4">
-                            <Image src={'./search.svg'} width={25} height={25} alt="search" className=""/>
+                            <FaSearch size={25} className="text-white" />
                         </button>
                     </div>
                 <div className="flex lg:gap-20 xl:gap-25 justify-end col-span-1">
@@ -94,7 +95,8 @@ export default  function Navbar() {
                 <div className="flex items-center text-black gap-3 text-lg font-medium ">
                     <div 
                         onClick={toggleModalLogin} 
-                        className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4">
+                        className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4"
+                    >
                         Log In
                     </div>
                     <div 

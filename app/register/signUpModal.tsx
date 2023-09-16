@@ -6,6 +6,7 @@ import { useState } from "react";
 import SignUpWithEmailForm from "./form_verify";
 import Login from "../login/LoginModal";
 import { usePathname } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) => {
 
@@ -60,7 +61,7 @@ const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) =
               className="w-6 h-6"
               loading="lazy"
             />
-            <span>Continue with Google</span>
+            <button onClick={() => signIn('google')}>Sign in with Google</button>
           </button>
           <div className="flex items-center justify-center ">
             <div className="border-t border-slate-300 w-full mx-2"></div>

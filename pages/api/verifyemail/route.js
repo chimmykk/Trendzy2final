@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Email and verification code are required.' });
       }
 
-      await connectMongoDB();
+      await connectMongoDB('email');
       const user = await User.findOne({ email });
 
       if (!user) {
