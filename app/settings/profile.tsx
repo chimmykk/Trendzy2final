@@ -1,4 +1,5 @@
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { BsPencil, BsTrash } from 'react-icons/bs'; // Import the delete icon
 
@@ -12,7 +13,9 @@ export default function ProfileSetting(){
               <div className="mt-2 flex items-center">
                 <div className="w-28 h-28 bg-gray-400 rounded-full mr-4">
                   {/*  profile picture here */}
-                  <img
+                  <Image
+                  width={1000}
+                  height={1000}
                     src="https://via.placeholder.com/150" // Replace with the actual path to the profile picture
                     alt="Profile Picture"
                     className="w-full h-full rounded-full"
@@ -41,7 +44,9 @@ export default function ProfileSetting(){
                   <div className="mt-2 flex items-center">
                 <div className="w-64 h-28 bg-gray-400 rounded-lg mr-4">
                   {/* profile banner here */}
-                  <img
+                  <Image
+                  width={1000}
+                  height={1000}
                     src="https://via.placeholder.com/1000x500" // Replace with the actual path to the profile picture
                     alt="Profile Picture"
                     className="w-full h-full rounded-full"
