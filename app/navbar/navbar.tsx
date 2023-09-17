@@ -56,7 +56,7 @@ export default  function Navbar() {
       }
 
   const userMenuItems = [
-    { text: 'My Profile', icon: <FiUser /> },
+    { text: 'My Profile', icon: <FiUser />, linkTo: '/userProfile' },
     { text: 'My Orders', icon: <FiShoppingCart /> },
     { text: 'Start Selling', icon: <FiDollarSign />, linkTo: '/seller' }, // New menu item
     { text: 'Saved', icon: <FiHeart /> }, // New menu item with a heart icon
@@ -66,7 +66,7 @@ export default  function Navbar() {
     { text: 'Logout', icon: <FiLogOut />, onClick: signOut }, // Include onClick to trigger sign-out
   ];
     return (
-        <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-40 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
+        <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
                     <Link href={'/'} className=" col-span-1 text-black font-bold">
@@ -117,40 +117,40 @@ export default  function Navbar() {
                         <div className="text-lg mb-4">Hi, {session?.user?.name}</div> {/* Increase font size */}
                         <ul>
                         {userMenuItems.map((item, index) => (
-  <div key={index}>
-    {item.linkTo ? (
-      <Link href={item.linkTo}>
-        <h1>
-          <div className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center" onClick={toggleDropdown}>
-            {item.icon && (
-              <div className="mr-4 text-xl">
-                {item.icon}
-              </div>
-            )}
-            {item.text}
-          </div>
-        </h1>
-      </Link>
-    ) : (
-      <div
-        className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
-        onClick={() => {
-          if (item.onClick) {
-            item.onClick();
-          }
-          toggleDropdown();
-        }}
-      >
-        {item.icon && (
-          <div className="mr-4 text-xl">
-            {item.icon}
-          </div>
-        )}
-        {item.text}
-      </div>
-    )}
-  </div>
-))}
+        <div key={index}>
+          {item.linkTo ? (
+            <Link href={item.linkTo}>
+              <h1>
+                <div className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center" onClick={toggleDropdown}>
+                  {item.icon && (
+                    <div className="mr-4 text-xl">
+                      {item.icon}
+                    </div>
+                  )}
+                  {item.text}
+                </div>
+              </h1>
+            </Link>
+          ) : (
+            <div
+              className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
+              onClick={() => {
+                if (item.onClick) {
+                  item.onClick();
+                }
+                toggleDropdown();
+              }}
+            >
+              {item.icon && (
+                <div className="mr-4 text-xl">
+                  {item.icon}
+                </div>
+              )}
+              {item.text}
+            </div>
+          )}
+        </div>
+      ))}
 
                         </ul>
                     </div>
@@ -192,23 +192,39 @@ export default  function Navbar() {
                         {/* List of user menu items */}
                         <ul>
                         {userMenuItems.map((item, index) => (
-                            <li
-                            key={index}
-                            className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
-                            onClick={() => {
-                                if (item.onClick) {
-                                item.onClick();
-                                }
-                                setShowMenu(false); // Close the mobile menu after clicking a menu item
-                            }}
-                            >
-                            {item.icon && (
-                                <div className="mr-4 text-xl">
-                                {item.icon}
-                                </div>
-                            )}
-                            {item.text}
-                            </li>
+                                <div key={index}>
+          {item.linkTo ? (
+            <Link href={item.linkTo}>
+              <h1>
+                <div className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center" onClick={toggleDropdown}>
+                  {item.icon && (
+                    <div className="mr-4 text-xl">
+                      {item.icon}
+                    </div>
+                  )}
+                  {item.text}
+                </div>
+              </h1>
+            </Link>
+          ) : (
+            <div
+              className="cursor-pointer py-3 px-4 hover:bg-gray-100 flex items-center"
+              onClick={() => {
+                if (item.onClick) {
+                  item.onClick();
+                }
+                toggleDropdown();
+              }}
+            >
+              {item.icon && (
+                <div className="mr-4 text-xl">
+                  {item.icon}
+                </div>
+              )}
+              {item.text}
+            </div>
+          )}
+        </div>
                         ))}
                         </ul> 
                     </div>

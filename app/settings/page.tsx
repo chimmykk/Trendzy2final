@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import PaymentInformation from './paymentInfo';
-import ProfileSetting from './profile';
+import ProfileSetting from './profileSetting';
 import ShippingInfo from './shippingInfo';
 
 

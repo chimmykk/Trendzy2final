@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Baloo_2 } from 'next/font/google'
 import Navbar from './navbar/navbar'
 import Providers from './providers'
+import Sidebar from './Sidebar'
 
 
 const baloo = Baloo_2({ subsets: ['latin'] })
@@ -23,8 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={baloo.className }>
         <Providers session={session}>
-        <Navbar />
-        {children}
+          <Navbar />
+            <Sidebar />
+            <div className="lg:ml-[209px] p-4">{children}</div>
         </Providers>
       </body>
     </html>

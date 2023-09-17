@@ -5,7 +5,7 @@ import ResponsiveCarousel from './Carousel';
 
 export default function LandingPage() {
     return(
-          <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit">
+          <main className=" lg:ml-[-509px] border-4 border-red-500 p-[-14px]  h-fit">
   <div className="flex justify-center fade-container">
     <ResponsiveCarousel />        
   </div>
@@ -19,13 +19,13 @@ export default function LandingPage() {
         href={'/livestream'}
         className=" button px-4 py-3 bg-[#fff] transition-hover duration-300 border rounded-lg border-black"
       >
-        Join the Stream
+        Join the Streamawdad
       </Link>
       <Link
         href={'/register'}
         className=" button bg-bgGreen transition-hover duration-300 text-white border rounded-lg border-bgDark hover:border-black"
       >
-        Sell Live
+        Sell Liveaaa
       </Link>
     </div>
   </div>

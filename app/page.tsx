@@ -15,7 +15,7 @@ export default function Home() {
   }
 
   return (
-  <main className="z-0 px-5 sm:px-6 lg:px-12 py-10 h-fit">
+  <main className="z-0  lg:ml-[-209px] p-[-14px] py-10 h-fit">
   <div className="flex justify-center fade-container">
     <ResponsiveCarousel />        
   </div>
