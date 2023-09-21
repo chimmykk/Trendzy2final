@@ -1,5 +1,5 @@
 import { connectMongoDB } from '../../../lib/mongodb';
-import Address from '../../../models/address';
+import { Address } from '../../../models/Address';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
