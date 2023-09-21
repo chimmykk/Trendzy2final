@@ -59,7 +59,7 @@ const SettingOptions = (
           }`}
           onClick={() => handleClick("Seller's Info")} // Handle click for Seller's Info
         >
-          Seller's Info
+                {'Seller\'s Info'}
         </div>
         <div
           className={`cursor-pointer ${
