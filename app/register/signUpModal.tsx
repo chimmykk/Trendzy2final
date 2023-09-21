@@ -61,7 +61,7 @@ const SignUp = ({setIsModalOpen} : {setIsModalOpen:(isOpen: boolean) => void}) =
               className="w-6 h-6"
               loading="lazy"
             />
-            <button onClick={() => signIn('google')}>Sign in with Google</button>
+            <button onClick={() => signIn('google')}> Continue with Google</button>
           </button>
           <div className="flex items-center justify-center ">
             <div className="border-t border-slate-300 w-full mx-2"></div>

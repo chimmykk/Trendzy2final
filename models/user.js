@@ -1,4 +1,4 @@
-import mongoose, { Schema, models } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -9,34 +9,45 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
-      required: true,
+      required: false, // Make password optional for Google-authenticated users
     },
     verification_token: {
       type: String,
-      required: true,
+      required: false, // Make verification_token optional for Google-authenticated users
     },
     verification_code: {
       type: String,
-      required: true,
+      required: false, // Make verification_code optional for Google-authenticated users
     },
     verified: {
       type: Boolean,
-      required: true,
+      required: false,
     },
-    passwordResetToken: { 
+    passwordResetToken: {
       type: String,
-      default: null, 
+      default: null,
     },
-    passwordResetTokenExpiration: { 
+    passwordResetTokenExpiration: {
       type: Date,
-      default: null, 
+      default: null,
     },
+    balance: {
+      type: Number,
+      default: 0,
+    },
+    phone: String,
+    image: String,
+    profileImage: String,  
+    bannerImage: String,
+    bio: String            
   },
   { timestamps: true }
 );
 
-const User = models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
 export default User;

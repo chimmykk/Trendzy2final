@@ -1,5 +1,6 @@
 "use client"
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 const SellerRegistration = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -57,19 +58,67 @@ const subcategories: { [key: string]: string[] } = {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [objectId, setObjectId] = useState(null);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    const fetchObjectId = async () => {
+      try {
+        if (session?.user?.email) {
+          const route1 = `/api/fetch/route?email=${encodeURIComponent(session.user.email)}`;
+        
+          const response = await fetch(route1);
+      
+          if (response.ok) {
+            const data = await response.json();
+            setObjectId(data._id);
+          } else {
+            console.error('Failed to fetch object ID');
+          }
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
+
+    if (session?.user) {
+      fetchObjectId();
+    }
+  }, [session?.user]);
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    // Handle final form submission logic here
-    // You can collect all the form data and submit it to the server
+
     const formData = {
       category: selectedCategory,
       subcategory: selectedSubcategory,
       returnAddress: { ...returnAddress },
       identityInfo: { ...identityInfo },
     };
-    console.log(formData);
-    // Redirect to the next page or perform any other actions
+
+    // Send the data to the server
+    fetch('http://localhost:3000/api/flow/route', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        objectId,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => console.error('Error:', error));
   };
+
+
 
   return (
     <div className="container flex flex-col sm:flex-row justify-center px-5 sm:px-6 lg:px-12 items-stretch mx-auto mt-8">

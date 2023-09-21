@@ -1,16 +1,44 @@
-"use client"
 
-import { useSession } from "next-auth/react";
+
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../../pages/api/auth/[...nextauth]"
 import Image from "next/image";
-import { FaEdit, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
+import { RiUser3Line } from "react-icons/ri"
 
-export default function ProfilePage() {
-  const { data: session } = useSession();
+const getSessionFromServer = async () => {
+  const session = await getServerSession(authOptions);
+  return session 
+}
 
-  // Sample user data
+const fetchProfileImage = async () => {
+  const session = await getSessionFromServer()
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`http://localhost:3000/api/upload/image?email=${email}`)
+  const data = await res.json();
+  return data;
+}
+
+const fetchProfileBanner = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`http://localhost:3000/api/upload/banner?email=${encodeURIComponent(email)}`)
+  const data = await res.json();
+  return data;
+}
+
+export default async function ProfilePage() {
+
+  const session = await getSessionFromServer();
+  
+  const imgData = await fetchProfileImage();
+  const profileImg = imgData.profileImage;
+
+  const BannerData = await fetchProfileBanner();
+  const profileBanner = BannerData.bannerImage;  
+  
   const user = {
-    profileImage: session?.user?.image,
-    profileBanner: "https://via.placeholder.com/1000x500",
+    // profileBanner: "https://via.placeholder.com/1000x500",
     userName: session?.user?.name,
     bio: "Passionate about buying and selling unique items. Reach out to me for inquiries.",
     following: 500,
@@ -21,27 +49,50 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="bg-white w-full">
+    <div className="ml-4 bg-white">
       {/* Profile Banner */}
-      <div className="bg-cover bg-center h-64 relative">
+      <div className="bg-cover bg-center h-64 relative"> 
         <div
           className="absolute inset-0 flex items-end"
-          style={{ backgroundImage: `url(${user.profileBanner})` }}
+          style={{ 
+            backgroundImage: `url(data:image/jpeg;base64,${profileBanner})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: "center center", 
+            backgroundSize: 'cover', // Optional: To cover the entire container
+          }}
         >
           {/* Profile Image */}
           <div
-            className="relative top-1/2 transform -translate-y-1/2 left-0"
+            className="relative top-1/2 transform -translate-y-1/2 w-32 h-32 left-3"
           >
-            <Image
-              src={user.profileImage || "/default-profile-image.png"} // Use a default image if profileImage is not available
-              alt="Profile"
-              width={128}
-              height={128}
-              className="w-32 h-32 rounded-full border-4 border-white mx-4"
-            />
-            <button className="absolute bottom-2 right-2 bg-white rounded-full p-1">
-              <FaEdit />
-            </button>
+                {profileImg ? ( // Check if profileImage is available
+                <Image
+                    src={`data:image/jpeg;base64,${profileImg}`}
+                    width={1000}
+                    height={1000}
+                    alt="Profile Picture"
+                    className="w-full h-full rounded-full"
+                />
+                ) : (
+                // Display session Img if there is no profile pic in the rilso mongodb
+                session?.user?.image ? (
+                    <Image
+                    src={session?.user?.image}
+                    width={1000}
+                    height={1000}
+                    alt="Default Profile Picture"
+                    className="w-full h-full rounded-full"
+                    />
+                ) : (
+                    // If no session image, display a React icon (e.g., a placeholder user icon)
+                                <button
+                        className=" flex justify-center items-center text-bgGreen w rounded-full border-none"
+                        
+                    >
+                        <RiUser3Line size={100} className=" cursor-pointer" />
+                    </button>
+                )
+                )}
           </div>
         </div>
       </div>

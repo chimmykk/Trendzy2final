@@ -34,17 +34,12 @@ export default  function Navbar() {
         setIsModalOpen(!isModalOpen);
     };
 
-    useEffect(() => {
-        console.log(session)
-    })
-
-
     const toggleModalLogin = () => {
         setIsModalOpenLogin(!isModalOpenLogin);
     };
     const pathname = usePathname();
 
-    if (status === "loading" ) {
+    if (status === "loading") {
         return(
         <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
             <div className="container ">
@@ -69,7 +64,7 @@ export default  function Navbar() {
         <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
-                    <Link href={'/'} className=" col-span-1 text-black font-bold">
+                    <Link href={'/'} className=" w-fit col-span-1 text-black font-bold">
                         <h1 className=" text-4xl">trendzy</h1>
                     </Link>     
                     <div className=" overflow-hidden rounded-lg flex">

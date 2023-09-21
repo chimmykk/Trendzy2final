@@ -1,65 +1,63 @@
-"use client"
 
-import { useState } from 'react';
-import PaymentInformation from './paymentInfo';
-import ProfileSetting from './profileSetting';
-import ShippingInfo from './shippingInfo';
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../../pages/api/auth/[...nextauth]"
+import SettingOptions from "./settingOptions";
 
+const getobjectId = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`http://localhost:3000/api/fetch/route?email=${email}`)
+  const data = await res.json();
+  return data._id
+}
 
-const Settings = () => {
-  const [activeItem, setActiveItem] = useState('Profile');
+const getSellerInfo = async () => {
+  // const ObjectData = await getobjectId();
+  const objectId = await getobjectId()
+  const res = await fetch(`http://localhost:3000/api/fetch/fetchaddress?objectId=${objectId}`);
+  const data = await res.json();
+  return data;
+}
 
-  // Define a state to track the visibility of the address form
+const fetchProfileImage = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`http://localhost:3000/api/upload/image?email=${email}`)
+  const data = await res.json();
+  return data;
+}
 
-  const handleClick = (item: string) => {
-    setActiveItem(item);
-  };
+const fetchProfileBanner = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`http://localhost:3000/api/upload/banner?email=${encodeURIComponent(email)}`)
+  const data = await res.json();
+  return data;
+}
+
+export default async function SettingHead() {
+
+  const objectId = await getobjectId() 
+
+  const sellerInfo = await getSellerInfo();
+  const seller = sellerInfo.seller;
+
+  const imgData = await fetchProfileImage();
+  const profileImg = imgData.profileImage;
+
+  const BannerData = await fetchProfileBanner();
+  const profileBanner = BannerData.bannerImage;
 
   return (
-    <div className="py-6 p-8 bg-bgGray">
-      <h1 className="text-4xl font-bold">Settings</h1>
-      <div className="flex border-b pb-2 text-lg border-gray-300 mt-4">
-        <div
-          className={`cursor-pointer mr-4 ${
-            activeItem === 'Profile' ? 'text-green-500 ' : 'text-gray-600'
-          }`}
-          onClick={() => handleClick('Profile')}
-        >
-          Profile
-        </div>
-        <div
-          className={`cursor-pointer mr-4 ${
-            activeItem === 'Shipping Information' ? 'text-green-500 ' : 'text-gray-600'
-          }`}
-          onClick={() => handleClick('Shipping Information')}
-        >
-          Shipping Information
-        </div>
-        <div
-          className={`cursor-pointer ${
-            activeItem === 'Payment Information' ? 'text-green-500 ' : 'text-gray-600'
-          }`}
-          onClick={() => handleClick('Payment Information')}
-        >
-          Payment Information
-        </div>
-      </div>
-          {/* Profile */}
-      {activeItem === 'Profile' && (
-        <ProfileSetting />
-      )}
-
-      {/* Shipping information */}
-      {activeItem === 'Shipping Information' && (
-        <ShippingInfo />
-      )}
-
-    {activeItem === 'Payment Information' && (
-      <PaymentInformation />
-)}
-
-    </div>
+      <main>
+        <SettingOptions 
+            seller={seller} 
+            profileImg={profileImg}
+            objectId ={objectId}    
+            profileBanner={profileBanner}
+        />
+      </main>
   );
-};
+}
 
-export default Settings;
+

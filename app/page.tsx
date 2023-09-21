@@ -1,17 +1,17 @@
 "use client"
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ResponsiveCarousel from './Carousel';
 import { useSession } from 'next-auth/react';
-import Dashboard from './Dashboard/Dashboard';
+// import Dashboard from './Dashboard/page';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
 
 
-    const { status } = useSession();
+  const { status } = useSession();
 
   if (status === "authenticated") {
-    return < Dashboard/>
+    redirect('/home')
   }
 
   return (
@@ -43,4 +43,3 @@ export default function Home() {
 
   );
 }
-

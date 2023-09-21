@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 
-export default function Dashboard() {
+function Home() {
   return(
     <div className='px-5 sm:px-6 lg:px-4 '>
       <div className=''>
@@ -34,3 +34,5 @@ export default function Dashboard() {
     </div>
   )
 }
+
+export default Home; // Apply the middleware to the page

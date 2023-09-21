@@ -26,7 +26,7 @@ export default function RootLayout({
         <Providers session={session}>
           <Navbar />
             <Sidebar />
-            <div className="lg:ml-[209px] p-4">{children}</div>
+            <div className="lg:ml-[209px]">{children}</div>
         </Providers>
       </body>
     </html>
