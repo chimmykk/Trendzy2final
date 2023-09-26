@@ -1,9 +1,12 @@
+"use client"
+
 import './globals.css'
 import type { Metadata } from 'next'
 import { Baloo_2 } from 'next/font/google'
 import Navbar from './navbar/navbar'
 import Providers from './providers'
 import Sidebar from './Sidebar'
+import { usePathname } from 'next/navigation'
 
 
 const baloo = Baloo_2({ subsets: ['latin'] })
@@ -20,13 +23,15 @@ export default function RootLayout({
   children: React.ReactNode,
   session: any
 }) {
+
+  const pathname = usePathname()
   return (
     <html lang="en">
       <body className={baloo.className }>
         <Providers session={session}>
           <Navbar />
-            <Sidebar />
-            <div className="lg:ml-[209px]">{children}</div>
+            <Sidebar pathname={pathname}/>
+            <div className={`  ${pathname === '/startLive' ? 'lg:ml-0' : 'lg:ml-[209px]' }`}>{children}</div>
         </Providers>
       </body>
     </html>

@@ -11,6 +11,8 @@ const nextConfig = {
         'images4.alphacoders.com',
         'via.placeholder.com',
         'lh3.googleusercontent.com',
+        'assets.vogue.in',
+        'rukminim1.flixcart.com'
     ], // Add any other allowed domains here
   },
 }
