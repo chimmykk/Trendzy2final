@@ -4,8 +4,8 @@ import Link from "next/link"
 import { useEffect, useState } from "react" 
 import { usePathname } from "next/navigation"
 import Image from "next/image"
-import SignUp from "../register/signUpModal"
-import Login from "../login/LoginModal"
+import SignUp from "../components/register/signUpModal"
+import Login from "../components/login/LoginModal"
 import { RiUser3Line } from "react-icons/ri"
 import { FaSearch } from 'react-icons/fa';
 import{ FiUser,
@@ -39,16 +39,16 @@ export default  function Navbar() {
     };
     const pathname = usePathname();
 
-    if (status === "loading") {
-        return(
-        <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
-            <div className="container ">
-                <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
-                <div className="loader"></div>
-            </div>
-        </div>
-        ) 
-      }
+    // if (status === "loading") {
+    //     return(
+    //     <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
+    //         <div className="container ">
+    //             <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
+    //             <div className="loader"></div>
+    //         </div>
+    //     </div>
+    //     ) 
+    //   }
 
   const userMenuItems = [
     { text: 'My Profile', icon: <FiUser />, linkTo: '/userProfile' },
@@ -64,13 +64,13 @@ export default  function Navbar() {
         <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
-                    <Link href={'/'} className=" w-fit col-span-1 text-black font-bold">
-                        <h1 className=" text-4xl">trendzy</h1>
+                    <Link href={'/'} className=" w-fit col-span-1 text-black ">
+                        <h1 className=" text-4xl font-bold text-bgGreen">trendzy</h1>
                     </Link>     
                     <div className=" overflow-hidden rounded-lg flex">
                         <input 
-                            placeholder="Search . . ." 
-                            className=" font-medium border  hover:border-2 rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-2 focus:border-borderC input-with-shadow " 
+                            placeholder="Search" 
+                            className=" font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-borderC input-with-shadow " 
                             name="text" 
                             type="text" 
                         />

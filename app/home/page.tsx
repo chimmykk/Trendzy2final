@@ -3,7 +3,7 @@ import Link from "next/link"
 
 function Home() {
   return(
-    <div className='px-5 sm:px-6 lg:px-4 '>
+    <div className='px-5 bg-[#f7f7f8] min-h-screen overflow-y-scroll sm:px-6 lg:pl-6 '>
       <div className=''>
         <div><h1 className='text-lg font-semibold'>Featured channels</h1></div>  
         {/* live items */}

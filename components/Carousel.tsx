@@ -5,10 +5,9 @@ import {
   StackedCarousel,
   ResponsiveContainer,
 } from "react-stacked-center-carousel";
-import Fab from '@mui/material/Fab';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from "next/image";
+import { CustomArrowRight, CustomArrowLeft } from "./ui/arrowIcons"; // Import your custom arrow components
+
 
 const data = [
   {
@@ -59,6 +58,7 @@ export default function ResponsiveCarousel() {
   return (
     <div style={{ width: "100%", position: "relative" }}>
       <ResponsiveContainer
+        // use ParenthWidth to change the image width 
         carouselRef={ref}
         render={(parentWidth, carouselRef) => {
           // If you want to use a ref to call the method of StackedCarousel, you cannot set the ref directly on the carousel component
@@ -72,37 +72,34 @@ export default function ResponsiveCarousel() {
             <StackedCarousel
               ref={carouselRef}
               slideComponent={Card}
-              slideWidth={parentWidth < 800 ? parentWidth - 40 : 750}
+              slideWidth={parentWidth < 800 ? parentWidth - 40 : 630}
               carouselWidth={parentWidth}
               data={data}
               currentVisibleSlide={currentVisibleSlide}
               maxVisibleSlide={5}
-              useGrabCursor
             />
           );
         }}
       />
       <>
-        <Fab
-          style={{ position: "absolute", top: "40%", left: 10, zIndex: 10 }}
-          size="small"
+        <div
+          className=" absolute top-[40%] left-[20px] cursor-pointer z-10 border border-transparent p-2 rounded-md hover:border-borderC"
           // color="success"
           onClick={() => {
             ref.current?.goBack();
           }}
         >
-          <ArrowBackIcon  />
-        </Fab>
-        <Fab
-          style={{ position: "absolute", top: "40%", right: 10, zIndex: 10 }}
-          size="small"
+          <CustomArrowLeft  />
+        </div>
+        <div
+          className=" absolute top-[40%] right-[20px] cursor-pointer z-10 border border-transparent p-2 rounded-md hover:border-borderC"
           // color="success"
           onClick={() => {
             ref.current?.goNext();
           }}
         >
-          <ArrowForwardIcon  />
-        </Fab>
+          <CustomArrowRight  />
+        </div>
       </>
     </div>
   );
@@ -124,10 +121,10 @@ const Card = React.memo(function card(props: CardProps) {
     <div
       style={{
         width: "100%",
-        height: 300,
+        height: 400,
         userSelect: "none",
       }}
-      className="my-slide-component"
+      className="my-slide-component "
     >
       <Image
         src={cover}
@@ -139,6 +136,7 @@ const Card = React.memo(function card(props: CardProps) {
           width: "100%",
           objectFit: "cover",
           borderRadius: 0,
+          cursor: "pointer",
         }}
         draggable={false}
       />

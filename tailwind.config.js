@@ -7,9 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
-        gridTemplateColumns: {
-        fluid: "repeat(auto-fit, minmax(300px, 1fr))",
-      },    
+      gridTemplateColumns: {
+        // For larger screens, display two cards per row
+        'fluid': 'repeat(auto-fit, minmax(240px, 1fr))',
+
+        // For smaller screens (e.g., mobile), display one card per row
+        'fluid-mobile': 'repeat(auto-fit, minmax(160px, 1fr))',
+      },
       backgroundColor: {
         bgGreen: "#25D366",
         hoverGreen: "#1EAC4F",
