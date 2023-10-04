@@ -63,7 +63,7 @@ export default  function ProfilePage() {
   useEffect(() => {
     // Load the profile image when the component mounts
     fetchProfileImage();
-  }, []);
+  }, [session?.user?.email]);
 
   const fetchProfileImage = async () => {
     try {
