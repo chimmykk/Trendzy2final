@@ -150,16 +150,7 @@ export default  function ProfilePage() {
                     className="w-full h-full rounded-full"
                 />
                 ) : (
-                // Display session Img if there is no profile pic in the rilso mongodb
-                session?.user?.image ? (
-                    <Image
-                    src={session?.user?.image}
-                    width={1000}
-                    height={1000}
-                    alt="Default Profile Picture"
-                    className="w-full h-full rounded-full"
-                    />
-                ) : (
+                  
                     // If no session image, display a React icon (e.g., a placeholder user icon)
                                 <button
                         className=" flex justify-center items-center text-bgGreen w rounded-full border-none"
@@ -167,7 +158,7 @@ export default  function ProfilePage() {
                     >
                         <RiUser3Line size={100} className=" cursor-pointer" />
                     </button>
-                )
+                
                 )}
           </div>
         </div>
