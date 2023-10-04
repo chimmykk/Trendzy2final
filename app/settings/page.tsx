@@ -7,7 +7,7 @@ const getobjectId = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || "Email not found"; 
   const res = await fetch(`https://trendzy2.vercel.app/api/fetch/route?email=${email}`, {
-    next: {revalidate: 30}
+    next: {revalidate: 0}
   })
   const data = await res.json();
   return data._id
@@ -17,7 +17,7 @@ const getSellerInfo = async () => {
   // const ObjectData = await getobjectId();
   const objectId = await getobjectId()
   const res = await fetch(`https://trendzy2.vercel.app/api/fetch/fetchaddress?objectId=${objectId}`, {
-    next: {revalidate: 30}
+    next: {revalidate: 0}
   });
   const data = await res.json();
   return data;
@@ -27,7 +27,7 @@ const fetchProfileImage = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || "Email not found"; 
   const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`, {
-    next: {revalidate: 30}
+    next: {revalidate: 0}
   })
   const data = await res.json();
   return data;
@@ -37,7 +37,7 @@ const fetchProfileBanner = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || "Email not found"; 
   const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`, {
-    next: {revalidate: 30}
+    next: {revalidate: 0}
   })
   const data = await res.json();
   return data;
