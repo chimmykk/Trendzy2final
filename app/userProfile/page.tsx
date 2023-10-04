@@ -46,7 +46,7 @@ import { useSession } from "next-auth/react";
 //   }
 // }
 
-export default async function ProfilePage() {
+export default  function ProfilePage() {
 
   // const session = await getSessionFromServer();
   
