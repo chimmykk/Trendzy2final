@@ -24,23 +24,35 @@ const getSellerInfo = async () => {
 }
 
 const fetchProfileImage = async () => {
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email || "Email not found"; 
-  const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`, {
-    next: {revalidate: 0}
-  })
-  const data = await res.json();
-  return data;
+  try {
+      const session = await getServerSession(authOptions);
+    const email = session?.user?.email || "Email not found"; 
+    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`)
+    if (!res.ok) {
+      throw new Error(`Error fetching profile image: ${res.statusText}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile image:", error);
+    throw error; // Rethrow the error to propagate it further
+  }
 }
 
 const fetchProfileBanner = async () => {
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email || "Email not found"; 
-  const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`, {
-    next: {revalidate: 0}
-  })
-  const data = await res.json();
-  return data;
+    try {
+    const session = await getServerSession(authOptions);
+    const email = session?.user?.email || "Email not found"; 
+    const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${email}`)
+    if (!res.ok) {
+      throw new Error(`Error fetching profile image: ${res.statusText}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile banner:", error);
+    throw error; // Rethrow the error to propagate it further
+  }
 }
 
 export default async function SettingHead() {
