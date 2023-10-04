@@ -2,11 +2,9 @@ import { cn } from "../styles/utils";
 import { Icons } from "../ui";
 import Presence from "./Presence";
 
-type Props = {
-  streamerIdentity: string;
-};
 
-export default function ChannelInfo({ streamerIdentity }: Props) {
+
+export default function ChannelInfo() {
   const isLive = true; // Change to false for testing when not live
 
   return (
@@ -21,7 +19,7 @@ export default function ChannelInfo({ streamerIdentity }: Props) {
                 isLive && "ring-2 ring-[#25D366]"
               )}
               src={`https://pbs.twimg.com/profile_images/1574852153650384907/RrBQZcJh_400x400.jpg`}
-              alt={streamerIdentity}
+              alt="image"
             />
             {isLive && (
               <div className="absolute mt-14 w-12 rounded-lg border-2 border-black bg-red-600 p-1 text-center text-xs font-bold uppercase text-white transition-all dark:border-zinc-900">

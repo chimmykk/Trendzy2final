@@ -5,11 +5,7 @@ import Chat from "./channel/Chat";
 import Sidebar from "./channel/Sidebar";
 import StreamPlayer from "./channel/StreamPlayer";
 
-interface Props {
-  slug: string;
-}
-
-const ChannelPage: React.FC<Props> = ({ slug }) => {
+export default function ChannelPage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 bg-[#0E0E10] lg:grid-cols-4">
   {/* Sidebar */}
@@ -23,7 +19,7 @@ const ChannelPage: React.FC<Props> = ({ slug }) => {
     <StreamPlayer />
 
     {/* Channel Info */}
-    <ChannelInfo streamerIdentity={slug} />
+    <ChannelInfo />
   </div>
 
   {/* Chat */}
@@ -34,6 +30,3 @@ const ChannelPage: React.FC<Props> = ({ slug }) => {
 
   );
 }
-
-export default ChannelPage;
-
