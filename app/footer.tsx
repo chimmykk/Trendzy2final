@@ -8,11 +8,6 @@ export default function Footer() {
             <div className="flex justify-center text-bgGreen">
                 <h1 className=" text-4xl font-bold">trendzy</h1>
             </div>
-
-            <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
-            © 2023 Trendzy™. All Rights Reserved.
-            </p>
-
             <ul className="mt-6 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
             <li>
                 <Link className="text-gray-700 transition hover:text-gray-700/75" href="/">

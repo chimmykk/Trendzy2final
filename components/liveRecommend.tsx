@@ -85,7 +85,7 @@ export default function RecommendLive() {
         <Link href={'/'} className="text-bgGreen">
           Live channels
         </Link>
-        <h1>We Think You'll Like</h1>
+        <h1>We Think You&apos;ll Like</h1>
       </div>
       <div className='py-8 grid grid-cols-fluid-mobile md:grid-cols-fluid gap-5 md:gap-4'>
         {/* Map over the liveStreamData array and render LiveStreamCard components */}
