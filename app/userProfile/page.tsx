@@ -74,7 +74,7 @@ export default  function ProfilePage() {
         return;
       }
 
-      const response = await fetch(`/api/upload/image?email=${email}`);
+      const response = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`);
 
       if (response.ok) {
         const data = await response.json();
