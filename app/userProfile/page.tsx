@@ -1,117 +1,41 @@
-"use client"
+
 
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../../pages/api/auth/[...nextauth]"
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { RiUser3Line } from "react-icons/ri"
-import { useSession } from "next-auth/react";
 
-// const getSessionFromServer = async () => {
-//   const session = await getServerSession(authOptions);
-//   return session 
-// }
+const getSessionFromServer = async () => {
+  const session = await getServerSession(authOptions);
+  return session 
+}
 
-// const fetchProfileImage = async () => {
-//   try {
-//     const session = await getSessionFromServer();
-//     const email = session?.user?.email || "Email not found"; 
-//     const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`)
-//     if (!res.ok) {
-//       throw new Error(`Error fetching profile image: ${res.statusText}`);
-//     }
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching profile image:", error);
-//     throw error; // Rethrow the error to propagate it further
-//   }
-// }
+const fetchProfileImage = async () => {
+  const session = await getSessionFromServer()
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`)
+  const data = await res.json();
+  return data;
+}
 
+const fetchProfileBanner = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`)
+  const data = await res.json();
+  return data;
+}
 
-// const fetchProfileBanner = async () => {
-//     try {
-//     const session = await getSessionFromServer();
-//     const email = session?.user?.email || "Email not found"; 
-//     const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${email}`)
-//     if (!res.ok) {
-//       throw new Error(`Error fetching profile image: ${res.statusText}`);
-//     }
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching profile banner:", error);
-//     throw error; // Rethrow the error to propagate it further
-//   }
-// }
+export default async function ProfilePage() {
 
-export default  function ProfilePage() {
-
-  // const session = await getSessionFromServer();
+  const session = await getSessionFromServer();
   
-  // const imgData = await fetchProfileImage();
-  // const profileImg = imgData.profileImage;
+  const imgData = await fetchProfileImage();
+  const profileImg = imgData.profileImage;
 
-  // const BannerData = await fetchProfileBanner();
-  // const profileBanner = BannerData.bannerImage;  
-  const {data : session} = useSession()
-
-    const [profileImg, setProfileImage] = useState(null); // Default profile image set to null initially
-      const [profileBanner, setBannerImage] = useState(null);
-
-  useEffect(() => {
-    // Load the profile image when the component mounts
-    fetchProfileImage();
-  }, [session?.user?.email]);
-
-  const fetchProfileImage = async () => {
-    try {
-      const email = session?.user?.email;
-
-      if (!email) {
-        console.error('User email not found.');
-        return;
-      }
-
-      const response = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`);
-
-      if (response.ok) {
-        const data = await response.json();
-        setProfileImage(data.profileImage);
-      } else {
-        console.error('Failed to fetch profile image:', response.statusText);
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching profile image:', error);
-    }
-  };
-
-    useEffect(() => {
-    const fetchBannerImage = async () => {
-      try {
-        const email = session?.user?.email;
-
-        if (!email) {
-          console.error('User email not found.');
-          return;
-        }
-
-        const response = await fetch(`/api/upload/banner?email=${encodeURIComponent(email)}`);
-
-        if (response.ok) {
-          const data = await response.json();
-          setBannerImage(data.bannerImage);
-        } else {
-          console.error('Failed to fetch banner image:', response.statusText);
-        }
-      } catch (error) {
-        console.error('An error occurred while fetching banner image:', error);
-      }
-    };
-
-    fetchBannerImage();
-  }, [session?.user?.email]);
+  const BannerData = await fetchProfileBanner();
+  const profileBanner = BannerData.bannerImage;  
   
   const user = {
     // profileBanner: "https://via.placeholder.com/1000x500",
