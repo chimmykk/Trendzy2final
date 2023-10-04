@@ -4,13 +4,12 @@ import ChannelInfo from "./channel/ChannelInfo";
 import Chat from "./channel/Chat";
 import Sidebar from "./channel/Sidebar";
 import StreamPlayer from "./channel/StreamPlayer";
-import WatchingAsBar from "./channel/WatchingAsBar";
 
 interface Props {
   slug: string;
 }
 
-export default function ChannelPage({ slug }: Props) {
+const ChannelPage: React.FC<Props> = ({ slug }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 bg-[#0E0E10] lg:grid-cols-4">
   {/* Sidebar */}
@@ -35,3 +34,6 @@ export default function ChannelPage({ slug }: Props) {
 
   );
 }
+
+export default ChannelPage;
+
