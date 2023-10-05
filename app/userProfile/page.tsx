@@ -29,13 +29,13 @@ const fetchProfileImage = async () => {
   }
 };
 
-// const fetchProfileBanner = async () => {
-//   const session = await getServerSession(authOptions);
-//   const email = session?.user?.email || "Email not found"; 
-//   const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`)
-//   const data = await res.json();
-//   return data;
-// }
+const fetchProfileBanner = async () => {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email || "Email not found"; 
+  const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`)
+  const data = await res.json();
+  return data;
+}
 
 export default async function ProfilePage() {
 
@@ -44,8 +44,8 @@ export default async function ProfilePage() {
   const imgData = await fetchProfileImage();
   const profileImg = imgData.profileImage;
 
-  // const BannerData = await fetchProfileBanner();
-  // const profileBanner = BannerData.bannerImage;  
+  const BannerData = await fetchProfileBanner();
+  const profileBanner = BannerData.bannerImage;  
   
   const user = {
     // profileBanner: "https://via.placeholder.com/1000x500",

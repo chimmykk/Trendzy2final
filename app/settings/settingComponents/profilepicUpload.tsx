@@ -54,7 +54,7 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
   return(
               <div className="bg-white border rounded-lg p-4 mt-4">
               <h3 className="text-lg font-semibold">Profile Picture</h3>
-              {/* <div className="mt-2 flex items-center">
+              <div className="mt-2 flex items-center">
                 <div className="w-28 h-28 bg-gray-400 rounded-full mr-4">
                 {profileImage ? ( 
                 <Image
@@ -106,7 +106,7 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
                     Must be JPEG, PNG, or GIF and cannot exceed 10MB.
                   </p>
                 </div>
-              </div> */}
+              </div>
           </div>
   )
 }
