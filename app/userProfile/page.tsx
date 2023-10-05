@@ -72,7 +72,7 @@ export default async function ProfilePage() {
           }}
         >
           {/* Profile Image */}
-          <div
+          {/* <div
             className="relative top-1/2 transform -translate-y-1/2 w-32 h-32 left-3"
           >
                 {profileImg ? ( // Check if profileImage is available
@@ -103,7 +103,7 @@ export default async function ProfilePage() {
                     </button>
                 )
                 )}
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -54,10 +54,9 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
   return(
               <div className="bg-white border rounded-lg p-4 mt-4">
               <h3 className="text-lg font-semibold">Profile Picture</h3>
-              <div className="mt-2 flex items-center">
+              {/* <div className="mt-2 flex items-center">
                 <div className="w-28 h-28 bg-gray-400 rounded-full mr-4">
-                  {/*  profile picture here */}
-                {profileImage ? ( // Check if profileImage is available
+                {profileImage ? ( 
                 <Image
                     src={`data:image/jpeg;base64,${profileImage}`}
                     width={1000}
@@ -66,7 +65,6 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
                     className="w-full h-full rounded-full"
                 />
                 ) : (
-                // Display session Img if there is no profile pic in the rilso mongodb
                 session?.user?.image ? (
                     <Image
                     src={session?.user?.image}
@@ -76,7 +74,6 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
                     className="w-full h-full rounded-full"
                     />
                 ) : (
-                    // If no session image, display a React icon (e.g., a placeholder user icon)
                                 <button
                         className=" w-28 h-28 flex justify-center items-center text-bgGreen w rounded-full border-none"
                         
@@ -109,7 +106,7 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
                     Must be JPEG, PNG, or GIF and cannot exceed 10MB.
                   </p>
                 </div>
-              </div>
+              </div> */}
           </div>
   )
 }
