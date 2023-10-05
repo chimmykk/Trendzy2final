@@ -15,7 +15,7 @@ const fetchProfileImage = async () => {
   try {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email || "Email not found"; 
-    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${encodeURIComponent(email)}`);
+    const res = await fetch(`http://localhost:3000/api/upload/image?email=${encodeURIComponent(email)}`);
 
     if (!res.ok) {
       throw new Error(`Error fetching profile image: ${res.statusText}`);
@@ -32,7 +32,7 @@ const fetchProfileImage = async () => {
 const fetchProfileBanner = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || "Email not found"; 
-  const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${encodeURIComponent(email)}`)
+  const res = await fetch(`http://localhost:3000/api/upload/banner?email=${encodeURIComponent(email)}`)
   const data = await res.json();
   return data;
 }
@@ -41,9 +41,17 @@ export default async function ProfilePage() {
 
   const session = await getSessionFromServer();
   
-  const imgData = await fetchProfileImage();
-  const profileImg = imgData.profileImage;
 
+let profileImg; // Declare the variable here
+
+const imgData = await fetchProfileImage();
+
+if (imgData && imgData.profileImage) {
+  profileImg = imgData.profileImage; // Assign the value inside the block
+} else {
+  // Handle the case where imgData or imgData.profileImage is null or undefined
+  console.error('Image data is missing or invalid.');
+}
   const BannerData = await fetchProfileBanner();
   const profileBanner = BannerData.bannerImage;  
   

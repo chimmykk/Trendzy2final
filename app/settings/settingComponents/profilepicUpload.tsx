@@ -5,43 +5,64 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { RiUser3Line } from 'react-icons/ri'
 import { useSession } from 'next-auth/react';
+import Resizer from 'react-image-file-resizer'; // Import the Resizer function
+import sizeOf from 'image-size';
 
-export default function ProfileUpload({profileImg, objectId}: {profileImg : any, objectId: any}) {
+
+const MAX_FILE_SIZE_THRESHOLD = 200 * 1024; // 200KB
+
+export default function ProfileUpload({ profileImg, objectId }: { profileImg: any; objectId: any }) {
   const { data: session } = useSession();
 
-  const [profileImage, setProfileImage] = useState(profileImg || null); // Default profile image set to null initially
+  const [profileImage, setProfileImage] = useState(profileImg || null);
 
   const handleProfilePictureUpdate = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (file) {
       try {
-        const reader = new FileReader();
-        reader.onload = async () => {
-          if (typeof reader.result === 'string') {
-            const base64String = reader.result.split(',')[1];
-
-            const uploadResponse = await fetch('/api/upload/image', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ objectId, imageData: base64String }),
-            });
-
-            if (uploadResponse.ok) {
-              const uploadedImageUrl = await uploadResponse.json();
-              console.log(uploadedImageUrl);
-              setProfileImage(base64String);
-            } else {
-              console.error('Error uploading image:', uploadResponse.statusText);
+        if (file.size > MAX_FILE_SIZE_THRESHOLD) {
+          // Compress the image if it exceeds the threshold
+          Resizer.imageFileResizer(
+            file,
+            file.height, // Pass original height
+            file.width, // Pass original width
+            'JPEG', // Format
+            75, // Quality (75%)
+            0, // Rotation
+            async (uri) => {
+              const compressedBase64String = uri.split(',')[1];
+              const uploadResponse = await uploadImage(compressedBase64String);
+              if (uploadResponse.ok) {
+                const uploadedImageUrl = await uploadResponse.json();
+                console.log(uploadedImageUrl);
+                setProfileImage(compressedBase64String);
+              } else {
+                console.error('Error uploading compressed image:', uploadResponse.statusText);
+              }
             }
-          } else {
-            console.error('Error reading file as a string.');
-          }
-        };
+          );
+        } else {
+          // Upload the original image if it's within the threshold
+          const reader = new FileReader();
+          reader.onload = async () => {
+            if (typeof reader.result === 'string') {
+              const base64String = reader.result.split(',')[1];
+              const uploadResponse = await uploadImage(base64String);
+              if (uploadResponse.ok) {
+                const uploadedImageUrl = await uploadResponse.json();
+                console.log('uploaded succesfully', uploadedImageUrl);
+                setProfileImage(base64String);
+              } else {
+                console.error('Error uploading image:', uploadResponse.statusText);
+              }
+            } else {
+              console.error('Error reading file as a string.');
+            }
+          };
 
-        reader.readAsDataURL(file);
+          reader.readAsDataURL(file);
+        }
       } catch (error) {
         console.error('Error uploading image:', error);
       }
@@ -49,8 +70,30 @@ export default function ProfileUpload({profileImg, objectId}: {profileImg : any,
   };
 
   const handleProfilePictureDelete = () => {
-    setProfileImage(null); // Set the profile image to null to show no image
+    setProfileImage(null);
   };
+
+  async function uploadImage(base64String: string): Promise<any> {
+    // Implement the API call to upload the image here
+  try {
+    const uploadResponse = await fetch('/api/upload/image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ objectId, imageData: base64String }),
+    });
+
+    return uploadResponse;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error; // Rethrow the error to propagate it further
+  }
+}
+
+
+
+
   return(
               <div className="bg-white border rounded-lg p-4 mt-4">
               <h3 className="text-lg font-semibold">Profile Picture</h3>
