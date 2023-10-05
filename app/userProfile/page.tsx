@@ -15,7 +15,7 @@ const fetchProfileImage = async () => {
   try {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email || "Email not found"; 
-    const res = await fetch(`/api/upload/image?email=${encodeURIComponent(email)}`);
+    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${encodeURIComponent(email)}`);
 
     if (!res.ok) {
       throw new Error(`Error fetching profile image: ${res.statusText}`);
