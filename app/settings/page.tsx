@@ -25,19 +25,22 @@ const getSellerInfo = async () => {
 
 const fetchProfileImage = async () => {
   try {
-      const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     const email = session?.user?.email || "Email not found"; 
-    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`)
+    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`);
+
     if (!res.ok) {
       throw new Error(`Error fetching profile image: ${res.statusText}`);
     }
+
     const data = await res.json();
     return data;
   } catch (error) {
     console.error("Error fetching profile image:", error);
-    throw error; // Rethrow the error to propagate it further
+    return null; // Return null in case of an error
   }
-}
+};
+
 
 const fetchProfileBanner = async () => {
     try {
@@ -62,8 +65,14 @@ export default async function SettingHead() {
   const sellerInfo = await getSellerInfo();
   const seller = sellerInfo.seller;
 
+  let profileImg = null; // Declare profileImg variable before the if statement
+
   const imgData = await fetchProfileImage();
-  const profileImg = imgData.profileImage;
+  if (imgData !== null) {
+    profileImg = imgData.profileImage; // Assign a value to profileImg if data is available
+  } else {
+    console.error("Failed to fetch profile image.");
+  }
 
   const BannerData = await fetchProfileBanner();
   const profileBanner = BannerData.bannerImage;
