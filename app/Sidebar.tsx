@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const { status } = useSession();
-  const pathname = usePathname()
+  const pathname = usePathname() || ''
 
   useEffect(() => {
     // Move your client-side code inside useEffect
@@ -24,9 +24,11 @@ export default function Sidebar() {
     }
   }, []); // Empty dependency array to run this effect once on component mount
 
-  
+   // Define an array of paths where you want to hide the sidebar
+  const hiddenPaths = ['/startLive', '/LiveRoom'];
+
   // Render the sidebar only when the session is authenticated
-  if (status === "authenticated") {
+  if (status === "authenticated" && !hiddenPaths.includes(pathname)) {
     return (
       <div className={` bg-[#efeff1] left-0  z-50 hidden lg:flex flex-col gap-6 py-4 w-fit h-screen px-4 overflow-y-scroll ${pathname === '/startLive' ? "hidden" : "fixed"}`}>
         <h1 className="text-xl font-bold">CATEGORIES</h1>
@@ -69,6 +71,5 @@ export default function Sidebar() {
   }
 
   // Return null if the session is not authenticated (sidebar won't be displayed)
-  return 
- null
+  return null
 }

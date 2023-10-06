@@ -17,6 +17,7 @@ FiDollarSign, FiHeart, FiSettings } from "react-icons/fi"
 
 //next-auth sessions
 import { useSession, signOut } from "next-auth/react"
+import path from "path"
 
 export default  function Navbar() {
     const [showMenu, setShowMenu] = useState(false)
@@ -61,7 +62,7 @@ export default  function Navbar() {
     { text: 'Logout', icon: <FiLogOut />, onClick: signOut }, // Include onClick to trigger sign-out
   ];
     return (
-        <nav className={` ${pathname === '/register' || pathname === '/login' ? 'hidden' : 'block'} z-50 px-5 sm:px-6 lg:px-4 sticky shadow backdrop-blur-lg top-0 bg-white`}>
+        <nav className={` ${pathname === '/LiveRoom' || pathname === '/startLive' ? 'bg-[#0E0E10] border-b border-[#424141]' : 'bg-white'} z-50 px-5 sm:px-6  lg:px-4 sticky shadow backdrop-blur-lg top-0 `}>
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
                     <Link href={'/'} className=" w-fit col-span-1 text-black ">
@@ -70,7 +71,7 @@ export default  function Navbar() {
                     <div className=" overflow-hidden rounded-lg flex">
                         <input 
                             placeholder="Search" 
-                            className=" font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 focus:border-borderC input-with-shadow " 
+                            className={` font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 bg-transparent focus:border-borderC input-with-shadow `}
                             name="text" 
                             type="text" 
                         />
