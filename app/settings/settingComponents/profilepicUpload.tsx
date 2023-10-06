@@ -24,8 +24,8 @@ export default function ProfileUpload({ profileImg, objectId }: { profileImg: an
           // Compress the image if it exceeds the threshold
           Resizer.imageFileResizer(
             file,
-            400, // Pass original height
-            400, // Pass original width
+            400, // convert to 400px height
+            400, // convert to 400px width
             'JPEG', // Format
             75, // Quality (75%)
             0, // Rotation
