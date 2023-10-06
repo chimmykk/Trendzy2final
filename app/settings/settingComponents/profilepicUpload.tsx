@@ -6,7 +6,6 @@ import { BsPencil, BsTrash } from 'react-icons/bs';
 import { RiUser3Line } from 'react-icons/ri'
 import { useSession } from 'next-auth/react';
 import Resizer from 'react-image-file-resizer'; // Import the Resizer function
-import sizeOf from 'image-size';
 
 
 const MAX_FILE_SIZE_THRESHOLD = 200 * 1024; // 200KB
@@ -25,12 +24,12 @@ export default function ProfileUpload({ profileImg, objectId }: { profileImg: an
           // Compress the image if it exceeds the threshold
           Resizer.imageFileResizer(
             file,
-            file.height, // Pass original height
-            file.width, // Pass original width
+            400, // Pass original height
+            400, // Pass original width
             'JPEG', // Format
             75, // Quality (75%)
             0, // Rotation
-            async (uri) => {
+            async (uri:any) => {
               const compressedBase64String = uri.split(',')[1];
               const uploadResponse = await uploadImage(compressedBase64String);
               if (uploadResponse.ok) {
