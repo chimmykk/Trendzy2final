@@ -96,7 +96,7 @@ export default function App() {
 
             return (
               <>
-                <div className=" overflow-y-scroll sticky top-0 bg-[#1E1F22] text-white w-[800px] mx-auto rounded-lg z-50 shadow-lg">
+                <div className=" overflow-y-scroll sticky top-0 bg-[#1E1F22] text-white w-[800px] mx-auto rounded-lg z-0 shadow-lg">
                       <div className={`border-b border-[#444458] py-3 z-10`}>
                           <h1 className="px-6 font-semibold text-xl">Create stream</h1>   
                       </div>   

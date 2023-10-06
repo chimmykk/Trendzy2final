@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 
+body::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888787; /* Set the initial background color to transparent */
+  border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent; /* Color of the track (the non-draggable part) */
+}
+
+
+
+
 .input {
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
 }

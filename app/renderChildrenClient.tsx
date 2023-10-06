@@ -6,7 +6,7 @@ export default function ClientComponent({ children }: {children: ReactNode}) {
   const pathname = usePathname();
 
   // Conditionally set the className for the div
-  const divClassName = pathname === '/startLive' || pathname === '/LiveRoom' ? 'lg:ml-0' : 'lg:ml-[214px]';
+  const divClassName = pathname === '/startLive' || pathname === '/LiveRoom' || pathname == '/userProfile' ? 'lg:ml-0' : 'lg:ml-[214px]';
 
   return <div className={divClassName}>{children}</div>;
 }

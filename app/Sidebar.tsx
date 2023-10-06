@@ -25,7 +25,7 @@ export default function Sidebar() {
   }, []); // Empty dependency array to run this effect once on component mount
 
    // Define an array of paths where you want to hide the sidebar
-  const hiddenPaths = ['/startLive', '/LiveRoom'];
+  const hiddenPaths = ['/startLive', '/LiveRoom', '/userProfile'];
 
   // Render the sidebar only when the session is authenticated
   if (status === "authenticated" && !hiddenPaths.includes(pathname)) {

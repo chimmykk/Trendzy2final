@@ -40,16 +40,16 @@ export default  function Navbar() {
     };
     const pathname = usePathname();
 
-    // if (status === "loading") {
-    //     return(
-    //     <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
-    //         <div className="container ">
-    //             <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
-    //             <div className="loader"></div>
-    //         </div>
-    //     </div>
-    //     ) 
-    //   }
+    if (status === "loading") {
+        return(
+        <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
+            <div className="container ">
+                <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
+                <div className="loader"></div>
+            </div>
+        </div>
+        ) 
+      }
 
   const userMenuItems = [
     { text: 'My Profile', icon: <FiUser />, linkTo: '/userProfile' },
@@ -71,7 +71,7 @@ export default  function Navbar() {
                     <div className=" overflow-hidden rounded-lg flex">
                         <input 
                             placeholder="Search" 
-                            className={` font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-2 px-4 outline-none w-full text-black placeholder-opacity-26 bg-transparent focus:border-borderC input-with-shadow `}
+                            className={` font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-1 px-4 outline-none w-full text-black placeholder-opacity-26 bg-transparent focus:border-borderC input-with-shadow `}
                             name="text" 
                             type="text" 
                         />

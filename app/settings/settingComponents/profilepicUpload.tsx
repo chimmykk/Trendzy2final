@@ -104,7 +104,7 @@ export default function ProfileUpload({ profileImg, objectId }: { profileImg: an
                     width={1000}
                     height={1000}
                     alt="Profile Picture"
-                    className="w-full h-full rounded-full"
+                    className="w-full h-full object-cover object-center rounded-full"
                 />
                 ) : (
                 session?.user?.image ? (
