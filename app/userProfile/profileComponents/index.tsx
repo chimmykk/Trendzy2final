@@ -106,7 +106,7 @@ export default function ProfileContainer({profileImg, session}: ProfileContainer
                 
                 <ProfileItems activeTab={activeTab} onTabClick={handleTabClick} />
             </div> 
-            <ItemContents activeTab={activeTab}/>
+            <ItemContents name={user.userName} activeTab={activeTab}/>
         </main>
     )
 }

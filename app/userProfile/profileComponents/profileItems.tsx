@@ -1,5 +1,4 @@
 
-import Link from "next/link"
 
 export default function ProfileItems({ activeTab, onTabClick }: {activeTab: string, onTabClick: (tab:string) => void}){
 
@@ -9,40 +8,44 @@ export default function ProfileItems({ activeTab, onTabClick }: {activeTab: stri
         <div className="p-4 flex justify-start font-semibold items-center">
           <ul className="flex gap-8 text-gray-600">
             <li>
-              <Link
-                href="/"
+              <p
                 onClick={() => onTabClick('About')}
-                className={`${activeTab === 'About' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} pb-3`}
+                className={`${activeTab === 'About' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} cursor-pointer pb-3`}
               >
                 About
-              </Link>
+              </p>
             </li>
             <li>
-              <Link
-                href="/"
+              <p
+                onClick={() => onTabClick('Livestreams')}
+                className={`${activeTab === 'Livestreams' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} cursor-pointer pb-3`}
+              >
+                Livestreams
+              </p>
+            </li>
+            <li>
+              <p
                 onClick={() => onTabClick('Products')}
-                className={`${activeTab === 'Products' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} pb-3`}
+                className={`${activeTab === 'Products' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} cursor-pointer pb-3`}
               >
                 Products
-              </Link>
+              </p>
             </li>
             <li>
-              <Link
-                href="/"
+              <p
                 onClick={() => onTabClick('Schedule')}
-                className={`${activeTab === 'Schedule' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} pb-3`}
+                className={`${activeTab === 'Schedule' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} cursor-pointer pb-3`}
               >
                 Schedule
-              </Link>
+              </p>
             </li>
             <li>
-              <Link
-                href="/"
+              <p
                 onClick={() => onTabClick('Reviews')}
-                className={`${activeTab === 'Reviews' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} pb-3`}
+                className={`${activeTab === 'Reviews' ? 'hover:text-bgGreen border-b-4 border-borderC text-bgGreen' : 'hover:text-bgGreen'} cursor-pointer pb-3`}
               >
                 Reviews
-              </Link>
+              </p>
             </li>
           </ul>
         </div>

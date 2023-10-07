@@ -54,7 +54,7 @@ export default async function ProfilePage() {
   
 
   return (
-    <div className=" bg-white  ">
+    <div className=" bg-[#f7f7f8]  ">
       <ProfileContainer profileImg={profileImg} session={session}/>
     </div>
   );

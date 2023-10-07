@@ -97,12 +97,12 @@ export default function ProfileUpload({ profileImg, objectId }: { profileImg: an
               <div className="bg-white border rounded-lg p-4 mt-4">
               <h3 className="text-lg font-semibold">Profile Picture</h3>
               <div className="mt-2 flex items-center">
-                <div className="w-28 h-28 bg-gray-400 rounded-full mr-4">
+                <div className=" w-24 h-24 md:w-28 md:h-28 bg-gray-400 rounded-full mr-4">
                 {profileImage ? ( 
                 <Image
                     src={`data:image/jpeg;base64,${profileImage}`}
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
                     alt="Profile Picture"
                     className="w-full h-full object-cover object-center rounded-full"
                 />
@@ -110,8 +110,8 @@ export default function ProfileUpload({ profileImg, objectId }: { profileImg: an
                 session?.user?.image ? (
                     <Image
                     src={session?.user?.image}
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
                     alt="Default Profile Picture"
                     className="w-full h-full rounded-full"
                     />

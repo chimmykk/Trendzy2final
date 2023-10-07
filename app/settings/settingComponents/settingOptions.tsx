@@ -26,12 +26,12 @@ const SettingOptions = (
   };
 
   return (
-    <div className="p-10  bg-bgGray">
+    <div className=" p-4 md:p-10  bg-[#f7f7f8]">
       <h1 className="text-4xl font-bold">Settings</h1>
-      <div className="flex border-b gap-6 pb-2 text-lg border-gray-300 mt-4">
+      <div className="flex flex-col md:flex-row border-b gap-6 pb-2 text-lg border-gray-300 mt-4">
         <div
           className={`cursor-pointer ${
-            activeItem === 'Profile' ? 'text-green-500 ' : 'text-gray-600'
+            activeItem === 'Profile' ? 'text-green-500 border-b border-borderC w-fit' : 'text-gray-600'
           }`}
           onClick={() => handleClick('Profile')}
         >
@@ -39,7 +39,7 @@ const SettingOptions = (
         </div>
         <div
           className={`cursor-pointer ${
-            activeItem === 'Shipping Information' ? 'text-green-500 ' : 'text-gray-600'
+            activeItem === 'Shipping Information' ? 'text-green-500 border-b border-borderC w-fit' : 'text-gray-600'
           }`}
           onClick={() => handleClick('Shipping Information')}
         >
@@ -47,7 +47,7 @@ const SettingOptions = (
         </div>
         <div
           className={`cursor-pointer ${
-            activeItem === 'Payment Information' ? 'text-green-500 ' : 'text-gray-600'
+            activeItem === 'Payment Information' ? 'text-green-500 border-b border-borderC w-fit' : 'text-gray-600'
           }`}
           onClick={() => handleClick('Payment Information')}
         >
@@ -55,7 +55,7 @@ const SettingOptions = (
         </div>
         <div
           className={`cursor-pointer ${
-            activeItem === "Seller's Info" ? 'text-green-500 ' : 'text-gray-600'
+            activeItem === "Seller's Info" ? 'text-green-500 border-b border-borderC w-fit' : 'text-gray-600'
           }`}
           onClick={() => handleClick("Seller's Info")} // Handle click for Seller's Info
         >
@@ -63,7 +63,7 @@ const SettingOptions = (
         </div>
         <div
           className={`cursor-pointer ${
-            activeItem === "Security and Privacy" ? 'text-green-500 ' : 'text-gray-600'
+            activeItem === "Security and Privacy" ? 'text-green-500 border-b border-borderC w-fit' : 'text-gray-600'
           }`}
           onClick={() => handleClick("Security and Privacy")} // Handle click for Seller's Info
         >

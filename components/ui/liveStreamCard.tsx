@@ -23,7 +23,7 @@ export default function LiveStreamCard({
   category
 }: LiveStreamCardProps) {
   return (
-    <Link href={href} className='flex flex-col gap-3'>
+    <Link href={href} className='flex flex-col justify-center items-center gap-3 shadow-lg overflow-hidden '>
       <div className=' w-[160px] md:w-[240px] h-[260px] md:h-[260px] relative '>
         {/* Image */}
         <Image
@@ -31,7 +31,7 @@ export default function LiveStreamCard({
           width={1000}
           height={1000}
           alt='Live Stream Thumbnail'
-          className='w-full h-full object-cover rounded-lg'
+          className='w-full h-full object-cover '
         />
         <div className='bg-red-600 px-3 text-sm font-bold text-white py-1 rounded-md inline-block absolute top-2 left-2'>LIVE</div>
         <h1 className='absolute pl-2 bottom-3 right-2 text-sm p-1 bg-[#000000] rounded-md bg-opacity-50 text-white'>{viewerCount} viewers</h1>

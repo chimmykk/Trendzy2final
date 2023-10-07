@@ -28,7 +28,7 @@ export default function ProfileSetting({profileImg,profileBanner, objectId}: {pr
   };
 
     return(
-        <div className='sm:w-[70%] p-4'>
+        <div className='sm:w-[70%]'>
 
           {/* Profile Picture Section */}
           <ProfileUpload profileImg={profileImg} objectId={objectId}/>
