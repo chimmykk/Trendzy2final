@@ -53,7 +53,7 @@ body::-webkit-scrollbar-track {
   --bg: #2F4858;
   --hover-bg: #ff90e8;
   --hover-text: #000;
-  padding: 0.8em 2em;
+  /* padding: 0.8em 2em; */
   transition: 0.2s;
 }
 
@@ -295,6 +295,27 @@ body::-webkit-scrollbar-track {
 
 .overflow-y-scroll::-webkit-scrollbar-track {
   background-color: transparent; /* Color of the track (the non-draggable part) */
+}
+
+/* inspired form gumroad website */
+.card {
+  --bg: #25D366 ;
+  --hover-bg: #ff90e8;
+  --hover-text: #000;
+  /* padding: 0.8em 2em; */
+  transition: 0.2s;
+}
+
+.card:hover {
+  /* color: var(--hover-text); */
+  transform: translate(-0.25rem,-0.25rem);
+  /* background: var(--hover-bg); */
+  box-shadow: 0.3rem 0.3rem var(--bg);
+}
+
+.card:active {
+  transform: translate(0);
+  box-shadow: none;
 }
 
 

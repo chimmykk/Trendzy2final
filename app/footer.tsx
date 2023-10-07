@@ -3,7 +3,18 @@ import Link from "next/link";
 export default function Footer() {
     return(
 
-    <footer className=" bg-bgGray">
+    <footer className=" bg-[#ebebec]">
+        <div className="flex items-center justify-between px-2 md:px-24 py-3 bg-bgGreen ">
+            <h1 className="text-xl text-[#1E1F22] font-semibold">
+                Join the Trendzy community! <span className="hidden md:inline">Buy or Sell Live anywhere</span> 
+            </h1>
+            <Link
+                href={'/register'}
+                className="  text-lg rounded-md text-bgDark font-semibold bg-white px-3 py-2"
+                >
+                Sell Live
+            </Link>
+        </div>
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="flex justify-center text-bgGreen">
                 <h1 className=" text-4xl font-bold">trendzy</h1>

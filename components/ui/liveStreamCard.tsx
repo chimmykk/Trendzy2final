@@ -23,7 +23,7 @@ export default function LiveStreamCard({
   category
 }: LiveStreamCardProps) {
   return (
-    <Link href={'/'} className='flex flex-col  gap-3 shadow-lg overflow-hidden rounded-md md:rounded-none '>
+    <Link href={'/'} className='card flex flex-col  gap-3 shadow-lg overflow-hidden rounded-md md:rounded-none '>
       <div className=' w-full  h-[260px] md:h-[260px] relative '>
         {/* Image */}
         <Image
