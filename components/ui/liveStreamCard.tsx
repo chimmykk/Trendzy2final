@@ -24,7 +24,7 @@ export default function LiveStreamCard({
 }: LiveStreamCardProps) {
   return (
     <Link href={href} className='flex flex-col justify-center items-center gap-3 shadow-lg overflow-hidden '>
-      <div className=' w-[160px] md:w-[240px] h-[260px] md:h-[260px] relative '>
+      <div className=' w-full md:w-[240px] h-[260px] md:h-[260px] relative '>
         {/* Image */}
         <Image
           src={imageSrc}
@@ -40,14 +40,14 @@ export default function LiveStreamCard({
         <div className='w-12 h-12 rounded-full'>
             <Image src={profileImg} width={1000} height={1000} alt='pic' className='w-full h-full rounded-full'/>
         </div>
-        <div className=' text-sm md:text-base w-[108px] md:w-[188px]'>
+        <div className=' text-sm md:text-base md:w-[188px]'>
             <h1 className='overflow-hidden whitespace-nowrap truncate'>
                 {name}
             </h1>
             <h1 className='bg-bgGreen w-fit px-2 text-xs text-white rounded-xl '>
                 {category}
             </h1>
-            <div className='h-12'>
+            <div className='h-12 border border-red-500'>
                 <h1 className='text-base text-black font-semibold overflow-hidden whitespace-normal truncate leading-tight md:leading-normal'>
                     {streamTitle}
                 </h1>

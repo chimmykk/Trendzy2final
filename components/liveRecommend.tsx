@@ -80,7 +80,7 @@ export default function RecommendLive() {
   ];
 
   return (
-    <div className="my-4 mt-8 px-5 sm:px-6 lg:px-4">
+    <div className="my-4 mt-8 px-1 sm:px-4 ">
       <div className=" text-lg sm:text-2xl font-semibold text-left flex gap-2">
         <Link href={'/'} className="text-bgGreen">
           Live channels
