@@ -70,7 +70,7 @@ export default function RecommendLive() {
       href: './livestream/2',
       imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
       name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
+      streamTitle: 'another stream bro pls enjoy watching',
       viewerCount: '2.5k',
       profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
       category: 'gaming',
