@@ -40,16 +40,16 @@ export default  function Navbar() {
     };
     const pathname = usePathname();
 
-    if (status === "loading") {
-        return(
-        <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
-            <div className="container ">
-                <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
-                <div className="loader"></div>
-            </div>
-        </div>
-        ) 
-      }
+    // if (status === "loading") {
+    //     return(
+    //     <div className={`h-screen fixed z-50 w-full bg-white flex items-center justify-center`}>
+    //         <div className="container ">
+    //             <h1 className="fixed top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-bgGreen text-white rounded-full px-3 py-1 text-7xl">tr</h1>
+    //             <div className="loader"></div>
+    //         </div>
+    //     </div>
+    //     ) 
+    //   }
 
   const userMenuItems = [
     { text: 'My Profile', icon: <FiUser />, linkTo: '/userProfile' },

@@ -5,8 +5,9 @@ import * as Yup from "yup";
 import Visibility from "./Visibility";
 import Details from "./Details";
 import { FaEye, FaInfo } from 'react-icons/fa'
-import { FormikProps } from "formik";
+import { FormikProps, FormikHelpers } from "formik";
 import { FormikValues } from "formik";
+import { useSession } from "next-auth/react";
 
 
 interface RenderProps extends FormikProps<FormikValues> {
@@ -38,15 +39,65 @@ interface RenderProps extends FormikProps<FormikValues> {
 
 
 export default function App() {
+    const { data: session } = useSession();
+
+  const onSubmit = async (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>) => {
+    const { title, tags, visibility } = values;
+console.log(session?.user?.email);
+console.log(session?.user?.name)
+    // Get the email from the session
+    const email = session?.user?.email;
+    const name  = session?.user?.name
+   
+    const firstWord = name?.split(' ')[0];
+    
+    if (!email) {
+      console.error('No user email found in session.');
+      return;
+    }
+    if (!name) {
+      console.error('No user user found in session.');
+      return;
+    }
+
+    // Construct the request body
+    const requestBody = {
+      title,
+      tags,
+      visibility,
+      email,// Include the email in the request body
+      name:firstWord // Include the name in the request body
+    };
+
+    // Display alert with form values
+    const combinedMessage = `Form Values: ${JSON.stringify({ ...values, Email: email, Name :name }, null, 2)}`;
+    console.log(combinedMessage); // append email+form value
+
+    // Make a POST request to the API endpoint
+    try {
+      const response = await fetch('https://trendzy2.vercel.app/api/flow/postget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (response.ok) {
+        alert('Channel data updated successfully');
+      } else {
+        alert('Failed to update channel data');
+      }
+    } catch (error) {
+      console.error('Error updating channel data:', error);
+      alert('An error occurred while updating channel data');
+    }
+  };
   return (
     <div className=" relative bg-[#1E1F22] text-white my-[41.4px] h-[480px]  overflow-y-scroll  overflow-x-hidden w-[800px] mx-auto rounded-lg shadow-lg">
       <FormikWizard
         initialValues={{}}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2));
-          console.log(values)
-            
-        }}
+        onSubmit={onSubmit}
         validateOnNext
         activeStepIndex ={0}
         steps={[
@@ -96,18 +147,18 @@ export default function App() {
 
             return (
               <>
-                <div className=" overflow-y-scroll sticky top-0 bg-[#1E1F22] text-white w-[800px] mx-auto rounded-lg z-0 shadow-lg">
-                      <div className={`border-b border-[#444458] py-3 z-10`}>
-                          <h1 className="px-6 font-semibold text-xl">Create stream</h1>   
-                      </div>   
-                          <div className="flex items-center px-40 py-8">
-                            <div className={`flex items-center text-bgGreen relative ${currentStepIndex === 0 ? 'font-medium' : ''}`}>
-                              <div className={`absolute top-0 -ml-10 text-center -mt-6 w-32 text-xs uppercase ${currentStepIndex === 0 ? 'text-bgGreen' : 'text-white'}`}>Details</div>
-                              {currentStepIndex === 0 ? (
-                    <div className="rounded-full transition duration-500 ease-in-out h-8 w-8 py-3 border-2 bg-bgGreen border-borderC">
-                    </div>
-                      ) : (
-                        <div className="rounded-full transition duration-500 ease-in-out h-8 w-8 border-2 bg-bgGreen border-borderC flex items-center justify-center">
+                  <div className=" overflow-y-scroll sticky top-0 bg-[#1E1F22] text-white w-[800px] mx-auto rounded-lg z-0 shadow-lg">
+                        <div className={`border-b border-[#444458] py-3 z-10`}>
+                            <h1 className="px-6 font-semibold text-xl">Create stream</h1>   
+                        </div>   
+                            <div className="flex items-center px-40 py-8">
+                              <div className={`flex items-center text-bgGreen relative ${currentStepIndex === 0 ? 'font-medium' : ''}`}>
+                                <div className={`absolute top-0 -ml-10 text-center -mt-6 w-32 text-xs uppercase ${currentStepIndex === 0 ? 'text-bgGreen' : 'text-white'}`}>Details</div>
+                                {currentStepIndex === 0 ? (
+                      <div className="rounded-full transition duration-500 ease-in-out h-8 w-8 py-3 border-2 bg-bgGreen border-borderC">
+                      </div>
+                        ) : (
+                          <div className="rounded-full transition duration-500 ease-in-out h-8 w-8 border-2 bg-bgGreen border-borderC flex items-center justify-center">
                           <span className="text-white">&#10003;</span>
                         </div>
                       )}
