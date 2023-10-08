@@ -71,7 +71,7 @@ const StartStream: React.FunctionComponent = () => {
       {videocall && channelCreated ? (
         <>
           <h2 className="heading">
-            You're <span className="person">an Host Now </span>
+            You are <span className="person">an Host Now </span>
           </h2>
           <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
           <App channel={channel} uid={uid} />

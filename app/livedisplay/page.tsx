@@ -164,7 +164,7 @@ const Audience: React.FunctionComponent = () => {
       {videocall ? (
         <>
           <h2 className="heading">
-            You're <span className="person">an audience now</span>
+            You are<span className="person">an audience now</span>
           </h2>
           <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
           <div className="nav">
