@@ -1,4 +1,3 @@
-
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
 import AgoraUIKit, { PropsInterface, layout } from 'agora-react-uikit';
@@ -86,22 +85,38 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   );
 };
 
-interface AudienceProps {
-  channelName: string; // Define the type of channelName prop
-}
-
-const Audience: React.FC<AudienceProps> = ({channelName}) => {
+const Audience: React.FunctionComponent = () => {
   const [videocall, setVideocall] = useState(false);
   const [isPinned, setPinned] = useState(false);
+  const [channelNames, setChannelNames] = useState<string[]>([]);
   const [channelsMap, setChannelsMap] = useState<Map<string, any>>(new Map());
+  const [selectedChannel, setSelectedChannel] = useState<string>('');
   const [uid, setUid] = useState('');
 
+  const fetchAllChannels = async () => {
+    try {
+      const response = await fetch('https://trendzy2.vercel.app/api/flow/postget');
+      if (!response.ok) {
+        throw new Error('Failed to fetch channels.');
+      }
+      const jsonData = await response.json();
+  
+      // Extract channel names from the response data
+      const channelNames = jsonData.data.map((item: { userlive: { channelName: any; }; }[]) => item[0].userlive.channelName);
+  
+      setChannelNames(channelNames);
+    } catch (error) {
+      console.error('Error fetching channels:', error);
+    }
+  };
+
+
   useEffect(() => {
-    handleJoinChannel(channelName)
+    fetchAllChannels();
   }, []);
 
   const handleJoinChannel = async (channelName: string) => {
-    // setSelectedChannel(channelName);
+    setSelectedChannel(channelName);
 
     // Check if the channel already exists
     if (channelsMap.has(channelName)) {
@@ -130,7 +145,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: channelName,
+      channel: selectedChannel,
       role: 'audience',
       layout: isPinned ? layout.pin : layout.grid,
     },
@@ -146,8 +161,10 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
 
   return (
     <div className="container">
+      {videocall ? (
+        <>
           <h2 className="heading">
-            You're <span className="person">an audience now</span>
+            You are<span className="person">an audience now</span>
           </h2>
           <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
           <div className="nav">
@@ -155,7 +172,25 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
               Change Layout
             </button>
           </div>
-          <App channel={channelsMap.get(channelName)} uid={uid} />
+          <App channel={channelsMap.get(selectedChannel)} uid={uid} />
+        </>
+      ) : (
+        <div>
+          <h2>Select a channel to join:</h2>
+          {channelNames && channelNames.length > 0 ? (
+            <div>
+              {channelNames.map((channelName, index) => (
+                <div key={index}>
+                  <span>hi {channelName}</span>
+                  <button onClick={() => handleJoinChannel(channelName)}>Join</button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No channels available</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
