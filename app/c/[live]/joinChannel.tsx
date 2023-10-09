@@ -98,7 +98,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
 
   useEffect(() => {
     handleJoinChannel(channelName)
-  }, []);
+  }, [channelName]);
 
   const handleJoinChannel = async (channelName: string) => {
     // setSelectedChannel(channelName);
@@ -147,7 +147,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   return (
     <div className="container">
           <h2 className="heading">
-            You're <span className="person">an audience now</span>
+            You are <span className="person">an audience now</span>
           </h2>
           <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
           <div className="nav">
