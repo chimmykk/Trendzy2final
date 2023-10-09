@@ -1,18 +1,18 @@
 
-// "use client"
+"use client"
 
-// import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic'
 
-// const Audience = dynamic(
-//     () => import('./joinChannel'),
-//     {ssr: false})
+const Audience = dynamic(
+    () => import('./joinChannel'),
+    {ssr: false})
 
-// const IndexPage = () => {
-//     return (
-//         <>
-//             <Audience/>
-//         </>
-//     )
-// }
+const IndexPage = ({channelName}: {channelName: string}) => {
+    return (
+        <>
+            <Audience channelName={channelName}/>
+        </>
+    )
+}
 
-// export default IndexPage
+export default IndexPage

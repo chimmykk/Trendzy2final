@@ -1,4 +1,4 @@
-import Audience from "./joinChannel";
+import Audience from "./indexChannel";
 
 interface UserLive {
   userlive: {
