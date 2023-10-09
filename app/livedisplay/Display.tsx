@@ -103,6 +103,7 @@ const Audience: React.FunctionComponent = () => {
   
       // Extract channel names from the response data
       const channelNames = jsonData.data.map((item: { userlive: { channelName: any; }; }[]) => item[0].userlive.channelName);
+    console.log(channelNames)
   
       setChannelNames(channelNames);
     } catch (error) {

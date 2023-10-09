@@ -36,9 +36,9 @@ export default function ProfileContainer({profileImg, session}: ProfileContainer
     return(
         <main>
             <div className=" px-80 border-b">
-                <div className="bg-cover bg-center h-56 relative"> 
+                <div className="bg-cover bg-center  h-56 relative"> 
                 <div
-                    className="absolute inset-0 flex items-end rounded-bl-lg rounded-br-lg"
+                    className="absolute inset-0 flex items-end bg-white rounded-bl-lg rounded-br-lg"
                     style={{ 
                     backgroundImage: `url(data:image/jpeg;base64,${profileImg})`,
                     backgroundRepeat: 'no-repeat',
@@ -48,7 +48,7 @@ export default function ProfileContainer({profileImg, session}: ProfileContainer
                 >
                     {/* Profile Image */}
                     <div
-                    className="relative top-[60%] transform -translate-y-[50%] w-32 h-32 left-3"
+                    className="relative top-[60%] transform -translate-y-[50%] bg-white shadow-md z-50 rounded-full w-32 h-32 left-3"
                     >
                         {profileImg ? ( // Check if profileImage is available
                         <Image

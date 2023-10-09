@@ -1,29 +1,18 @@
+import { json } from "stream/consumers";
 
 const fetchChannelName = async () => {
-  try {
-    const response = await fetch('https://trendzy2.vercel.app/api/flow/postget');
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error('Response is not in JSON format');
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    // Handle the error gracefully, e.g., return a default value or show an error message.
-    return { data: [] }; // Return an empty array or a suitable default value.
-  }
+      const response = await fetch('https://trendzy2.vercel.app/api/flow/postget');
+      const jsonData = await response.json();
+      return jsonData
 };
 
 export default async function ProfilePage() {
-  const BannerData = await fetchChannelName();
-  const channelNames: string[] = BannerData.data.map((item: { userlive: { channelName: string } }) => item.userlive.channelName);
+  const jsonData = await fetchChannelName();
+  console.log(jsonData)
+  
+        const channelNames = jsonData.data.map((item: { userlive: { channelName: any; }; }[]) => item[0].userlive.channelName);
+
+const jsonDataString = JSON.stringify(jsonData, null, 2);
 
   return (
     <div>
@@ -32,6 +21,7 @@ export default async function ProfilePage() {
           <span>hi {channelName}</span>
         </div>
       ))}
+       <pre>{jsonDataString}</pre>
     </div>
   );
 }
