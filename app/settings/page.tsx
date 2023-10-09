@@ -6,7 +6,7 @@ import SettingOptions from "./settingComponents/settingOptions";
 const getobjectId = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email || "Email not found"; 
-  const res = await fetch(`https://trendzy2.vercel.app/api/fetch/route?email=${email}`, {
+  const res = await fetch(`http://localhost:3000/api/fetch/route?email=${email}`, {
     next: {revalidate: 0}
   })
   const data = await res.json();
@@ -16,7 +16,7 @@ const getobjectId = async () => {
 const getSellerInfo = async () => {
   // const ObjectData = await getobjectId();
   const objectId = await getobjectId()
-  const res = await fetch(`https://trendzy2.vercel.app/api/fetch/fetchaddress?objectId=${objectId}`, {
+  const res = await fetch(`http://localhost:3000/api/fetch/fetchaddress?objectId=${objectId}`, {
     next: {revalidate: 0}
   });
   const data = await res.json();
@@ -27,7 +27,7 @@ const fetchProfileImage = async () => {
   try {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email || "Email not found"; 
-    const res = await fetch(`https://trendzy2.vercel.app/api/upload/image?email=${email}`);
+    const res = await fetch(`http://localhost:3000/api/upload/image?email=${email}`);
 
     if (!res.ok) {
       throw new Error(`Error fetching profile image: ${res.statusText}`);
@@ -46,7 +46,7 @@ const fetchProfileBanner = async () => {
     try {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email || "Email not found"; 
-    const res = await fetch(`https://trendzy2.vercel.app/api/upload/banner?email=${email}`)
+    const res = await fetch(`http://localhost:3000/api/upload/banner?email=${email}`)
     if (!res.ok) {
       throw new Error(`Error fetching profile image: ${res.statusText}`);
     }

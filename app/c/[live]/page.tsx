@@ -9,7 +9,7 @@ interface UserLive {
 
 
 export async function generateStaticParams() {
-  const response = await fetch('https://trendzy2.vercel.app/api/flow/postget');
+  const response = await fetch('https://apifetchchannel.onrender.com');
   const data = await response.json();
 
   return data.data.map((item: UserLive[]) => ({
