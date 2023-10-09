@@ -53,7 +53,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   };
 
   return (
-    <div className="panel">
+    <div className="w-1/2">
       <div className="messages" ref={messagesRef}>
         <div className="inner">
           {messages.map((message, idx) => (
@@ -101,9 +101,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   }, [channelName]);
 
   const handleJoinChannel = async (channelName: string) => {
-    // setSelectedChannel(channelName);
-
-    // Check if the channel already exists
+    
     if (channelsMap.has(channelName)) {
       const channelInstance = channelsMap.get(channelName);
       setVideocall(true);
@@ -134,28 +132,20 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
       role: 'audience',
       layout: isPinned ? layout.pin : layout.grid,
     },
-    callbacks: {
-      EndCall: () => {
-        setVideocall(false);
-      },
-    },
+    
     styleProps: {
-      localBtnContainer: { backgroundColor: 'green' },
+      localBtnContainer: { backgroundColor: 'transparent' },
     },
   };
 
   return (
-    <div className="container">
-          <h2 className="heading">
-            You are <span className="person">an audience now</span>
-          </h2>
-          <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
-          <div className="nav">
-            <button className="btn" onClick={() => setPinned(!isPinned)}>
-              Change Layout
-            </button>
+    <div >
+          
+          <div className=' h-screen w-[480px] flex justify-center'>
+              <AgoraUIKit rtcProps={props.rtcProps}  styleProps={props.styleProps} />
           </div>
-          <App channel={channelsMap.get(channelName)} uid={uid} />
+{/*           
+          <App channel={channelsMap.get(channelName)} uid={uid} /> */}
     </div>
   );
 };

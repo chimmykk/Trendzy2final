@@ -7,6 +7,7 @@ import {
 } from "../ui/Tooltip";
 import Link from "next/link";
 import { Icons } from "../ui";
+import Audience from "../.././c/[live]/indexChannel";
 
 type Props = {
   // You can define any props you need here
@@ -53,14 +54,12 @@ export default function StreamPlayerWrapper({}: Props) {
   return (
     <TooltipProvider delayDuration={300}>
       <div className="relative flex aspect-video bg-black" ref={playerEl}>
-      <video
-  ref={videoEl}
-  
-  style={{ height: '560px' }}
-  
->
-  Your browser does not support the video tag.
-</video>
+            <div
+            className=" h-[560px] flex justify-center items-center"
+        
+      >
+      <Audience channelName="Thotjj"/>
+      </div>
 
         <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">
           <div className="absolute bottom-0 flex h-14 w-full items-center justify-between bg-gradient-to-t from-black px-4">
