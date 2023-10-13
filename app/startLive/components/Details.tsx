@@ -5,25 +5,64 @@ import { Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import Image from 'next/image';
 import { AiOutlineDelete } from 'react-icons/ai'; // Import delete icon from react-icons
+import { useFormikContext } from 'formik';
+import Resizer from 'react-image-file-resizer'; // Import the Resizer function
 
 
 const Details = (props: any) => {
     const { errors, values } = props;
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.currentTarget.files?.[0];
+    const MAX_FILE_SIZE_THRESHOLD = 300 * 1024; // 200KB
 
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target) {
-           const result = e.target.result as string;
-          setThumbnailPreview(result);
-        }
-      };
-      reader.readAsDataURL(selectedFile);
+  const { setFieldValue } = useFormikContext();
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  
+
+  if (file) {
+    try {
+      if (file.size > MAX_FILE_SIZE_THRESHOLD) {
+        // Compress the image if it exceeds the threshold
+        Resizer.imageFileResizer(
+          file,
+          200, // Resize to 200px height
+          200, // Resize to 200px width
+          'JPEG', // Format
+          75, // Quality (75%)
+          0, // Rotation
+          async (uri: any) => {
+            const compressedBase64String = uri.split(',')[1];
+
+            setFieldValue('thumbnail', compressedBase64String);
+
+            // Update the thumbnailPreview state
+            setThumbnailPreview(compressedBase64String);
+          }
+        );
+      } else {
+        // Upload the original image if it's within the threshold
+        const reader = new FileReader();
+        reader.onload = async () => {
+          if (typeof reader.result === 'string') {
+            const base64String = reader.result.split(',')[1];
+
+            setFieldValue('thumbnail', base64String);
+
+            // Update the thumbnailPreview state
+            setThumbnailPreview(base64String);
+          } else {
+            console.error('Error reading file as a string.');
+          }
+        };
+
+        reader.readAsDataURL(file);
+      }
+    } catch (error) {
+      console.error('Error uploading thumbnail image:', error);
     }
-  };
+  }
+};
 
   const removeThumbnail = () => {
     setThumbnailPreview(null);
@@ -84,7 +123,7 @@ const Details = (props: any) => {
               <ErrorMessage name="category" component="p" className="text-red-500 text-xs italic" />
             </div>
 
-<div className="mb-4">
+      <div className="mb-4">
         <label htmlFor="thumbnail" className="block text-sm font-bold mb-2">
           Thumbnail:
         </label>
@@ -94,7 +133,7 @@ const Details = (props: any) => {
           <Image
             width={1000}
             height={1000}
-            src={thumbnailPreview}
+            src={`data:image/jpeg;base64,${thumbnailPreview}`}
             alt="Uploaded Thumbnail"
             className="w-48 max-h-48 mx-auto object-contain"
           />

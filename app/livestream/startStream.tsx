@@ -39,7 +39,7 @@ const StartStream: React.FunctionComponent = () => {
 
     },
     styleProps: {
-      localBtnContainer: { backgroundColor: 'green' },
+      localBtnContainer: { backgroundColor: 'transparent' },
     },
   };
 

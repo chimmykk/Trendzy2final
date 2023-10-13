@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     console.log('Received request:', req.method, req.url);
 
     if (req.method === 'POST') {
-      const { channelName, email, title, tags, visibility, name } = req.body;
+      const { channelName, email, title, tags, visibility, name, thumbnail } = req.body;
       const copiedChannelName = name;
       console.log('Received channel name:', channelName);
       console.log('Received title', title);
@@ -29,6 +29,7 @@ export default async function handler(req, res) {
         title,
         tags,
         visibility,
+        thumbnail
       };
 
       const logData = {

@@ -42,9 +42,10 @@ export default function App() {
     const { data: session } = useSession();
 
   const onSubmit = async (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>) => {
-    const { title, tags, visibility } = values;
+    const { title, tags, visibility, thumbnail } = values;
 console.log(session?.user?.email);
 console.log(session?.user?.name)
+console.log(thumbnail)
     // Get the email from the session
     const email = session?.user?.email;
     const name  = session?.user?.name
@@ -66,6 +67,7 @@ console.log(session?.user?.name)
       tags,
       visibility,
       email,// Include the email in the request body
+      thumbnail,
       name:firstWord // Include the name in the request body
     };
 
@@ -75,7 +77,7 @@ console.log(session?.user?.name)
 
     // Make a POST request to the API endpoint
     try {
-      const response = await fetch('https://apifetchchannel.onrender.com', {
+      const response = await fetch('http://localhost:3000/api/flow/postget', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -104,7 +106,7 @@ console.log(session?.user?.name)
           {
             component: Details,
             validationSchema: Yup.object().shape({
-                title: Yup.string().required('Title is required'),
+              title: Yup.string().required('Title is required'),
               tags: Yup.string(),
               goLiveWith: Yup.string().oneOf(['webcam', 'obs'], 'Invalid option'),
               category: Yup.string().oneOf(['men', 'women'], 'Invalid option'),

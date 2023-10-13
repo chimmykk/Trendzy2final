@@ -1,8 +1,7 @@
-
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
-import AgoraUIKit, { PropsInterface, layout } from 'agora-react-uikit';
-import AgoraRTM from 'agora-rtm-sdk';
+import AgoraUIKit, { icons, PropsInterface, layout, BtnTemplate, VideocallUI } from 'agora-react-uikit';
+
 
 const APP_ID = 'c4d6e23287ed4da6b6831383945f9ed2';
 
@@ -28,7 +27,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
       channel.on('ChannelMessage', handleChannelMessage);
     }
 
-    return () => {
+  return () => {
       if (channel) {
         channel.off('ChannelMessage', handleChannelMessage);
       }
@@ -53,7 +52,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   };
 
   return (
-    <div className="w-1/2">
+    <div className="panel">
       <div className="messages" ref={messagesRef}>
         <div className="inner">
           {messages.map((message, idx) => (
@@ -75,7 +74,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
       </div>
 
       <form onSubmit={sendMessage}>
-        <input
+      <input
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type your message"
@@ -86,74 +85,41 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   );
 };
 
-interface AudienceProps {
-  channelName: string; // Define the type of channelName prop
-}
-
-const Audience: React.FC<AudienceProps> = ({channelName}) => {
+const Audience: React.FunctionComponent = () => {
   const [videocall, setVideocall] = useState(false);
   const [isPinned, setPinned] = useState(false);
   const [channelsMap, setChannelsMap] = useState<Map<string, any>>(new Map());
+  const [selectedChannel, setSelectedChannel] = useState<string>('Thotjj');
   const [uid, setUid] = useState('');
-
-  useEffect(() => {
-    handleJoinChannel(channelName)
-  }, [channelName]);
-
-  const handleJoinChannel = async (channelName: string) => {
-    
-    if (channelsMap.has(channelName)) {
-      const channelInstance = channelsMap.get(channelName);
-      setVideocall(true);
-      setUid(String(Math.floor(Math.random() * 1000000)));
-      await channelInstance.join();
-    } else {
-      const client = AgoraRTM.createInstance(APP_ID);
-      const newUid = String(Math.floor(Math.random() * 1000000));
-      const trimmedChannelName = channelName.trim();
-
-      try {
-        await client.login({ uid: newUid, token: undefined });
-        const newChannel = client.createChannel(trimmedChannelName);
-        await newChannel.join();
-        setChannelsMap(new Map(channelsMap.set(channelName, newChannel)));
-        setVideocall(true);
-        setUid(newUid);
-      } catch (error) {
-        console.error('Error creating/joining the channel:', error);
-      }
-    }
-  };
 
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: channelName,
+      channel: selectedChannel,
       role: 'audience',
-      layout: isPinned ? layout.pin : layout.grid,
+      layout:  layout.grid,
     },
-    
+     callbacks: {
+      EndCall: () => setVideocall(false)
+    },
     styleProps: {
-      localBtnContainer: { backgroundColor: 'transparent' },
+      localBtnContainer: { display : 'none' },
     },
-
-    callbacks : {
-        EndCall: () => setVideocall(false),
-    },
-
-    rtmProps : {},
   };
 
   return (
-    <div >
-          
-            <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
-            <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} rtmProps={props.rtmProps} styleProps={props.styleProps} />
-        </div>
-{/*           
-          <App channel={channelsMap.get(channelName)} uid={uid} /> */}
+    
+      <div >
+      {videocall ? (
+        <AgoraUIKit
+            rtcProps={props.rtcProps}
+            callbacks={props.callbacks}
+            styleProps={props.styleProps} />
+      ) : (
+          null
+        )}
     </div>
-  );
-};
+  )
+}
 
-export default Audience;
+export default AgoraUIKit

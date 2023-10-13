@@ -39,16 +39,10 @@ export default function Home() {
       </h1>
       <div className="flex  md:mt-7 items-center content-center gap-4 text-lg font-semibold px-2 md:px-0 justify-center">
         <Link
-          href={'/livestream'}
-          className=" button px-4 py-3 bg-[#fff] transition-hover duration-300 border rounded-md md:rounded-lg border-black"
-        >
-          Buy Live
-        </Link>
-        <Link
           href={'/register'}
-          className=" button px-4 py-3 bg-bgGreen transition-hover duration-300 text-white border rounded-md md:rounded-lg border-bgDark hover:border-black"
+          className=" button px-10 py-3 bg-bgGreen transition-hover duration-300 text-bgDark  border rounded-md md:rounded-lg border-bgDark hover:border-black"
         >
-          Sell Live
+          Start Selling
         </Link>
       </div>
     </div>

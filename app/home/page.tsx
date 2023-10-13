@@ -1,16 +1,23 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import LiveStreamCard from "@/components/ui/liveStreamCard";
+import { useSession } from "next-auth/react";
 
 
 function Home() {
 
-const [channels, setChannels] = useState<{ channelName: string; title: string }[]>([]);
+const [channels, setChannels] = useState<{ channelName: string; title: string, thumbnail: string, tags:string }[]>([]);
+
+const {data: session} = useSession()
+
+const sessionProfilePic = session?.user?.image
 
   const fetchAllChannels = async () => {
     try {
-      const response = await fetch('https://apifetchchannel.onrender.com');
+      const response = await fetch('http://localhost:3000/api/flow/postget');
       if (!response.ok) {
         throw new Error('Failed to fetch channels.');
       }
@@ -40,16 +47,16 @@ const [channels, setChannels] = useState<{ channelName: string; title: string }[
         <div className=' py-8 flex flex-col sm:flex-row items-center gap-8 '>
         {
           channels.map((items, index) => (
-            <Link href={`/c/${items.channelName}`} key={index} className=' flex flex-col gap-3 '>
-              <div className='w-[200px] rounded-lg h-[250px] text-white  bg-black relative'>
-                <div className='bg-red-600 px-3 text-sm py-1 rounded-lg inline-block absolute top-2 left-2'>LIVE</div>
-                <h1 className='absolute pl-2 top-3 left-16 text-sm'>1.7k</h1>
-              </div>
-              <div className=' inline-block text-base '>
-                <h1 className='text-base text-black font-bold'>{items.channelName}</h1>
-                <h1>{items.title}</h1>
-              </div>
-            </Link> 
+          <LiveStreamCard
+            key={index} // Make sure to provide a unique key for each component
+            href={`/c/${items.channelName}`}
+            imageSrc={`data:image/jpeg;base64,${items.thumbnail}`}
+            name={items.channelName}
+            streamTitle={items.title}
+            viewerCount={'2k'}
+            profileImg={sessionProfilePic ? `${sessionProfilePic}` : '/circleUser.svg'}
+            category={items.tags}
+          /> 
           ))
         }
         </div>

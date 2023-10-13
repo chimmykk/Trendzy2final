@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // For larger screens, display two cards per row
-        'fluid': 'repeat(auto-fit, minmax(240px, 1fr))',
+        'fluid': 'repeat(auto-fit, minmax(220px, 1fr))',
 
         // For smaller screens (e.g., mobile), display one card per row
         'fluid-mobile': 'repeat(auto-fit, minmax(160px, 1fr))',

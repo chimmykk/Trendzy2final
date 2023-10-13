@@ -23,8 +23,8 @@ export default function LiveStreamCard({
   category
 }: LiveStreamCardProps) {
   return (
-    <Link href={'/'} className='card flex flex-col  gap-3 shadow-lg overflow-hidden rounded-md md:rounded-none '>
-      <div className=' w-full  h-[260px] md:h-[260px] relative '>
+    <Link href={`${href}`} className='card flex flex-col w-[220px] gap-1 shadow-lg md:shadow-none overflow-hidden rounded-md md:rounded-none '>
+      <div className=' w-full shad rounded-md h-[260px] md:h-[260px] relative '>
         {/* Image */}
         <Image
           src={imageSrc}
@@ -37,13 +37,17 @@ export default function LiveStreamCard({
         <h1 className='absolute pl-2 bottom-3 right-2 text-sm p-1 bg-[#000000] rounded-md bg-opacity-50 text-white'>{viewerCount} viewers</h1>
       </div>
       <div className='flex flex-col md:flex-row gap-2 text-base'>
-          <div className=' hidden md:block w-12 h-12 rounded-full'>
-              <Image src={profileImg} width={1000} height={1000} alt='pic' className='w-full h-full rounded-full'/>
+          <div className=' hidden md:block w-8 h-8 rounded-full'>
+              <Image 
+                  src={profileImg}
+                width={200} height={200} alt='pic' className='w-full h-full rounded-full'/>
           </div>
           {/* for mobile */}
           <div className='flex md:hidden gap-2 px-1'>
-            <div className='w-12 h-12 rounded-full'>
-                <Image src={profileImg} width={1000} height={1000} alt='pic' className='w-full h-full rounded-full'/>
+            <div className='w-8 h-8 rounded-full'>
+                <Image 
+                src={profileImg}
+                width={200} height={200} alt='pic' className='w-full h-full rounded-full'/>
             </div>
             <div className=' text-sm md:text-base md:w-[188px]'>
               <h1 className='overflow-hidden whitespace-nowrap truncate'>
@@ -54,22 +58,21 @@ export default function LiveStreamCard({
               </h1>
             </div>
           </div>
-          <div className='  text-sm hidden md:block md:text-base md:w-[188px]'>
-              <h1 className='overflow-hidden whitespace-nowrap truncate'>
+          {/* for pc */}
+          <div className='  text-sm hidden pb-1 md:block md:text-base md:w-[188px]'>
+              <h1 className='overflow-hidden text-bgGreen whitespace-nowrap  truncate'>
                   {name}
               </h1>
-              <h1 className='bg-bgGreen w-fit px-2 text-xs text-white rounded-xl '>
+              <h1 className='text-base text-black  overflow-hidden mt-0.5 whitespace-normal truncate leading-4'>
+                  {streamTitle}
+              </h1>
+              <h1 className='bg-bgGreen w-fit px-2 text-xs my-2 text-white rounded-xl '>
                   {category}
               </h1>
-              <div className=' h-14 '>
-                  <h1 className='text-base text-black font-semibold overflow-hidden whitespace-normal truncate leading-tight md:leading-normal'>
-                      {streamTitle}
-                  </h1>
-              </div>
           </div>
             {/* for mobile */}
-              <div className=' md:hidden h-14 px-1'>
-                <h1 className='text-base text-black font-semibold overflow-hidden whitespace-normal truncate leading-tight md:leading-normal'>
+              <div className=' md:hidden px-1 mb-2'>
+                <h1 className='text-base text-black  overflow-hidden whitespace-normal truncate leading-4 md:leading-normal'>
                     {streamTitle}
                 </h1>
             </div>
