@@ -86,7 +86,7 @@ export default  function Navbar() {
                 (
                 <div className="flex gap-1">
                     <div onClick={toggleDropdown}> 
-                        <RiUser3Line size={30} className=" cursor-pointer" />
+                        <RiUser3Line size={30} className={`cursor-pointer ${pathname === '/startLive' ? 'text-white' : 'text-black'} `} />
                     </div>
                 </div>
                 ) : (

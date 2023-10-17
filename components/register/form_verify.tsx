@@ -204,7 +204,7 @@ const SignUpWithEmailForm = ({ onClose, setIsModalOpen }: SignUpWithEmailFormPro
             </div>
           <button
             type="submit"
-            className=" button w-full bg-bgGreen transition-all duration-300 text-white text-lg font-semibold rounded-md border border-bgDark"
+            className=" loadingbtn  button w-full bg-bgGreen border border-bgDark transition-all duration-300 text-white text-lg font-semibold rounded-md  text-center mr-2  items-center"
             onClick={handleSignup}
           >
                                     {isCreating ? (

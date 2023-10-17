@@ -4,7 +4,6 @@ import React from 'react';
 import { Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import Image from 'next/image';
-import { AiOutlineDelete } from 'react-icons/ai'; // Import delete icon from react-icons
 import { useFormikContext } from 'formik';
 import Resizer from 'react-image-file-resizer'; // Import the Resizer function
 
@@ -87,23 +86,6 @@ const Details = (props: any) => {
                 className="shadow appearance-none placeholder:text-sm bg-bgDark rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               />
               <ErrorMessage name="title" component="p" className="text-red-500 text-xs italic" />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="goLiveWith" className="block text-sm font-bold mb-2">
-                How do you want to go live:
-              </label>
-              <Field
-                as="select"
-                id="goLiveWith"
-                name="goLiveWith"
-                values={values}
-                className="shadow appearance-none bg-bgDark rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-              >
-                <option value="webcam">Webcam</option>
-                <option value="obs">OBS</option>
-              </Field>
-              <ErrorMessage name="goLiveWith" component="p" className="text-red-500 text-xs italic" />
             </div>
 
             <div className="mb-4">

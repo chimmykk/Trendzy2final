@@ -39,7 +39,7 @@ const StartStream: React.FunctionComponent = () => {
 
     },
     styleProps: {
-      localBtnContainer: { backgroundColor: 'transparent' },
+      localBtnContainer: { backgroundColor : 'transparent' },
     },
   };
 
@@ -51,7 +51,6 @@ const StartStream: React.FunctionComponent = () => {
   
     try {
       await client.login({ uid: newUid, token: undefined });
-      console.log(session?.user?.email);
       const newChannel = client.createChannel(newChannelName || 'st');
       await newChannel.join();
   
@@ -73,8 +72,10 @@ const StartStream: React.FunctionComponent = () => {
           <h2 className="heading">
             You are <span className="person">an Host Now </span>
           </h2>
-          <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
-          <App channel={channel} uid={uid} />
+          <div className='w-[500px] h-[500px] flex'>
+            <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
+          </div>
+          {/* <App channel={channel} uid={uid} /> */}
           <div className="nav">
             <button className="btn" onClick={() => setPinned(!isPinned)}>
               Change Layout
@@ -82,8 +83,6 @@ const StartStream: React.FunctionComponent = () => {
           </div>
         </>
       ) : (
-
-
         <button className="" onClick={handleCreateChannel} disabled={channelCreated}>
           Create Channel with Random
         </button>

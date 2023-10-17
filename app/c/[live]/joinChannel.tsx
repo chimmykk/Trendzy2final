@@ -92,7 +92,6 @@ interface AudienceProps {
 
 const Audience: React.FC<AudienceProps> = ({channelName}) => {
   const [videocall, setVideocall] = useState(false);
-  const [isPinned, setPinned] = useState(false);
   const [channelsMap, setChannelsMap] = useState<Map<string, any>>(new Map());
   const [uid, setUid] = useState('');
 
@@ -128,13 +127,13 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: channelName,
+      channel: 'qwerty',
       role: 'audience',
-      layout: isPinned ? layout.pin : layout.grid,
+      layout: layout.grid,
     },
     
     styleProps: {
-      localBtnContainer: { backgroundColor: 'transparent' },
+      localBtnContainer: { display: 'none' },
     },
 
     callbacks : {
@@ -147,7 +146,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   return (
     <div >
           
-            <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
+        <div className=' flex w-[500px] h-[550px] '>
             <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} rtmProps={props.rtmProps} styleProps={props.styleProps} />
         </div>
 {/*           

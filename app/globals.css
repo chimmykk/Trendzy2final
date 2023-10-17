@@ -310,7 +310,7 @@ body::-webkit-scrollbar-track {
   /* color: var(--hover-text); */
   transform: translate(-0.25rem,-0.25rem);
   /* background: var(--hover-bg); */
-  box-shadow: 0.3rem 0.3rem var(--bg);
+  box-shadow: 0.25rem 0.25rem var(--bg);
 }
 
 .card:active {

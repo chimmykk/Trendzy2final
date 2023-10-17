@@ -41,25 +41,14 @@ export default function StreamPlayerWrapper({}: Props) {
     }
   }, [muted]);
 
-  const onFullScreen = useCallback(() => {
-    if (isFullScreen) {
-      document.exitFullscreen().catch((err) => console.error(err));
-      setIsFullScreen(false);
-    } else if (playerEl?.current) {
-      playerEl.current.requestFullscreen().catch((err) => console.error(err));
-      setIsFullScreen(true);
-    }
-  }, [isFullScreen]);
-
   return (
     <TooltipProvider delayDuration={300}>
       <div className="relative flex aspect-video bg-black" ref={playerEl}>
-            <div
-            className=" h-[560px] flex justify-center items-center"
-        
-      >
-      <Audience channelName="Thotjj"/>
-      </div>
+        <div
+            className=" w-full h-[560px] flex justify-center items-center"
+        >
+          <Audience channelName="Thotjj"/>
+        </div>
 
         <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">
           <div className="absolute bottom-0 flex h-14 w-full items-center justify-between bg-gradient-to-t from-black px-4">
@@ -82,22 +71,6 @@ export default function StreamPlayerWrapper({}: Props) {
                 className="ml-1 h-0.5 w-24 cursor-pointer appearance-none rounded-full bg-white accent-white"
                 value={volume}
               />
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <Tooltip>
-                <TooltipTrigger>
-                  <div className="text-white" onClick={onFullScreen}>
-                    {isFullScreen ? (
-                      <Icons.minimize className="h-5 w-5 hover:scale-110 hover:transition-all" />
-                    ) : (
-                      <Icons.maximize className="h-5 w-5 hover:scale-110 hover:transition-all" />
-                    )}
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  {isFullScreen ? "Exit fullscreen" : "Enter fullscreen"}
-                </TooltipContent>
-              </Tooltip>
             </div>
           </div>
         </div>

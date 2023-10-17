@@ -4,10 +4,12 @@ import { FormikWizard } from "formik-wizard-form";
 import * as Yup from "yup";
 import Visibility from "./Visibility";
 import Details from "./Details";
+import { useState } from "react";
 import { FaEye, FaInfo } from 'react-icons/fa'
 import { FormikProps, FormikHelpers } from "formik";
 import { FormikValues } from "formik";
 import { useSession } from "next-auth/react";
+import CreateChannel from "@/app/createChannel/page";
 
 
 interface RenderProps extends FormikProps<FormikValues> {
@@ -40,12 +42,14 @@ interface RenderProps extends FormikProps<FormikValues> {
 
 export default function App() {
     const { data: session } = useSession();
+    const [showPreview, setShowPreview] = useState(false); // Add state for showing the preview
+    const [submittedData, setSubmittedData] = useState<any | null>(null);
 
   const onSubmit = async (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>) => {
     const { title, tags, visibility, thumbnail } = values;
-console.log(session?.user?.email);
-console.log(session?.user?.name)
-console.log(thumbnail)
+    console.log(session?.user?.email);
+    console.log(session?.user?.name)
+    console.log(thumbnail)
     // Get the email from the session
     const email = session?.user?.email;
     const name  = session?.user?.name
@@ -71,6 +75,8 @@ console.log(thumbnail)
       name:firstWord // Include the name in the request body
     };
 
+     setSubmittedData(requestBody);
+
     // Display alert with form values
     const combinedMessage = `Form Values: ${JSON.stringify({ ...values, Email: email, Name :name }, null, 2)}`;
     console.log(combinedMessage); // append email+form value
@@ -94,11 +100,17 @@ console.log(thumbnail)
       console.error('Error updating channel data:', error);
       alert('An error occurred while updating channel data');
     }
+    setShowPreview(true);
   };
   return (
     <div className=" relative bg-[#1E1F22] text-white my-[41.4px] h-[480px]  overflow-y-scroll  overflow-x-hidden w-[800px] mx-auto rounded-lg shadow-lg">
+      {showPreview ? ( // Conditionally render the preview page
+      <div className="w-full h-full flex justify-center items-center">
+        <CreateChannel submittedData={submittedData}/>
+      </div>
+      ) : (
       <FormikWizard
-        initialValues={{}}
+        initialValues={{ goLiveWith: 'webcam', category: 'men'}}
         onSubmit={onSubmit}
         validateOnNext
         activeStepIndex ={0}
@@ -108,9 +120,8 @@ console.log(thumbnail)
             validationSchema: Yup.object().shape({
               title: Yup.string().required('Title is required'),
               tags: Yup.string(),
-              goLiveWith: Yup.string().oneOf(['webcam', 'obs'], 'Invalid option'),
-              category: Yup.string().oneOf(['men', 'women'], 'Invalid option'),
-              thumbnail: Yup.mixed(),
+              category: Yup.string().oneOf(['men', 'women']),
+              thumbnail: Yup.mixed().required('Thumbnail required')
             }),
           },
           {
@@ -196,7 +207,8 @@ console.log(thumbnail)
               </>
             );
           }}
-  </FormikWizard>        
+  </FormikWizard> 
+      )}       
     </div>
   );
 }
