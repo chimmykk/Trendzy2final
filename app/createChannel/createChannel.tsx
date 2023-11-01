@@ -10,18 +10,18 @@ import { useSession } from 'next-auth/react';
 
 const APP_ID = 'c4d6e23287ed4da6b6831383945f9ed2';
 
-interface CreateChannelProps {
-  submittedData: any; // Define the type of submittedData
-}
+// interface CreateChannelProps {
+//   submittedData: any; // Define the type of submittedData
+// }
 
-export default function CreateChannel({ submittedData }: {submittedData: string}){
+export default function CreateChannel(){
   const [channelCreated, setChannelCreated] = useState(false);
   const router = useRouter();
   const [channelName, setChannelName] = useState('');
   const [channel, setChannel] = useState<any>(null);
   const [uid, setUid] = useState('');
 
-  console.log('Submitted Data haha:', submittedData);
+  // console.log('Submitted Data haha:', submittedData);
   
   const { data: session } = useSession();
   const name  = session?.user?.name

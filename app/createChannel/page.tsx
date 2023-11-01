@@ -9,7 +9,7 @@ const CreateChannel = dynamic(
 const ChannelStream = ({submittedData}: {submittedData: string}) => {
     return (
         <>
-            <CreateChannel submittedData={submittedData}/>
+            <CreateChannel />
         </>
     )
 }
