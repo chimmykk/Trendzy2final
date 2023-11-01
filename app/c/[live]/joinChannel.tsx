@@ -127,7 +127,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: 'qwerty',
+      channel: 'rilso',
       role: 'audience',
       layout: layout.grid,
     },

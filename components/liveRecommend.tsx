@@ -6,75 +6,31 @@ export default function RecommendLive() {
   const liveStreamData = [
     {
       href: './livestream/1',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
+      imageSrc: '/images/pexels1.jpeg',
       name: 'Harry Koren',
       streamTitle: 'New Comics + Adult Show ',
       viewerCount: '1.7k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
+      profileImg: '/images/pexels1.jpeg',
       category: 'shoes',
     },
     {
       href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
+      imageSrc: '/images/pexels2.jpeg',
+      name: 'Stream name',
+      streamTitle: 'Stream title goes here',
       viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
+      profileImg: '/images/pexels2.jpeg',
+      category: 'stream category',
     },
-        {
+    {
       href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
+      imageSrc: '/images/sell1.png',
+      name: 'Stream name',
+      streamTitle: 'Stream title goes here',
       viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },    {
-      href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
-      viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },
-        {
-      href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
-      viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },
-        {
-      href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
-      viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },
-    
-        {
-      href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'Another Stream Titleaawdawduadiabawdadaddwww',
-      viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },    {
-      href: './livestream/2',
-      imageSrc: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      name: 'Another Name',
-      streamTitle: 'another stream bro pls enjoy watching',
-      viewerCount: '2.5k',
-      profileImg: 'https://lh3.googleusercontent.com/OM4iY16dscdL_mfe4RADDWxDdZZ1yNWfQBAZKKWmy2Z8_1Intt7vuBfGth4Anvd0pcjyYZR2Ctz3tIaJM9asxLXysKktP2XTLzkWnYY',
-      category: 'gaming',
-    },
+      profileImg: '/images/sell1.png',
+      category: 'stream category',
+    }
     
     // Add more data objects as needed
   ];
@@ -87,7 +43,7 @@ export default function RecommendLive() {
         </Link>
         <h1>We Think You&apos;ll Like</h1>
       </div>
-      <div className=' py-2 md:py-8 grid grid-cols-fluid-mobile md:grid-cols-fluid gap-5 md:gap-4'>
+      <div className=' py-2 md:py-8 flex flex-col md:flex-row gap-5 md:gap-4'>
         {/* Map over the liveStreamData array and render LiveStreamCard components */}
         {liveStreamData.map((stream, index) => (
           <LiveStreamCard

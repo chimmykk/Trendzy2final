@@ -47,7 +47,7 @@ export default function StreamPlayerWrapper({}: Props) {
         <div
             className=" w-full h-[560px] flex justify-center items-center"
         >
-          <Audience channelName="Thotjj"/>
+          <Audience channelName="Rilso"/>
         </div>
 
         <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">
