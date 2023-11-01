@@ -106,7 +106,8 @@ export default function App() {
     <div className=" relative bg-[#1E1F22] text-white my-[41.4px] h-[480px]  overflow-y-scroll  overflow-x-hidden w-[800px] mx-auto rounded-lg shadow-lg">
       {showPreview ? ( // Conditionally render the preview page
       <div className="w-full h-full flex justify-center items-center">
-        <CreateChannel submittedData={submittedData}/>
+        <CreateChannel />
+        {/* submittedData={submittedData} */}
       </div>
       ) : (
       <FormikWizard
