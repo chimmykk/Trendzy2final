@@ -6,7 +6,7 @@ const CreateChannel = dynamic(
     () => import('./createChannel'),
     {ssr: false})
 
-const ChannelStream = ({submittedData}: {submittedData: string}) => {
+const ChannelStream = () => {
     return (
         <>
             <CreateChannel />
