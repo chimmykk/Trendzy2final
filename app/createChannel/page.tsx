@@ -6,10 +6,12 @@ const CreateChannel = dynamic(
     () => import('./createChannel'),
     {ssr: false})
 
-export default function IndexPage ({submittedData}: {submittedData: any}) {
+const ChannelStream = ({submittedData}: {submittedData: string}) => {
     return (
         <>
             <CreateChannel submittedData={submittedData}/>
         </>
     )
 }
+
+export default ChannelStream

@@ -14,7 +14,7 @@ interface CreateChannelProps {
   submittedData: any; // Define the type of submittedData
 }
 
-export default function CreateChannel({ submittedData }: CreateChannelProps){
+export default function CreateChannel({ submittedData }: {submittedData: string}){
   const [channelCreated, setChannelCreated] = useState(false);
   const router = useRouter();
   const [channelName, setChannelName] = useState('');
