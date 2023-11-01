@@ -17,7 +17,7 @@ const VideoCallUI = () => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: 'qwerty',
+      channel: 'rilso',
       role: 'host',
       layout: isPinned ? layout.pin : layout.grid,
     },
