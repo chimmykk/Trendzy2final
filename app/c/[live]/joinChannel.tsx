@@ -68,7 +68,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
               )}
               {message.uid !== uid && (
                 <div className="user-them">
-                    {session?.user?.name}
+                    Them:&nbsp;
                 </div>      
               )}
               <div className="text">{message.text}</div>

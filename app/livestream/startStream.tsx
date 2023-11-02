@@ -23,8 +23,6 @@ const StartStream: React.FunctionComponent = () => {
   console.log(session?.user?.name)
   const name  = session?.user?.name
   const firstWord = name?.split(' ')[0];
-
-
   
   const props: PropsInterface = {
     rtcProps: {
@@ -99,8 +97,15 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   const messagesRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<{ text: string; uid: any }[]>([]);
   const [text, setText] = useState('');
-  
   const { data: session } = useSession();
+  const [userData, setUserData] = useState<{ [uid: string]: string }>({});
+
+  useEffect(() => {
+    // Retrieve user data for each sender's UID and store it in userData state
+    if (channel && channel.userDataMap) {
+      setUserData(channel.userDataMap);
+    }
+  }, [channel]);
 
   const appendMessage = (message: { text: string; uid: any }) => {
     setMessages((messages) => [...messages, message]);
@@ -134,12 +139,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text === '') return;
-
-    // Ensure that this code runs only on the client side
-    if (typeof window !== 'undefined') {
-      channel.sendMessage({ text, type: 'text' });
-    }
-    
+    channel.sendMessage({ text, type: 'text' });
     appendMessage({
       text: text,
       uid: uid,
@@ -147,20 +147,22 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
     setText('');
   };
 
+  console.log(messages)
+
   return (
-    <div className="panel">
+    <div className="w-1/2 bg-white text-black">
       <div className="messages" ref={messagesRef}>
         <div className="inner">
           {messages.map((message, idx) => (
             <div key={idx} className="message">
               {message.uid === uid && (
                 <div className="user-self">
-                  You
+                  You:&nbsp;
                 </div>
               )}
               {message.uid !== uid && (
                 <div className="user-them">
-                  {session?.user?.name}
+                  {message.text ? JSON.parse(message.text).rtmId : 'Sender'}:&nbsp;
                 </div>
               )}
               <div className="text">{message.text}</div>
