@@ -64,46 +64,46 @@ export default  function Navbar() {
     return (
         <nav className={` ${pathname === '/LiveRoom' || pathname === '/startLive' ? 'bg-[#0E0E10] border-b border-[#424141]' : 'bg-white'} z-50 px-5 sm:px-6  lg:px-4 sticky shadow backdrop-blur-lg top-0 `}>
             {/* for screen larger than md */}
-            <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText">
-                    <Link href={'/'} className=" w-fit col-span-1 text-black ">
+            <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText ">
+                    <Link href={'/'} className=" w-fit col-span-1 text-black">
                         <h1 className=" text-4xl font-bold text-bgGreen">trendzy</h1>
                     </Link>     
-                    <div className=" overflow-hidden rounded-lg flex">
+                    <div className=" overflow-hidden w-full rounded-lg flex justify-center ">
                         <input 
                             placeholder="Search" 
-                            className={` font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg py-1 px-4 outline-none w-full text-black placeholder-opacity-26 bg-transparent focus:border-borderC input-with-shadow `}
+                            className={` font-medium border border-bgDark hover:border-borderC placeholder:font-thin rounded-s-lg px-4 outline-none w-3/4 text-black placeholder-opacity-26 bg-transparent focus:border-borderC input-with-shadow `}
                             name="text" 
                             type="text" 
                         />
-                        <button className=" bg-bgGreen hover:bg-hoverGreen h-full px-4">
-                            <FaSearch size={23} className="text-white" />
+                        <button className=" bg-bgGreen hover:bg-hoverGreen rounded-e-lg h-full px-4">
+                            <FaSearch size={20} className="text-white" />
                         </button>
                     </div>
                 <div className="flex lg:gap-20 xl:gap-25 justify-end col-span-1">
                     <div className="flex items-center text-black gap-3 font-bold">
                      {/* Conditionally render the buttons based on session status */}
-                {session ? 
-                (
-                <div className="flex gap-1">
-                    <div onClick={toggleDropdown}> 
-                        <RiUser3Line size={30} className={`cursor-pointer ${pathname === '/startLive' ? 'text-white' : 'text-black'} `} />
-                    </div>
-                </div>
-                ) : (
-                <div className="flex items-center text-black gap-3 text-lg font-medium ">
-                    <div 
-                        onClick={toggleModalLogin} 
-                        className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4"
-                    >
-                        Log In
-                    </div>
-                    <div 
-                        onClick={toggleModal} 
-                        className=" cursor-pointer rounded-lg bg-bgGreen hover:bg-hoverGreen text-white transition-hover duration-300  py-2 px-4">
-                        Sell Live
-                    </div>
-                </div>
-                )}
+                      {session ? 
+                      (
+                      <div className="flex gap-1">
+                          <div onClick={toggleDropdown}> 
+                              <RiUser3Line size={30} className={`cursor-pointer ${pathname === '/startLive' ? 'text-white' : 'text-black'} `} />
+                          </div>
+                      </div>
+                      ) : (
+                      <div className="flex items-center text-black gap-3 text-lg font-medium ">
+                          <div 
+                              onClick={toggleModalLogin} 
+                              className=" cursor-pointer bg-bgGray hover:bg-[#e4dfdf] transition-hover duration-300 rounded-lg py-2 px-4"
+                          >
+                              Log In
+                          </div>
+                          <div 
+                              onClick={toggleModal} 
+                              className=" cursor-pointer rounded-lg bg-bgGreen hover:bg-hoverGreen text-white transition-hover duration-300  py-2 px-4">
+                              Sell Live
+                          </div>
+                      </div>
+                      )}
                     </div>
                 </div>
                 {isModalOpen && <SignUp setIsModalOpen={setIsModalOpen} />}
