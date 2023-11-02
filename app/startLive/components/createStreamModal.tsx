@@ -83,7 +83,7 @@ export default function App() {
 
     // Make a POST request to the API endpoint
     try {
-      const response = await fetch('http://localhost:3000/api/flow/postget', {
+      const response = await fetch('https://trendzy2.vercel.app/api/flow/postget', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

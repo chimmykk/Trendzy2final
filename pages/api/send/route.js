@@ -11,7 +11,7 @@ export default async (req, res) => {
 
   try {
     const emailContent = `
-      Your verification link is http://localhost:3000/api/verify?verification_token=${encodeURIComponent(verification_token)}
+      Your verification link is https://trendzy2.vercel.app/api/verify?verification_token=${encodeURIComponent(verification_token)}
       Verification code: ${verification_code}
     `;
 
