@@ -107,6 +107,10 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
     }
   }, [channel]);
 
+
+
+
+
   const appendMessage = (message: { text: string; uid: any }) => {
     setMessages((messages) => [...messages, message]);
   };
@@ -162,10 +166,10 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
               )}
               {message.uid !== uid && (
                 <div className="user-them">
-                  {message.text ? JSON.parse(message.text).rtmId : 'Sender'}:&nbsp;
+                    hello
                 </div>
               )}
-              <div className="text">{message.text}</div>
+              <div className="text">{message.text} has joined</div>
             </div>
           ))}
         </div>

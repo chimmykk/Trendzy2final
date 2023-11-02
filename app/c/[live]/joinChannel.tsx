@@ -71,7 +71,9 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
                     Them:&nbsp;
                 </div>      
               )}
-              <div className="text">{message.text}</div>
+              <div className="text">
+                {message.text}
+              </div>
             </div>
           ))}
         </div>
