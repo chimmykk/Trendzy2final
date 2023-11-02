@@ -1,4 +1,6 @@
+import StreamPlayerWrapper from "@/app/LiveRoom/channel/StreamPlayer";
 import Audience from "./indexChannel";
+import ChannelPage from "@/app/LiveRoom/page";
 
 interface UserLive {
   userlive: {
@@ -9,7 +11,7 @@ interface UserLive {
 
 
 export async function generateStaticParams() {
-  const response = await fetch('https://apifetchchannel.onrender.com');
+  const response = await fetch('https://testing-stream.onrender.com/');
   const data = await response.json();
 
   return data.data.map((item: UserLive[]) => ({
@@ -28,9 +30,8 @@ export default async function Stream({ params }: StreamParams) {
   const { live } = params
   
   return (
-    <div className="pl-64">
-      <h1>hi {live}</h1>
-      <Audience channelName={live}/>
+    <div className=""> 
+      <ChannelPage channelName={live}/>
     </div>
   )
 }

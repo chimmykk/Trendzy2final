@@ -38,7 +38,8 @@ export default  function Navbar() {
     const toggleModalLogin = () => {
         setIsModalOpenLogin(!isModalOpenLogin);
     };
-    const pathname = usePathname();
+    const pathname = usePathname() || '/'; // Provide a default value '/' if usePathname() returns null
+
 
     // if (status === "loading") {
     //     return(
@@ -62,7 +63,8 @@ export default  function Navbar() {
     { text: 'Logout', icon: <FiLogOut />, onClick: signOut }, // Include onClick to trigger sign-out
   ];
     return (
-        <nav className={` ${pathname === '/LiveRoom' || pathname === '/startLive' ? 'bg-[#0E0E10] border-b border-[#424141]' : 'bg-white'} z-50 px-5 sm:px-6  lg:px-4 sticky shadow backdrop-blur-lg top-0 `}>
+        <nav 
+            className={` ${pathname === '/LiveRoom' || pathname === '/startLive' || pathname.startsWith("/c/") ? 'bg-[#0E0E10] border-b border-[#424141]' : 'bg-white'} z-50 px-5 sm:px-6  lg:px-4 sticky shadow backdrop-blur-lg top-0 `}>
             {/* for screen larger than md */}
             <div className="py-3 hidden lg:grid grid-cols-3 text-base  font-medium text-grayText ">
                     <Link href={'/'} className=" w-fit col-span-1 text-black">

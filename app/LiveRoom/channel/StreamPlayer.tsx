@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useRef, useCallback } from "react";
 import {
   Tooltip,
@@ -10,10 +12,10 @@ import { Icons } from "../ui";
 import Audience from "../.././c/[live]/indexChannel";
 
 type Props = {
-  // You can define any props you need here
+  channelName: string; // Define the channelName prop
 };
 
-export default function StreamPlayerWrapper({}: Props) {
+export default function StreamPlayerWrapper({ channelName }: Props) {
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(50);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -47,7 +49,7 @@ export default function StreamPlayerWrapper({}: Props) {
         <div
             className=" w-full h-[560px] flex justify-center items-center"
         >
-          <Audience channelName="rilso"/>
+          <Audience channelName={channelName} />
         </div>
 
         <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">

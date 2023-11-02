@@ -7,6 +7,7 @@ import AgoraRTM from 'agora-rtm-sdk';
 import { v4 as uuidv4 } from 'uuid';
 import { useSession } from 'next-auth/react';
 
+
 const APP_ID = 'c4d6e23287ed4da6b6831383945f9ed2';
 
 const StartStream: React.FunctionComponent = () => {
@@ -22,6 +23,7 @@ const StartStream: React.FunctionComponent = () => {
   console.log(session?.user?.name)
   const name  = session?.user?.name
   const firstWord = name?.split(' ')[0];
+
 
   
   const props: PropsInterface = {
@@ -75,7 +77,7 @@ const StartStream: React.FunctionComponent = () => {
           <div className='w-[500px] h-[500px] flex'>
             <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} styleProps={props.styleProps} />
           </div>
-          {/* <App channel={channel} uid={uid} /> */}
+          <App channel={channel} uid={uid} />
           <div className="nav">
             <button className="btn" onClick={() => setPinned(!isPinned)}>
               Change Layout
@@ -98,6 +100,8 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   const [messages, setMessages] = useState<{ text: string; uid: any }[]>([]);
   const [text, setText] = useState('');
   
+  const { data: session } = useSession();
+
   const appendMessage = (message: { text: string; uid: any }) => {
     setMessages((messages) => [...messages, message]);
   };
@@ -151,12 +155,12 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
             <div key={idx} className="message">
               {message.uid === uid && (
                 <div className="user-self">
-                  You:&nbsp;
+                  You
                 </div>
               )}
               {message.uid !== uid && (
                 <div className="user-them">
-                  Them:&nbsp;
+                  {session?.user?.name}
                 </div>
               )}
               <div className="text">{message.text}</div>

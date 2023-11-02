@@ -9,7 +9,7 @@ const BecomeSeller = () => {
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Join Our Community of Sellers</h1>
         <p className="text-lg md:text-3xl mb-8">Turn Your Passion into Profit</p>
-        <Link href="#apply" className=" button border bg-bgGreen border-black text-bgDark text-xl font-semibold rounded">
+        <Link href="#apply" className=" button px-4 py-2 border bg-bgGreen border-black text-bgDark text-xl font-semibold rounded">
           Apply to Sell!
         </Link>
       </section>

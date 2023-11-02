@@ -8,8 +8,9 @@ const VideoCallUI = () => {
   const [isPinned, setPinned] = useState(false);
 
     const {data: session} = useSession()    
-  const name  = session?.user?.name
-  const firstWord = name?.split(' ')[0];
+    const name  = session?.user?.name
+    const firstWord = session?.user?.name?.split(' ')[0] || '';
+
 
   // Define your APP_ID here
   const APP_ID = 'c4d6e23287ed4da6b6831383945f9ed2';
@@ -17,7 +18,7 @@ const VideoCallUI = () => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: 'rilso',
+      channel: firstWord,
       role: 'host',
       layout: isPinned ? layout.pin : layout.grid,
     },

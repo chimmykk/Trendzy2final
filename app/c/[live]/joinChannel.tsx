@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AgoraUIKit, { PropsInterface, layout } from 'agora-react-uikit';
 import AgoraRTM from 'agora-rtm-sdk';
+import { useSession } from 'next-auth/react';
 
 const APP_ID = 'c4d6e23287ed4da6b6831383945f9ed2';
 
@@ -10,6 +11,8 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   const messagesRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<{ text: string; uid: any }[]>([]);
   const [text, setText] = useState('');
+
+  const {data: session} = useSession()
 
   const appendMessage = (message: { text: string; uid: any }) => {
     setMessages((messages) => [...messages, message]);
@@ -53,7 +56,7 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
   };
 
   return (
-    <div className="w-1/2">
+    <div className="w-1/2 bg-white text-black">
       <div className="messages" ref={messagesRef}>
         <div className="inner">
           {messages.map((message, idx) => (
@@ -65,8 +68,8 @@ const App = ({ channel, uid }: { channel: any; uid: string }) => {
               )}
               {message.uid !== uid && (
                 <div className="user-them">
-                  Them:&nbsp;
-                </div>
+                    {session?.user?.name}
+                </div>      
               )}
               <div className="text">{message.text}</div>
             </div>
@@ -127,7 +130,7 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
   const props: PropsInterface = {
     rtcProps: {
       appId: APP_ID,
-      channel: 'rilso',
+      channel: channelName,
       role: 'audience',
       layout: layout.grid,
     },
@@ -149,8 +152,10 @@ const Audience: React.FC<AudienceProps> = ({channelName}) => {
         <div className=' flex w-[500px] h-[550px] '>
             <AgoraUIKit rtcProps={props.rtcProps} callbacks={props.callbacks} rtmProps={props.rtmProps} styleProps={props.styleProps} />
         </div>
-{/*           
-          <App channel={channelsMap.get(channelName)} uid={uid} /> */}
+         
+         <div className='fixed right-0 bottom-6'>
+            <App channel={channelsMap.get(channelName)} uid={uid} />
+         </div>
     </div>
   );
 };

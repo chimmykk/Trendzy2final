@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const { status } = useSession();
-  const pathname = usePathname() || ''
+  const pathname = usePathname() || '/';
 
   useEffect(() => {
     // Move your client-side code inside useEffect
@@ -25,12 +25,12 @@ export default function Sidebar() {
   }, []); // Empty dependency array to run this effect once on component mount
 
    // Define an array of paths where you want to hide the sidebar
-  const hiddenPaths = ['/startLive', '/LiveRoom', '/userProfile'];
+  const hiddenPaths = ['/startLive', '/LiveRoom', '/userProfile', '/seller'];
 
   // Render the sidebar only when the session is authenticated
-  if (status === "authenticated" && !hiddenPaths.includes(pathname)) {
+  if (status === "authenticated" && !hiddenPaths.includes(pathname) && !pathname.startsWith('/c')) {
     return (
-      <div className={` bg-[#efeff1] left-0  z-50 hidden lg:flex flex-col gap-6 py-4 w-fit h-screen px-4 overflow-y-scroll ${pathname === '/startLive' ? "hidden" : "fixed"}`}>
+      <div className={` bg-[#efeff1] left-0  z-50 hidden lg:flex flex-col gap-6 py-4 w-fit h-screen px-4 overflow-y-scroll fixed`}>
         <h1 className="text-xl font-bold">CATEGORIES</h1>
         <div className="text-base font-semibold flex flex-col">
           <Link href={"./"} className="bg-bgGray rounded-lg px-2 py-2 block w-44">
