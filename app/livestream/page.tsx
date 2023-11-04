@@ -1,17 +1,7 @@
-"use client"
+import Lives from "./dynamicParent"
 
-import dynamic from 'next/dynamic'
-
-const StartStream = dynamic(
-    () => import('./startStream'),
-    {ssr: false})
-
-const IndexPage = () => {
-    return (
-        <>
-            <StartStream/>
-        </>
+export default function IndexPage(){
+    return(
+        <Lives />
     )
 }
-
-export default IndexPage

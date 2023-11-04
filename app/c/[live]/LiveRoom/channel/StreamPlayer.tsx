@@ -7,9 +7,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/Tooltip";
-import Link from "next/link";
 import { Icons } from "../ui";
-import Audience from "../.././c/[live]/indexChannel";
+
+import VideoCallUI from "@/app/c/[live]/LiveRoom/liveVideo";
 
 type Props = {
   channelName: string; // Define the channelName prop
@@ -18,7 +18,6 @@ type Props = {
 export default function StreamPlayerWrapper({ channelName }: Props) {
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(50);
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const videoEl = useRef<HTMLVideoElement>(null);
   const playerEl = useRef<HTMLDivElement>(null);
 
@@ -47,9 +46,9 @@ export default function StreamPlayerWrapper({ channelName }: Props) {
     <TooltipProvider delayDuration={300}>
       <div className="relative flex aspect-video bg-black" ref={playerEl}>
         <div
-            className=" w-full h-[560px] flex justify-center items-center"
+            className=" w-full  z-40 h-[560px] flex justify-center items-center"
         >
-          <Audience channelName={channelName} />
+          <VideoCallUI channelName={channelName} />
         </div>
 
         <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">

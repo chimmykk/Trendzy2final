@@ -52,7 +52,7 @@ export default function CreateChannel(){
     setChannelCreated(true);
 
     // Navigate to the video call component
-    router.push('/stream');
+    router.push('/livestream');
   };
 
   return (
