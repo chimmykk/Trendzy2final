@@ -6,7 +6,7 @@ import ResponsiveCarousel from '../components/Carousel';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import RecommendLive from '@/components/liveRecommend';
-import Footer from './footer';
+import Footer from '../components/footer';
 import MobileViewCarousel from '@/components/mobileViewCarousel';
 
 export default function Home() {

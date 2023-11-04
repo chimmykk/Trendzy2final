@@ -1,6 +1,5 @@
-import StreamPlayerWrapper from "@/app/LiveRoom/channel/StreamPlayer";
-import Audience from "./indexChannel";
-import ChannelPage from "@/app/LiveRoom/page";
+
+import ChannelPage from "@/app/c/[live]/LiveRoom/dynamicIndex";
 
 interface UserLive {
   userlive: {

@@ -9,7 +9,7 @@ import { FaEye, FaInfo } from 'react-icons/fa'
 import { FormikProps, FormikHelpers } from "formik";
 import { FormikValues } from "formik";
 import { useSession } from "next-auth/react";
-import CreateChannel from "@/app/createChannel/page";
+import CreateChannel from "@/app/startLive/createChannel/page";
 
 
 interface RenderProps extends FormikProps<FormikValues> {

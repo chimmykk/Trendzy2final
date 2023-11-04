@@ -1,10 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Baloo_2 } from 'next/font/google'
-import Navbar from './navbar'
-import Providers from './providers'
-import Sidebar from './Sidebar'
-import ClientComponent from './renderChildrenClient'
+import Navbar from '../components/navbar'
+import Providers from '../components/providers'
+import Sidebar from '../components/Sidebar'
+import ClientComponent from '../components/renderChildrenClient'
 
 
 const baloo = Baloo_2({ subsets: ['latin'] })
